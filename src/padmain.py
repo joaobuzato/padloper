@@ -1,4 +1,5 @@
 
+from player_manager import PlayerManager
 import time
 from padscreen import PadScreen
 
@@ -7,6 +8,8 @@ class PadMain():
     def __init__(self):
         padscreen = PadScreen()
         self.screen = padscreen.get_screen_obj()
+        
+        self.player_manager = PlayerManager(self.screen)
     
     def input(self):
         pass

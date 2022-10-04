@@ -4,8 +4,9 @@ import json
 
 game_map = json.loads(open('map.json').read())
 
-print(game_map.get("screen"))
+print(game_map)
 screen = game_map.get("screen")
+pad_main_txt = ""
 screen_txt = f""" 
 from turtle import Screen
 
@@ -23,9 +24,11 @@ file = open("src/padscreen.py", "w")
 file.write(screen_txt)
 file.close()
 
-
+manager_setups = ""
 for actor in game_map.get("actors"):
     class_name = str.title(actor.get("name"))
+    pad_main_txt += f"""
+from {actor.get("name")}_manager import {class_name}Manager"""
     actor_txt = f"""
 from turtle import Turtle
 
@@ -51,25 +54,35 @@ class {class_name}Manager(Turtle):
     def __init__(self, screen):
         super().__init__()
         self.{actor.get("name")}_list = []
+        self.actor = {class_name}()
         self.screen = screen
         
     def input(self):
 """
     if actor.get("behaviors").get("inputs") != None:
-
+        functions_txt = ""
         for input in actor.get("behaviors").get("inputs"):
             manager_txt += f"""
         self.screen.onkey(key='{input.get('key')}', fun=self.{input.get('key')})"""
+            functions_txt += f"""
+    def {input.get("key")}(self):
+        self.actor.{input.get("action")}({input.get("param")})
+"""
+
+        manager_txt += functions_txt
+
     manager_txt += """
         pass
 """
 
+    manager_setups += f"""
+        self.{actor.get("name")}_manager = {class_name}Manager(self.screen)"""
     file = open(f"src/{actor.get('name')}_manager.py", "w")
     file.write(manager_txt)
     file.close()
 
 
-pad_main_txt = f"""
+pad_main_txt += f"""
 import time
 from padscreen import PadScreen
 
@@ -78,6 +91,7 @@ class PadMain():
     def __init__(self):
         padscreen = PadScreen()
         self.screen = padscreen.get_screen_obj()
+        {manager_setups}
     
     def input(self):
         pass
