@@ -23,7 +23,7 @@ file = open("src/padscreen.py", "w")
 file.write(screen_txt)
 file.close()
 
-main_game_txt = f"""
+pad_main_txt = f"""
 import time
 from padscreen import PadScreen
 
@@ -54,7 +54,7 @@ pad_main = PadMain()
 pad_main.game_loop()
 """
 
-file = open("src/game_main.py", "w")
-file.write(main_game_txt)
+file = open("src/padmain.py", "w")
+file.write(pad_main_txt)
 file.close()
 
