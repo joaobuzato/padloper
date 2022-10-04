@@ -25,10 +25,11 @@ file.close()
 
 
 for actor in game_map.get("actors"):
+    class_name = str.title(actor.get("name"))
     actor_txt = f"""
 from turtle import Turtle
 
-class {str.title(actor.get("name"))} (Turtle):
+class {class_name} (Turtle):
     
     def __init__(self) :
         super().__init__()
@@ -39,6 +40,32 @@ class {str.title(actor.get("name"))} (Turtle):
 
     file = open(f"src/{actor.get('name')}.py", "w")
     file.write(actor_txt)
+    file.close()
+
+    manager_txt = f"""
+from turtle import Turtle
+from {actor.get("name")} import {class_name}
+
+class {class_name}Manager(Turtle):
+    
+    def __init__(self, screen):
+        super().__init__()
+        self.{actor.get("name")}_list = []
+        self.screen = screen
+        
+    def input(self):
+"""
+    if actor.get("behaviors").get("inputs") != None:
+
+        for input in actor.get("behaviors").get("inputs"):
+            manager_txt += f"""
+        self.screen.onkey(key='{input.get('key')}', fun=self.{input.get('key')})"""
+    manager_txt += """
+        pass
+"""
+
+    file = open(f"src/{actor.get('name')}_manager.py", "w")
+    file.write(manager_txt)
     file.close()
 
 
