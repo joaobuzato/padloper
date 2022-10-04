@@ -8,11 +8,17 @@
   "actors" : [
     {
       "name" : "player",
-      "components" : [
-
-      ],
+      "components" : {
+        "color" : "red",
+        "pos" : {"x" :  0, "y" :  50}
+      },
       "behaviors" : [
-
+        {
+          "inputs" : [
+            {"key" :  "w", "action" : "fd", "param" :  "10"},
+            {"key" :  "s", "action" :  "bw", "param" :  "10"}
+          ]
+        }
       ]
     }
   ]
