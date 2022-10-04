@@ -23,6 +23,25 @@ file = open("src/padscreen.py", "w")
 file.write(screen_txt)
 file.close()
 
+
+for actor in game_map.get("actors"):
+    actor_txt = f"""
+from turtle import Turtle
+
+class {str.title(actor.get("name"))} (Turtle):
+    
+    def __init__(self) :
+        super().__init__()
+        self.penup()
+        self.goto({actor.get("components").get("pos").get("x")},{actor.get("components").get("pos").get("y")})
+        self.color('{actor.get("components").get("color")}')
+"""
+
+    file = open(f"src/{actor.get('name')}.py", "w")
+    file.write(actor_txt)
+    file.close()
+
+
 pad_main_txt = f"""
 import time
 from padscreen import PadScreen
