@@ -1,11 +1,9 @@
 
-from turtle import Turtle
 from player import Player
 
-class PlayerManager(Turtle):
+class PlayerManager():
     
     def __init__(self, screen):
-        super().__init__()
         self.player_list = []
         self.actor = Player()
         self.screen = screen

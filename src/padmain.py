@@ -12,6 +12,8 @@ class PadMain():
         self.player_manager = PlayerManager(self.screen)
     
     def input(self):
+        
+        self.player_manager.input()
         pass
     
     def update(self):
@@ -21,6 +23,8 @@ class PadMain():
         pass
         
     def game_loop(self):
+        self.screen.listen()
+        self.input()
         game_is_on = True
         while game_is_on:
             time.sleep(0.01)

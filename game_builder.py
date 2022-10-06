@@ -25,6 +25,7 @@ file.write(screen_txt)
 file.close()
 
 manager_setups = ""
+input_setups = ""
 for actor in game_map.get("actors"):
     class_name = str.title(actor.get("name"))
     pad_main_txt += f"""
@@ -46,13 +47,11 @@ class {class_name} (Turtle):
     file.close()
 
     manager_txt = f"""
-from turtle import Turtle
 from {actor.get("name")} import {class_name}
 
-class {class_name}Manager(Turtle):
+class {class_name}Manager():
     
     def __init__(self, screen):
-        super().__init__()
         self.{actor.get("name")}_list = []
         self.actor = {class_name}()
         self.screen = screen
@@ -77,6 +76,8 @@ class {class_name}Manager(Turtle):
 
     manager_setups += f"""
         self.{actor.get("name")}_manager = {class_name}Manager(self.screen)"""
+    input_setups += f"""
+        self.{actor.get("name")}_manager.input()"""
     file = open(f"src/{actor.get('name')}_manager.py", "w")
     file.write(manager_txt)
     file.close()
@@ -94,6 +95,7 @@ class PadMain():
         {manager_setups}
     
     def input(self):
+        {input_setups}
         pass
     
     def update(self):
@@ -103,6 +105,8 @@ class PadMain():
         pass
         
     def game_loop(self):
+        self.screen.listen()
+        self.input()
         game_is_on = True
         while game_is_on:
             time.sleep(0.01)
