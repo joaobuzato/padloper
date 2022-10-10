@@ -25,19 +25,15 @@ class GameBuilder:
         self.manager_setups = ""
         self.input_setups = ""
         for actor in self.game_map.get("actors"):
-            class_name = str.title(actor.get("name"))
-            self.manager_imports_txt += f"""
-from {actor.get("name")}_manager import {class_name}Manager"""
             self.actor_builder.build(actor)
-
-
 
         self.manager_setups = self.actor_builder.manager_setups
         self.input_setups = self.actor_builder.input_setups
+        self.manager_imports = self.actor_builder.manager_imports
 
     def create_main(self):
         self.pad_main_txt += f"""
-{self.manager_imports_txt}
+{self.manager_imports}
 import time
 from padscreen import PadScreen
 

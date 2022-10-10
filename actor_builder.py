@@ -5,6 +5,7 @@ class ActorBuilder:
         self.actor = None
         self.manager_setups = ""
         self.input_setups = ""
+        self.manager_imports = ""
         self.class_name = ""
         pass
 
@@ -58,6 +59,10 @@ class {self.class_name}Manager():
         self.manager_txt += """
         pass
         """
+        self.manager_imports += f"""
+        
+from {self.actor.get("name")}_manager import {self.class_name}Manager"""
+
         self.manager_setups += f"""
         self.{self.actor.get("name")}_manager = {self.class_name}Manager(self.screen)"""
         self.input_setups += f"""
@@ -66,9 +71,3 @@ class {self.class_name}Manager():
         file.write(self.manager_txt)
         file.close()
         pass
-
-        def manager_setups(self):
-            return self.manager_setups
-
-        def input_setups(self):
-            return self.manager_setups
