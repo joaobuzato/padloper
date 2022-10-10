@@ -1,10 +1,10 @@
 
 from turtle import Turtle
 
-class Player (Turtle):
+class Player2 (Turtle):
 
     def __init__(self) :
         super().__init__()
-        self.color('red')
+        self.color('green')
         self.penup()
-        self.goto(0,50)
+        self.goto(0,-50)

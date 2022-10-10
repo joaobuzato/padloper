@@ -1,5 +1,7 @@
 
+
 from player_manager import PlayerManager
+from player2_manager import Player2Manager
 import time
 from padscreen import PadScreen
 
@@ -10,10 +12,12 @@ class PadMain():
         self.screen = padscreen.get_screen_obj()
         
         self.player_manager = PlayerManager(self.screen)
+        self.player2_manager = Player2Manager(self.screen)
     
     def input(self):
         
         self.player_manager.input()
+        self.player2_manager.input()
         pass
     
     def update(self):
