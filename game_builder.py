@@ -29,6 +29,7 @@ class GameBuilder:
 
         self.manager_setups = self.actor_builder.manager_setups
         self.input_setups = self.actor_builder.input_setups
+        self.setup_setups = self.actor_builder.setup_setups
         self.manager_imports = self.actor_builder.manager_imports
 
     def create_main(self):
@@ -43,7 +44,8 @@ class PadMain():
         padscreen = PadScreen()
         self.screen = padscreen.get_screen_obj()
         {self.manager_setups}
-    
+    def setup(self):
+        {self.setup_setups}
     def input(self):
         {self.input_setups}
         pass
@@ -56,6 +58,7 @@ class PadMain():
         
     def game_loop(self):
         self.screen.listen()
+        self.setup()
         self.input()
         game_is_on = True
         while game_is_on:

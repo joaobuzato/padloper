@@ -5,6 +5,7 @@ class ActorBuilder:
         self.actor = None
         self.manager_setups = ""
         self.input_setups = ""
+        self.setup_setups = ""
         self.manager_imports = ""
         self.class_name = ""
         pass
@@ -40,9 +41,13 @@ from {self.actor.get("name")} import {self.class_name}
 class {self.class_name}Manager():
 
     def __init__(self, screen):
-        self.{self.actor.get("name")}_list = []
-        self.actor = {self.class_name}()
+        self.actor_list = []
+        
         self.screen = screen
+        
+    def setup(self):
+        actor = {self.class_name}()
+        self.actor_list.append(actor)
 
     def input(self):
 """
@@ -53,7 +58,8 @@ class {self.class_name}Manager():
         self.screen.onkey(key='{input.get('key')}', fun=self.{input.get('key')})"""
                 functions_txt += f"""
     def {input.get("key")}(self):
-        self.actor.{input.get("action")}({input.get("param")})
+        for actor in self.actor_list:
+            actor.{input.get("action")}({input.get("param")})
         """
             self.manager_txt += functions_txt
         self.manager_txt += """
@@ -67,6 +73,8 @@ from {self.actor.get("name")}_manager import {self.class_name}Manager"""
         self.{self.actor.get("name")}_manager = {self.class_name}Manager(self.screen)"""
         self.input_setups += f"""
         self.{self.actor.get("name")}_manager.input()"""
+        self.setup_setups += f"""
+        self.{self.actor.get("name")}_manager.setup()"""
         file = open(f"src/{self.actor.get('name')}_manager.py", "w")
         file.write(self.manager_txt)
         file.close()

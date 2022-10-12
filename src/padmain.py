@@ -15,7 +15,10 @@ class PadMain():
         
         self.player_manager = PlayerManager(self.screen)
         self.player2_manager = Player2Manager(self.screen)
-    
+    def setup(self):
+        
+        self.player_manager.setup()
+        self.player2_manager.setup()
     def input(self):
         
         self.player_manager.input()
@@ -30,6 +33,7 @@ class PadMain():
         
     def game_loop(self):
         self.screen.listen()
+        self.setup()
         self.input()
         game_is_on = True
         while game_is_on:
