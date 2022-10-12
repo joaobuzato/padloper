@@ -43,12 +43,43 @@ class {self.class_name} (Turtle):
                 self.input_txt += f"""
         self.screen.onkey(key='{input.get('key')}', fun=self.{input.get('key')})"""
                 # TODO fazer inputs mais inclusivos
-                self.functions_txt += f"""
+                self.functions_txt += self.build_input_function(input)
+
+
+
+    def build_input_function(self,input):
+        functions_txt = ""
+        action = input.get("action")
+
+        if action == "forward":
+            functions_txt += f"""
     def {input.get("key")}(self):
         for actor in self.actor_list:
-            actor.{input.get("action")}({input.get("param")})
-        """
+            actor.forward({input.get("param")})
+            """
 
+        elif action == "backward":
+            functions_txt += f"""
+    def {input.get("key")}(self):
+        for actor in self.actor_list:
+            actor.backward({input.get("param")})
+            """
+
+        elif action == "right":
+            functions_txt += f"""
+    def {input.get("key")}(self):
+        for actor in self.actor_list:
+            actor.right({input.get("param")})
+            """
+
+        elif action == "left":
+            functions_txt += f"""
+    def {input.get("key")}(self):
+        for actor in self.actor_list:
+            actor.left({input.get("param")})
+            """
+
+        return functions_txt
     def build_manager(self):
         self.build_inputs()
         self.manager_txt = f"""

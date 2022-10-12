@@ -14,17 +14,27 @@ class Player2Manager():
 
     def input(self):
         
-        self.screen.onkey(key='e', fun=self.e)
-        self.screen.onkey(key='d', fun=self.d)
+        self.screen.onkey(key='t', fun=self.t)
+        self.screen.onkey(key='g', fun=self.g)
+        self.screen.onkey(key='f', fun=self.f)
+        self.screen.onkey(key='h', fun=self.h)
         pass
         
     
-    def e(self):
+    def t(self):
         for actor in self.actor_list:
-            actor.fd(10)
-        
-    def d(self):
+            actor.forward(10)
+            
+    def g(self):
         for actor in self.actor_list:
-            actor.bk(10)
-        
+            actor.backward(10)
+            
+    def f(self):
+        for actor in self.actor_list:
+            actor.left(10)
+            
+    def h(self):
+        for actor in self.actor_list:
+            actor.right(10)
+            
         

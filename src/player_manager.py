@@ -16,15 +16,25 @@ class PlayerManager():
         
         self.screen.onkey(key='w', fun=self.w)
         self.screen.onkey(key='s', fun=self.s)
+        self.screen.onkey(key='a', fun=self.a)
+        self.screen.onkey(key='d', fun=self.d)
         pass
         
     
     def w(self):
         for actor in self.actor_list:
-            actor.fd(10)
-        
+            actor.forward(10)
+            
     def s(self):
         for actor in self.actor_list:
-            actor.bk(10)
-        
+            actor.backward(10)
+            
+    def a(self):
+        for actor in self.actor_list:
+            actor.left(10)
+            
+    def d(self):
+        for actor in self.actor_list:
+            actor.right(10)
+            
         

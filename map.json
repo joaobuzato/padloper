@@ -15,8 +15,10 @@
       "behaviors" :
         {
           "inputs" : [
-            {"key" :  "w", "action" : "fd", "param" :  "10"},
-            {"key" :  "s", "action" :  "bk", "param" :  "10"}
+            {"key" :  "w", "action" : "forward", "param" :  "10"},
+            {"key" :  "s", "action" :  "backward", "param" :  "10"},
+            {"key" :  "a", "action" :  "left", "param" :  "10"},
+            {"key" :  "d", "action" :  "right", "param" :  "10"}
           ]
         }
     },
@@ -29,8 +31,10 @@
       "behaviors" :
         {
           "inputs" : [
-            {"key" :  "e", "action" : "fd", "param" :  "10"},
-            {"key" :  "d", "action" :  "bk", "param" :  "10"}
+            {"key" :  "t", "action" : "forward", "param" :  "10"},
+            {"key" :  "g", "action" :  "backward", "param" :  "10"},
+            {"key" :  "f", "action" :  "left", "param" :  "10"},
+            {"key" :  "h", "action" :  "right", "param" :  "10"}
           ]
         }
     }
