@@ -34,7 +34,23 @@ class {self.class_name} (Turtle):
         file.write(actor_txt)
         file.close()
 
+    def build_inputs(self):
+        self.input_txt = ""
+        self.functions_txt = ""
+
+        if self.actor.get("behaviors").get("inputs") != None:
+            for input in self.actor.get("behaviors").get("inputs"):
+                self.input_txt += f"""
+        self.screen.onkey(key='{input.get('key')}', fun=self.{input.get('key')})"""
+                # TODO fazer inputs mais inclusivos
+                self.functions_txt += f"""
+    def {input.get("key")}(self):
+        for actor in self.actor_list:
+            actor.{input.get("action")}({input.get("param")})
+        """
+
     def build_manager(self):
+        self.build_inputs()
         self.manager_txt = f"""
 from {self.actor.get("name")} import {self.class_name}
 
@@ -50,20 +66,10 @@ class {self.class_name}Manager():
         self.actor_list.append(actor)
 
     def input(self):
-"""
-        if self.actor.get("behaviors").get("inputs") != None:
-            functions_txt = ""
-            for input in self.actor.get("behaviors").get("inputs"):
-                self.manager_txt += f"""
-        self.screen.onkey(key='{input.get('key')}', fun=self.{input.get('key')})"""
-                functions_txt += f"""
-    def {input.get("key")}(self):
-        for actor in self.actor_list:
-            actor.{input.get("action")}({input.get("param")})
-        """
-            self.manager_txt += functions_txt
-        self.manager_txt += """
+        {self.input_txt}
         pass
+        
+    {self.functions_txt}
         """
         self.manager_imports += f"""
         

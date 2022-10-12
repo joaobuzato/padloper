@@ -13,9 +13,12 @@ class PlayerManager():
         self.actor_list.append(actor)
 
     def input(self):
-
+        
         self.screen.onkey(key='w', fun=self.w)
         self.screen.onkey(key='s', fun=self.s)
+        pass
+        
+    
     def w(self):
         for actor in self.actor_list:
             actor.fd(10)
@@ -24,5 +27,4 @@ class PlayerManager():
         for actor in self.actor_list:
             actor.bk(10)
         
-        pass
         
