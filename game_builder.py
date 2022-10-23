@@ -29,6 +29,8 @@ class GameBuilder:
 
         self.manager_setups = self.actor_builder.manager_setups
         self.input_setups = self.actor_builder.input_setups
+        self.update_setups = self.actor_builder.update_setups
+        print(self.update_setups)
         self.setup_setups = self.actor_builder.setup_setups
         self.manager_imports = self.actor_builder.manager_imports
 
@@ -46,14 +48,18 @@ class PadMain():
         {self.manager_setups}
     def setup(self):
         {self.setup_setups}
+        pass
     def input(self):
         {self.input_setups}
         pass
     
     def update(self):
+        {self.update_setups}
         pass
     
     def render(self):
+        time.sleep(0.1)
+        self.screen.update()
         pass
         
     def game_loop(self):
@@ -62,8 +68,8 @@ class PadMain():
         self.input()
         game_is_on = True
         while game_is_on:
-            time.sleep(0.01)
-            self.screen.update()
+            self.update()
+            self.render()
         
         self.screen.exitonclick()
 

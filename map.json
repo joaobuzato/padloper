@@ -19,7 +19,13 @@
             {"key" :  "s", "action" :  "backward", "param" :  "10"},
             {"key" :  "a", "action" :  "left", "param" :  "10"},
             {"key" :  "d", "action" :  "right", "param" :  "10"}
+          ],
+          "updates": [
+            { "action" : "forward", "param" :  "10"},
+            { "action" : "right", "param" :  "10"}
+
           ]
+          
         }
     },
     {
