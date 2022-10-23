@@ -16,10 +16,10 @@ class PlayerManager():
 
     def input(self):
         
-        self.screen.onkey(key='w', fun=self.input_w)
-        self.screen.onkey(key='s', fun=self.input_s)
-        self.screen.onkey(key='a', fun=self.input_a)
-        self.screen.onkey(key='d', fun=self.input_d)
+        self.screen.onkeyrelease(key='w', fun=self.input_w)
+        self.screen.onkeyrelease(key='s', fun=self.input_s)
+        self.screen.onkeyrelease(key='a', fun=self.input_a)
+        self.screen.onkeyrelease(key='d', fun=self.input_d)
         pass
 
     def update(self,start):
@@ -41,10 +41,10 @@ class PlayerManager():
             
     def input_a(self):
         for actor in self.actor_list:
-            actor.left(10)
+            actor.setx(actor.xcor() - 10)
             
     def input_d(self):
         for actor in self.actor_list:
-            actor.right(10)
+            actor.setx(actor.xcor() + 10)
             
     

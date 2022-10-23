@@ -54,7 +54,7 @@ class PadMain():
             self.update(start)
             self.render()
         
-        self.screen.exitonclick()
+        self.screen.mainloop()
 
 pad_main = PadMain()
 pad_main.game_loop()

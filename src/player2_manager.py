@@ -16,10 +16,10 @@ class Player2Manager():
 
     def input(self):
         
-        self.screen.onkey(key='t', fun=self.input_t)
-        self.screen.onkey(key='g', fun=self.input_g)
-        self.screen.onkey(key='f', fun=self.input_f)
-        self.screen.onkey(key='h', fun=self.input_h)
+        self.screen.onkeyrelease(key='t', fun=self.input_t)
+        self.screen.onkeyrelease(key='g', fun=self.input_g)
+        self.screen.onkeyrelease(key='f', fun=self.input_f)
+        self.screen.onkeyrelease(key='h', fun=self.input_h)
         pass
 
     def update(self,start):

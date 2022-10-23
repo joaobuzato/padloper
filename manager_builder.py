@@ -17,7 +17,7 @@ class ManagerBuilder:
         if self.actor.get("behaviors").get("inputs") != None:
             for input in self.actor.get("behaviors").get("inputs"):
                 self.input_txt += f"""
-        self.screen.onkey(key='{input.get('key')}', fun=self.input_{input.get('key')})"""
+        self.screen.onkeyrelease(key='{input.get('key')}', fun=self.input_{input.get('key')})"""
                 # TODO fazer inputs mais inclusivos
                 self.functions_txt += self.build_input_function(input)
 
@@ -124,6 +124,19 @@ class ManagerBuilder:
     def input_{input.get("key")}(self):
         for actor in self.actor_list:
             actor.left({input.get("param")})
+            """
+
+        elif action == "strife_left":
+            functions_txt += f"""
+    def input_{input.get("key")}(self):
+        for actor in self.actor_list:
+            actor.setx(actor.xcor() - {input.get("param")})
+            """
+        elif action == "strife_right":
+            functions_txt += f"""
+    def input_{input.get("key")}(self):
+        for actor in self.actor_list:
+            actor.setx(actor.xcor() + {input.get("param")})
             """
 
         return functions_txt

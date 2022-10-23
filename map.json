@@ -25,8 +25,8 @@
           "inputs" : [
             {"key" :  "w", "action" : "forward", "param" :  "10"},
             {"key" :  "s", "action" :  "backward", "param" :  "10"},
-            {"key" :  "a", "action" :  "left", "param" :  "10"},
-            {"key" :  "d", "action" :  "right", "param" :  "10"}
+            {"key" :  "a", "action" :  "strife_left", "param" :  "10"},
+            {"key" :  "d", "action" :  "strife_right", "param" :  "10"}
           ]
           
         }
