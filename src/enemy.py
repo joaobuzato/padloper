@@ -3,10 +3,10 @@ from turtle import Turtle
 
 class Enemy(Turtle):
 
-    def __init__(self) :
+    def __init__(self, color,position) :
         super().__init__()
         self.speed(1)
         self.shape("square")
-        self.color('black')
+        self.color(color)
         self.penup()
-        self.goto(20,20)
+        self.goto(position.get("x"), position.get("y"))

@@ -1,24 +1,29 @@
 
+import random
 from enemy import Enemy
 
 class EnemyManager():
 
     def __init__(self, screen):
         self.actor_list = []
+        self.spawn_colors = ['black', 'yellow', 'blue', 'red']
+        self.spawn_positions = [{'x': 0, 'y': 0}, {'x': 50, 'y': 0}, {'x': 100, 'y': 0}, {'x': 150, 'y': 0}, {'x': 200, 'y': 0}]
         
         self.screen = screen
         
     def setup(self):
-        actor = Enemy()
-        self.actor_list.append(actor)
+        pass
 
     def input(self):
         
         pass
 
-    def update(self):
+    def update(self,start):
         
         self.update_space_invader()
+                
+        actor = Enemy(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+        self.actor_list.append(actor)
                 
         pass
     

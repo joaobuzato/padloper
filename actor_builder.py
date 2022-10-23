@@ -25,13 +25,13 @@ from turtle import Turtle
 
 class {self.class_name}(Turtle):
 
-    def __init__(self) :
+    def __init__(self, color,position) :
         super().__init__()
         self.speed(1)
         self.shape("square")
-        self.color('{self.actor.get("components").get("color")}')
+        self.color(color)
         self.penup()
-        self.goto({self.actor.get("components").get("pos").get("x")},{self.actor.get("components").get("pos").get("y")})
+        self.goto(position.get("x"), position.get("y"))
 """
 
         file = open(f"src/{self.actor.get('name')}.py", "w")

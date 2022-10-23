@@ -30,7 +30,6 @@ class GameBuilder:
         self.manager_setups = self.actor_builder.manager_setups
         self.input_setups = self.actor_builder.input_setups
         self.update_setups = self.actor_builder.update_setups
-        print(self.update_setups)
         self.setup_setups = self.actor_builder.setup_setups
         self.manager_imports = self.actor_builder.manager_imports
 
@@ -38,6 +37,7 @@ class GameBuilder:
         self.pad_main_txt += f"""
 {self.manager_imports}
 import time
+from timeit import default_timer as timer
 from padscreen import PadScreen
 
 class PadMain():
@@ -53,22 +53,23 @@ class PadMain():
         {self.input_setups}
         pass
     
-    def update(self):
+    def update(self,start):
         {self.update_setups}
         pass
     
     def render(self):
-        time.sleep(0.1)
+        time.sleep(0.01)
         self.screen.update()
         pass
         
     def game_loop(self):
+        start = timer()
         self.screen.listen()
         self.setup()
         self.input()
         game_is_on = True
         while game_is_on:
-            self.update()
+            self.update(start)
             self.render()
         
         self.screen.exitonclick()

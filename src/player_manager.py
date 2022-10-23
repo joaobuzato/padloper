@@ -1,16 +1,18 @@
 
+import random
 from player import Player
 
 class PlayerManager():
 
     def __init__(self, screen):
         self.actor_list = []
+        self.spawn_colors = ['red']
+        self.spawn_positions = [{'x': 0, 'y': 0}]
         
         self.screen = screen
         
     def setup(self):
-        actor = Player()
-        self.actor_list.append(actor)
+        pass
 
     def input(self):
         
@@ -20,8 +22,12 @@ class PlayerManager():
         self.screen.onkey(key='d', fun=self.input_d)
         pass
 
-    def update(self):
+    def update(self,start):
         
+        if len(self.actor_list) == 0:
+            actor = Player(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+            self.actor_list.append(actor)
+                
         pass
     
     

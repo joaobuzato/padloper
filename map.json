@@ -9,8 +9,16 @@
     {
       "name" : "player",
       "components" : {
-        "color" : "red",
-        "pos" : {"x" :  0, "y" :  50}
+      },
+      "spawn" : 
+      {
+        "type" : "unique",
+        "positions" : [
+          {"x" :0, "y" : 0}
+        ],
+        "colors" : [
+          "red"
+        ]
       },
       "behaviors" :
         {
@@ -26,8 +34,16 @@
     {
       "name" : "player2",
       "components" : {
-        "color" : "green",
-        "pos" : {"x" :  0, "y" :  -50}
+      },
+      "spawn" : 
+      {
+        "type" : "unique",
+        "positions" : [
+          {"x" :0, "y" : 50}
+        ],
+        "colors" : [
+          "blue"
+        ]
       },
       "behaviors" :
         {
@@ -42,8 +58,6 @@
     {
       "name" : "enemy",
       "components" : {
-        "color" : "black",
-        "pos" : {"x": 20, "y" : 20}
       },
       "behaviors" :
       {
@@ -61,6 +75,9 @@
           {"x" :100, "y" : 0},
           {"x" :150, "y" : 0},
           {"x" :200, "y" : 0}
+        ],
+        "colors" : [
+          "black", "yellow", "blue", "red"
         ]
       }
     }

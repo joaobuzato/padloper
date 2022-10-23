@@ -1,3 +1,5 @@
+
+
 class ManagerBuilder:
     def __init__(self):
         self.actor = None
@@ -18,6 +20,22 @@ class ManagerBuilder:
         self.screen.onkey(key='{input.get('key')}', fun=self.input_{input.get('key')})"""
                 # TODO fazer inputs mais inclusivos
                 self.functions_txt += self.build_input_function(input)
+
+    def build_spawn(self):
+        self.spawn_txt = ""
+        self.spawn = self.actor.get("spawn")
+        if self.spawn != None:
+            if self.spawn.get("type") == "unique":
+                self.update_txt += f"""
+        if len(self.actor_list) == 0:
+            actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+            self.actor_list.append(actor)
+                """
+            else:
+                self.update_txt += f"""
+        actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+        self.actor_list.append(actor)
+                """
 
     def build_updates(self):
         self.update_txt = ""
@@ -115,25 +133,28 @@ class ManagerBuilder:
         self.functions_txt = ""
         self.build_inputs()
         self.build_updates()
+        self.build_spawn()
         self.manager_txt = f"""
+import random
 from {self.actor.get("name")} import {self.class_name}
 
 class {self.class_name}Manager():
 
     def __init__(self, screen):
         self.actor_list = []
+        self.spawn_colors = {self.spawn.get("colors")}
+        self.spawn_positions = {self.spawn.get("positions")}
         
         self.screen = screen
         
     def setup(self):
-        actor = {self.class_name}()
-        self.actor_list.append(actor)
+        pass
 
     def input(self):
         {self.input_txt}
         pass
 
-    def update(self):
+    def update(self,start):
         {self.update_txt}
         pass
     
@@ -150,7 +171,7 @@ from {self.actor.get("name")}_manager import {self.class_name}Manager"""
         self.setup_setups += f"""
         self.{self.actor.get("name")}_manager.setup()"""
         self.update_setups += f"""
-        self.{self.actor.get("name")}_manager.update()"""
+        self.{self.actor.get("name")}_manager.update(start)"""
         file = open(f"src/{self.actor.get('name')}_manager.py", "w")
         file.write(self.manager_txt)
         file.close()

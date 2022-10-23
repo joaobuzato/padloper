@@ -1,16 +1,18 @@
 
+import random
 from player2 import Player2
 
 class Player2Manager():
 
     def __init__(self, screen):
         self.actor_list = []
+        self.spawn_colors = ['blue']
+        self.spawn_positions = [{'x': 0, 'y': 50}]
         
         self.screen = screen
         
     def setup(self):
-        actor = Player2()
-        self.actor_list.append(actor)
+        pass
 
     def input(self):
         
@@ -20,8 +22,12 @@ class Player2Manager():
         self.screen.onkey(key='h', fun=self.input_h)
         pass
 
-    def update(self):
+    def update(self,start):
         
+        if len(self.actor_list) == 0:
+            actor = Player2(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+            self.actor_list.append(actor)
+                
         pass
     
     

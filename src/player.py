@@ -3,10 +3,10 @@ from turtle import Turtle
 
 class Player(Turtle):
 
-    def __init__(self) :
+    def __init__(self, color,position) :
         super().__init__()
         self.speed(1)
         self.shape("square")
-        self.color('red')
+        self.color(color)
         self.penup()
-        self.goto(0,50)
+        self.goto(position.get("x"), position.get("y"))
