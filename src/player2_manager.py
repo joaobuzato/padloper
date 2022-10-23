@@ -19,11 +19,11 @@ class Player2Manager():
         self.screen.onkey(key='f', fun=self.input_f)
         self.screen.onkey(key='h', fun=self.input_h)
         pass
-    
+
     def update(self):
         
         pass
-        
+    
     
     def input_t(self):
         for actor in self.actor_list:
@@ -41,4 +41,4 @@ class Player2Manager():
         for actor in self.actor_list:
             actor.right(10)
             
-        
+    

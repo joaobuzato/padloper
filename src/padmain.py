@@ -1,10 +1,10 @@
 
 
-        
+    
 from player_manager import PlayerManager
-        
+    
 from player2_manager import Player2Manager
-        
+    
 from enemy_manager import EnemyManager
 import time
 from padscreen import PadScreen

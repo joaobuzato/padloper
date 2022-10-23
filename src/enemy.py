@@ -1,7 +1,7 @@
 
 from turtle import Turtle
 
-class Enemy (Turtle):
+class Enemy(Turtle):
 
     def __init__(self) :
         super().__init__()

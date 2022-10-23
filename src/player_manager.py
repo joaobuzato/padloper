@@ -19,11 +19,11 @@ class PlayerManager():
         self.screen.onkey(key='a', fun=self.input_a)
         self.screen.onkey(key='d', fun=self.input_d)
         pass
-    
+
     def update(self):
         
         pass
-        
+    
     
     def input_w(self):
         for actor in self.actor_list:
@@ -41,4 +41,4 @@ class PlayerManager():
         for actor in self.actor_list:
             actor.right(10)
             
-        
+    
