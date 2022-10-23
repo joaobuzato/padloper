@@ -18,19 +18,19 @@ class EnemyManager():
 
     def update(self):
         
-        self.update_forward()
-                
-        self.update_right()
+        self.update_space_invader()
                 
         pass
     
     
-    def update_forward(self):
+    def update_space_invader(self):
         for actor in self.actor_list:
+            actor.left(180)
+            actor.forward(20)
+            actor.left(180)
+            actor.forward(30)
+            actor.left(240)
             actor.forward(10)
-            
-    def update_right(self):
-        for actor in self.actor_list:
-            actor.right(10)
+            actor.left(90)
             
     

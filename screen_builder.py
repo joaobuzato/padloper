@@ -15,6 +15,7 @@ class PadScreen():
 
     def __init__(self):
         self.screen = Screen()
+        self.screen.mode("logo")
         self.screen.setup(width={screen.get('width')}, height={screen.get('height')})
         self.screen.title('{self.game_name}')
 

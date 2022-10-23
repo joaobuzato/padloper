@@ -27,6 +27,8 @@ class {self.class_name}(Turtle):
 
     def __init__(self) :
         super().__init__()
+        self.speed(1)
+        self.shape("square")
         self.color('{self.actor.get("components").get("color")}')
         self.penup()
         self.goto({self.actor.get("components").get("pos").get("x")},{self.actor.get("components").get("pos").get("y")})

@@ -48,8 +48,7 @@
       "behaviors" :
       {
           "updates": [
-            { "action" : "forward", "param" :  "10"},
-            { "action" : "right", "param" :  "10"}
+            { "action" : "space_invader"}
 
           ]
       },

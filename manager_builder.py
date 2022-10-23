@@ -60,6 +60,18 @@ class ManagerBuilder:
         for actor in self.actor_list:
             actor.left({input.get("param")})
             """
+        elif action == "space_invader":
+            functions_txt += f"""
+    def update_{input.get("action")}(self):
+        for actor in self.actor_list:
+            actor.left(180)
+            actor.forward(20)
+            actor.left(180)
+            actor.forward(30)
+            actor.left(240)
+            actor.forward(10)
+            actor.left(90)
+            """
 
         return functions_txt
 
@@ -97,7 +109,6 @@ class ManagerBuilder:
             """
 
         return functions_txt
-        pass
     def build(self, actor):
         self.actor = actor
         self.class_name = str.title(self.actor.get("name"))
