@@ -4,6 +4,8 @@
 from player_manager import PlayerManager
         
 from player2_manager import Player2Manager
+        
+from enemy_manager import EnemyManager
 import time
 from padscreen import PadScreen
 
@@ -15,21 +17,25 @@ class PadMain():
         
         self.player_manager = PlayerManager(self.screen)
         self.player2_manager = Player2Manager(self.screen)
+        self.enemy_manager = EnemyManager(self.screen)
     def setup(self):
         
         self.player_manager.setup()
         self.player2_manager.setup()
+        self.enemy_manager.setup()
         pass
     def input(self):
         
         self.player_manager.input()
         self.player2_manager.input()
+        self.enemy_manager.input()
         pass
     
     def update(self):
         
         self.player_manager.update()
         self.player2_manager.update()
+        self.enemy_manager.update()
         pass
     
     def render(self):

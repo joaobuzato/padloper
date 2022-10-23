@@ -22,10 +22,6 @@ class PlayerManager():
     
     def update(self):
         
-        self.update_forward()
-                
-        self.update_right()
-                
         pass
         
     
@@ -42,14 +38,6 @@ class PlayerManager():
             actor.left(10)
             
     def input_d(self):
-        for actor in self.actor_list:
-            actor.right(10)
-            
-    def update_forward(self):
-        for actor in self.actor_list:
-            actor.forward(10)
-            
-    def update_right(self):
         for actor in self.actor_list:
             actor.right(10)
             
