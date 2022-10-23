@@ -64,13 +64,13 @@ class ManagerBuilder:
             functions_txt += f"""
     def update_{input.get("action")}(self):
         for actor in self.actor_list:
-            actor.left(180)
+            actor.setheading(90)
             actor.forward(20)
-            actor.left(180)
+            actor.setheading(270)
             actor.forward(30)
-            actor.left(240)
+            actor.setheading(180)
             actor.forward(10)
-            actor.left(90)
+            actor.setheading(90)
             """
 
         return functions_txt
