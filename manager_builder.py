@@ -160,6 +160,13 @@ class {self.class_name}Manager():
         
         self.screen = screen
         
+    def check_collision(self, object_list):
+        for actor in self.actor_list:
+            for object in object_list:
+                if actor.touches(object):
+                    return True
+                    
+        return False
     def setup(self):
         pass
 

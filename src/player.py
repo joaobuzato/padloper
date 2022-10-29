@@ -12,3 +12,10 @@ class Player(Turtle):
         self.ht()
         self.goto(position.get("x"), position.get("y"))
         self.st()
+        
+        
+    def touches(self,object):
+        if self.xcor()-10 <= object.xcor() <= self.xcor()+10 and self.ycor() -10 <= object.ycor() <= self.ycor() +10:
+            return True
+        else:
+            return False

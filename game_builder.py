@@ -1,6 +1,7 @@
 import json
 from screen_builder import ScreenBuilder
 from actor_builder import ActorBuilder
+from rule_builder import RuleBuilder
 
 # json loads // json dumps
 class GameBuilder:
@@ -8,6 +9,7 @@ class GameBuilder:
         self.game_map = json.loads(open('map.json').read())
         self.screen_builder = ScreenBuilder(self.game_map.get("name"))
         self.actor_builder = ActorBuilder()
+        self.rule_builder = RuleBuilder(self.game_map.get("rules"))
         self.pad_main_txt = ""
         self.manager_imports_txt = ""
         self.build_game()
@@ -15,10 +17,15 @@ class GameBuilder:
     def build_game(self):
         self.create_screen()
         self.create_actors()
+        self.create_rules()
         self.create_main()
     def create_screen(self):
         screen = self.game_map.get("screen")
         self.screen_builder.build(screen)
+
+    def create_rules(self):
+        self.rule_builder.build()
+        self.rules_setups = self.rule_builder.rules_setups
 
     def create_actors(self):
 
@@ -43,8 +50,9 @@ from padscreen import PadScreen
 class PadMain():
 
     def __init__(self):
-        padscreen = PadScreen()
-        self.screen = padscreen.get_screen_obj()
+        self.game_is_on = False
+        self.padscreen = PadScreen()
+        self.screen = self.padscreen.get_screen_obj()
         {self.manager_setups}
     def setup(self):
         {self.setup_setups}
@@ -61,14 +69,19 @@ class PadMain():
         time.sleep(0.01)
         self.screen.update()
         pass
+    
+    def rules(self):
+        {self.rules_setups}
+        pass
         
     def game_loop(self):
         start = timer()
         self.screen.listen()
         self.setup()
         self.input()
-        game_is_on = True
-        while game_is_on:
+        self.game_is_on = True
+        while self.game_is_on:
+            self.rules()
             self.update(start)
             self.render()
         

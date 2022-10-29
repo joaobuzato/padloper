@@ -13,8 +13,9 @@ from padscreen import PadScreen
 class PadMain():
 
     def __init__(self):
-        padscreen = PadScreen()
-        self.screen = padscreen.get_screen_obj()
+        self.game_is_on = False
+        self.padscreen = PadScreen()
+        self.screen = self.padscreen.get_screen_obj()
         
         self.player_manager = PlayerManager(self.screen)
         self.player2_manager = Player2Manager(self.screen)
@@ -43,14 +44,23 @@ class PadMain():
         time.sleep(0.01)
         self.screen.update()
         pass
+    
+    def rules(self):
+        
+        if self.player_manager.check_collision(self.player2_manager.actor_list):
+        
+            print("ALOU")
+        
+        pass
         
     def game_loop(self):
         start = timer()
         self.screen.listen()
         self.setup()
         self.input()
-        game_is_on = True
-        while game_is_on:
+        self.game_is_on = True
+        while self.game_is_on:
+            self.rules()
             self.update(start)
             self.render()
         
