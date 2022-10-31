@@ -7,7 +7,7 @@ class EnemyManager():
     def __init__(self, screen):
         self.actor_list = []
         self.spawn_colors = ['black', 'yellow', 'blue', 'red']
-        self.spawn_positions = [{'x': 0, 'y': 0}, {'x': 50, 'y': 0}, {'x': 100, 'y': 0}, {'x': 150, 'y': 0}, {'x': 200, 'y': 0}, {'x': -50, 'y': 0}, {'x': -100, 'y': 0}, {'x': -150, 'y': 0}, {'x': -200, 'y': 0}]
+        self.spawn_positions = [{'x': 50, 'y': 0}, {'x': 100, 'y': 0}, {'x': 150, 'y': 0}, {'x': 200, 'y': 0}, {'x': -50, 'y': 0}, {'x': -100, 'y': 0}, {'x': -150, 'y': 0}, {'x': -200, 'y': 0}]
         
         self.screen = screen
         

@@ -1,4 +1,5 @@
 import json
+from scoreboard_builder import ScoreboardBuilder
 from screen_builder import ScreenBuilder
 from actor_builder import ActorBuilder
 from rule_builder import RuleBuilder
@@ -10,6 +11,7 @@ class GameBuilder:
         self.screen_builder = ScreenBuilder(self.game_map.get("name"))
         self.actor_builder = ActorBuilder()
         self.rule_builder = RuleBuilder(self.game_map.get("rules"))
+        self.scoreboard_builder = ScoreboardBuilder(self.game_map.get("screen"), self.game_map.get("scoreboard"))
         self.pad_main_txt = ""
         self.manager_imports_txt = ""
         self.build_game()
@@ -18,10 +20,14 @@ class GameBuilder:
         self.create_screen()
         self.create_actors()
         self.create_rules()
+        self.create_scoreboard()
         self.create_main()
     def create_screen(self):
         screen = self.game_map.get("screen")
         self.screen_builder.build(screen)
+
+    def create_scoreboard(self):
+        self.scoreboard_builder.build()
 
     def create_rules(self):
         self.rule_builder.build()
@@ -46,6 +52,7 @@ class GameBuilder:
 import time
 from timeit import default_timer as timer
 from padscreen import PadScreen
+from scoreboard import Scoreboard
 
 class PadMain():
 
@@ -53,8 +60,10 @@ class PadMain():
         self.game_is_on = False
         self.padscreen = PadScreen()
         self.screen = self.padscreen.get_screen_obj()
+        self.scoreboard = Scoreboard()
         {self.manager_setups}
     def setup(self):
+
         {self.setup_setups}
         pass
     def input(self):
@@ -66,7 +75,7 @@ class PadMain():
         pass
     
     def render(self):
-        time.sleep(0.01)
+        time.sleep(0.02)
         self.screen.update()
         pass
     

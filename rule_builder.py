@@ -13,6 +13,15 @@ class RuleBuilder:
         """
             if rule.get("consequence") == "print":
                 self.rules_setups += f"""
-            print("ALOU")
+            print("collision!")
+        """
+            elif rule.get("consequence") == "point":
+                self.rules_setups += f"""
+            self.scoreboard.point()    
+        """
+            elif rule.get("consequence") == "gameover":
+                self.rules_setups += f"""
+            self.scoreboard.game_over()
+            self.game_is_on = False
         """
             print(self.rules_setups)

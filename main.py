@@ -17,7 +17,7 @@ build_button = Button(text="Build", command=build, width=16)
 
 build_button.grid(row=1, column=1)
 
-run_button = Button(text="Run", command=run, width=16)
+run_button = Button(text="Run", command=run,  width=16)
 
 run_button.grid(row=2, column=1)
 

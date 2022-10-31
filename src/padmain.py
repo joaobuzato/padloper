@@ -9,6 +9,7 @@ from enemy_manager import EnemyManager
 import time
 from timeit import default_timer as timer
 from padscreen import PadScreen
+from scoreboard import Scoreboard
 
 class PadMain():
 
@@ -16,11 +17,13 @@ class PadMain():
         self.game_is_on = False
         self.padscreen = PadScreen()
         self.screen = self.padscreen.get_screen_obj()
+        self.scoreboard = Scoreboard()
         
         self.player_manager = PlayerManager(self.screen)
         self.player2_manager = Player2Manager(self.screen)
         self.enemy_manager = EnemyManager(self.screen)
     def setup(self):
+
         
         self.player_manager.setup()
         self.player2_manager.setup()
@@ -41,15 +44,16 @@ class PadMain():
         pass
     
     def render(self):
-        time.sleep(0.01)
+        time.sleep(0.02)
         self.screen.update()
         pass
     
     def rules(self):
         
-        if self.player_manager.check_collision(self.player2_manager.actor_list):
+        if self.player_manager.check_collision(self.enemy_manager.actor_list):
         
-            print("ALOU")
+            self.scoreboard.game_over()
+            self.game_is_on = False
         
         pass
         

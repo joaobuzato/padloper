@@ -27,7 +27,7 @@ class {self.class_name}(Turtle):
 
     def __init__(self, color,position) :
         super().__init__()
-        self.speed(4)
+        self.speed(8)
         self.shape("square")
         self.color(color)
         self.penup()

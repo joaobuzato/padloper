@@ -5,12 +5,15 @@
     "height" : 1000,
     "color" : "green"
   },
+  "scoreboard": {
+
+  },
   "rules": [
     {
       "trigger" : "collision",
       "actor1" : "player",
-      "actor2" : "player2",
-      "consequence" : "print"
+      "actor2" : "enemy",
+      "consequence" : "gameover"
     }
   ],
   "actors" : [
@@ -78,7 +81,6 @@
       {
         "type" : "multiple",
         "positions" : [
-          {"x" :0, "y" : 0},
           {"x" :50, "y" : 0},
           {"x" :100, "y" : 0},
           {"x" :150, "y" : 0},
