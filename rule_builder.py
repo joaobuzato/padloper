@@ -6,7 +6,6 @@ class RuleBuilder:
 
     def build(self):
         for rule in self.rules:
-            print(rule)
             if rule.get("trigger") == "collision":
                 self.rules_setups += f"""
         if self.{rule.get("actor1")}_manager.check_collision(self.{rule.get("actor2")}_manager.actor_list):
@@ -24,4 +23,3 @@ class RuleBuilder:
             self.scoreboard.game_over()
             self.game_is_on = False
         """
-            print(self.rules_setups)

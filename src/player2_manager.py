@@ -13,8 +13,8 @@ class Player2Manager():
         
     def check_collision(self, object_list):
         for actor in self.actor_list:
-            for object in object_list:
-                if actor.touches(object):
+            for obj in object_list:
+                if actor.touches(obj):
                     return True
                     
         return False

@@ -5,11 +5,12 @@ class Enemy(Turtle):
 
     def __init__(self, color,position) :
         super().__init__()
+        self.ht()
         self.speed(8)
         self.shape("square")
         self.color(color)
         self.penup()
-        self.ht()
+        
         self.goto(position.get("x"), position.get("y"))
         self.st()
         

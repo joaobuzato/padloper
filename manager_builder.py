@@ -33,8 +33,9 @@ class ManagerBuilder:
                 """
             else:
                 self.update_txt += f"""
-        actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
-        self.actor_list.append(actor)
+        if len(self.actor_list) < {self.spawn.get("max_num")}:
+            actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+            self.actor_list.append(actor)
                 """
 
     def build_updates(self):
@@ -90,6 +91,18 @@ class ManagerBuilder:
             actor.forward(10)
             actor.setheading(90)
             """
+        elif action == "strife_left":
+            functions_txt += f"""
+    def update_{input.get("action")}(self):
+        for actor in self.actor_list:
+            actor.setx(actor.xcor() - {input.get("param")})
+            """
+        elif action == "strife_right":
+            functions_txt += f"""
+    def update_{input.get("action")}(self):
+        for actor in self.actor_list:
+            actor.setx(actor.xcor() + {input.get("param")})
+        """
 
         return functions_txt
 
@@ -162,8 +175,8 @@ class {self.class_name}Manager():
         
     def check_collision(self, object_list):
         for actor in self.actor_list:
-            for object in object_list:
-                if actor.touches(object):
+            for obj in object_list:
+                if actor.touches(obj):
                     return True
                     
         return False

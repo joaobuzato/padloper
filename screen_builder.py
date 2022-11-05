@@ -23,6 +23,7 @@ class PadScreen():
         self.left_y = -{self.width/2}
         self.right_y = {self.width/2}
         self.screen.title('{self.game_name}')
+        self.screen.tracer(0)
 
     def get_screen_obj(self):
         return self.screen

@@ -44,7 +44,7 @@ class PadMain():
         pass
     
     def render(self):
-        time.sleep(0.02)
+        time.sleep(0.03)
         self.screen.update()
         pass
     
@@ -59,14 +59,15 @@ class PadMain():
         
     def game_loop(self):
         start = timer()
-        self.screen.listen()
         self.setup()
         self.input()
+        self.screen.listen()
         self.game_is_on = True
         while self.game_is_on:
-            self.rules()
-            self.update(start)
             self.render()
+            self.update(start)
+            self.rules()
+            
         
         self.screen.mainloop()
 
