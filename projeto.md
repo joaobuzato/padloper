@@ -1,14 +1,14 @@
 
 
-- Resolver Game Over
-- Resolver posição Scoreboard
-- Resolver número de instâncias do ator
+- [x] Resolver Game Over 
+- [x] Resolver posição Scoreboard
+- [x] Resolver número de instâncias do ator
 - Resolver spawn por tempo
 - Resolver retirada do ator da lista
 
 
 
-- refatorar as classes
+- [x] refatorar as classes
 - separar classes de ator builder
 
 UI
