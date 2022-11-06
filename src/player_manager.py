@@ -7,26 +7,52 @@ class PlayerManager():
     def __init__(self, screen):
         self.actor_list = []
         self.spawn_colors = ['red']
-        self.spawn_positions = [{'x': 0, 'y': 0}]
+        self.spawn_positions = [{'x': 0, 'y': 470}]
         
         self.screen = screen
         
     def check_collision(self, object_list):
+        collision = {"has_collision" : False}
         for actor in self.actor_list:
             for obj in object_list:
                 if actor.touches(obj):
-                    return True
+                    collision = {
+                        "has_collision": True,
+                        "actor1" : actor,
+                        "actor2" : obj
+                    }
+                    return collision
                     
-        return False
+        return collision
+
+    def check_position(self, **kwargs):
+        x_pos = kwargs.get("x_pos")
+        y_pos = kwargs.get("y_pos")
+        x_cond = kwargs.get("x_cond")
+        y_cond = kwargs.get("y_cond")
+        for actor in self.actor_list:
+            if x_pos is None:
+                if actor.check_y_position(y_pos,y_cond):
+                    return { "position_checked" : True, "actor" : actor}
+            elif y_pos is None:
+                if actor.check_x_position(x_pos,x_cond):
+                    return { "position_checked" : True, "actor" : actor}
+            else:
+                if actor.check_y_position(y_pos, y_cond) and actor.check_x_position(x_pos, x_cond):
+                    return { "position_checked" : True, "actor" : actor}
+
+        return { "position_checked" : False }
+        
+        
     def setup(self):
         pass
 
     def input(self):
         
-        self.screen.onkeyrelease(key='w', fun=self.input_w)
-        self.screen.onkeyrelease(key='s', fun=self.input_s)
-        self.screen.onkeyrelease(key='a', fun=self.input_a)
-        self.screen.onkeyrelease(key='d', fun=self.input_d)
+        self.screen.onkeyrelease(key='w', fun=self.func_forward)
+        self.screen.onkeyrelease(key='s', fun=self.func_backward)
+        self.screen.onkeyrelease(key='a', fun=self.func_strife_left)
+        self.screen.onkeyrelease(key='d', fun=self.func_strife_right)
         pass
 
     def update(self,start):
@@ -38,20 +64,24 @@ class PlayerManager():
         pass
     
     
-    def input_w(self):
+    def func_forward(self):
         for actor in self.actor_list:
+        
             actor.forward(10)
             
-    def input_s(self):
+    def func_backward(self):
         for actor in self.actor_list:
+        
             actor.backward(10)
             
-    def input_a(self):
+    def func_strife_left(self):
         for actor in self.actor_list:
+        
             actor.setx(actor.xcor() - 10)
             
-    def input_d(self):
+    def func_strife_right(self):
         for actor in self.actor_list:
+        
             actor.setx(actor.xcor() + 10)
-            
+        
     

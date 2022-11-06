@@ -12,12 +12,38 @@ class EnemyManager():
         self.screen = screen
         
     def check_collision(self, object_list):
+        collision = {"has_collision" : False}
         for actor in self.actor_list:
             for obj in object_list:
                 if actor.touches(obj):
-                    return True
+                    collision = {
+                        "has_collision": True,
+                        "actor1" : actor,
+                        "actor2" : obj
+                    }
+                    return collision
                     
-        return False
+        return collision
+
+    def check_position(self, **kwargs):
+        x_pos = kwargs.get("x_pos")
+        y_pos = kwargs.get("y_pos")
+        x_cond = kwargs.get("x_cond")
+        y_cond = kwargs.get("y_cond")
+        for actor in self.actor_list:
+            if x_pos is None:
+                if actor.check_y_position(y_pos,y_cond):
+                    return { "position_checked" : True, "actor" : actor}
+            elif y_pos is None:
+                if actor.check_x_position(x_pos,x_cond):
+                    return { "position_checked" : True, "actor" : actor}
+            else:
+                if actor.check_y_position(y_pos, y_cond) and actor.check_x_position(x_pos, x_cond):
+                    return { "position_checked" : True, "actor" : actor}
+
+        return { "position_checked" : False }
+        
+        
     def setup(self):
         pass
 
@@ -27,7 +53,7 @@ class EnemyManager():
 
     def update(self,start):
         
-        self.update_strife_left()
+        self.func_strife_left()
                 
         if len(self.actor_list) < 300:
             actor = Enemy(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
@@ -36,8 +62,9 @@ class EnemyManager():
         pass
     
     
-    def update_strife_left(self):
+    def func_strife_left(self):
         for actor in self.actor_list:
+        
             actor.setx(actor.xcor() - 10)
             
     

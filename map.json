@@ -13,8 +13,31 @@
       "trigger" : "collision",
       "actor1" : "player",
       "actor2" : "enemy",
-      "consequence" : "gameover"
+      "consequences" : [
+        {
+          "name" :"game_over"
+        }
+      ]
+    },
+    {
+      "trigger" : "position",
+      "x_pos" : "",
+      "x_cond" : "",
+      "y_pos" : "480",
+      "y_cond" :"greater",
+      "actor" : "player",
+      "consequences" : [
+        {
+          "name" : "point"
+        },
+        {
+          "name" : "move_to",
+          "y" : -480,
+          "x" : 0
+        }
+      ]
     }
+    
   ],
   "actors" : [
     {
@@ -25,7 +48,7 @@
       {
         "type" : "unique",
         "positions" : [
-          {"x" :0, "y" : 0}
+          {"x" :0, "y" : 470}
         ],
         "colors" : [
           "red"

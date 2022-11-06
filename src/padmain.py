@@ -50,11 +50,19 @@ class PadMain():
     
     def rules(self):
         
-        if self.player_manager.check_collision(self.enemy_manager.actor_list):
+        obj = self.player_manager.check_collision(self.enemy_manager.actor_list)
+        if obj.get('has_collision'):
         
-            self.scoreboard.game_over()
-            self.game_is_on = False
-        
+                self.scoreboard.game_over()
+                self.game_is_on = False
+            
+        obj = self.player_manager.check_position(y_pos=480,x_pos=None, y_cond='greater',x_cond='None')
+        if obj.get("position_checked"):
+                
+                self.scoreboard.point()  
+            
+                obj.get("actor").goto((0, -480))
+                    
         pass
         
     def game_loop(self):
@@ -64,9 +72,11 @@ class PadMain():
         self.screen.listen()
         self.game_is_on = True
         while self.game_is_on:
-            self.render()
+            
             self.update(start)
+            self.render()
             self.rules()
+            
             
         
         self.screen.mainloop()

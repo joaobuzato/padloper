@@ -17,9 +17,9 @@ class ManagerBuilder:
         if self.actor.get("behaviors").get("inputs") != None:
             for input in self.actor.get("behaviors").get("inputs"):
                 self.input_txt += f"""
-        self.screen.onkeyrelease(key='{input.get('key')}', fun=self.input_{input.get('key')})"""
+        self.screen.onkeyrelease(key='{input.get('key')}', fun=self.func_{input.get('action')})"""
                 # TODO fazer inputs mais inclusivos
-                self.functions_txt += self.build_input_function(input)
+                self.functions_txt += self.build_function(input)
 
     def build_spawn(self):
         self.spawn_txt = ""
@@ -44,115 +44,44 @@ class ManagerBuilder:
         if updates != None:
             for update in updates:
                 self.update_txt += f"""
-        self.update_{update.get("action")}()
+        self.func_{update.get("action")}()
                 """
-                self.functions_txt += self.build_update_function(update) 
+                self.functions_txt += self.build_function(update) 
 
 
-    def build_update_function(self,input):
-        functions_txt = ""
+    def build_function(self,input):
+        functions_txt = f"""
+    def func_{input.get("action")}(self):
+        for actor in self.actor_list:
+        """
         action = input.get("action")
         if action == "forward":
             functions_txt += f"""
-    def update_{input.get("action")}(self):
-        for actor in self.actor_list:
             actor.forward({input.get("param")})
             """
-
         elif action == "backward":
             functions_txt += f"""
-    def update_{input.get("action")}(self):
-        for actor in self.actor_list:
             actor.backward({input.get("param")})
             """
-
         elif action == "right":
             functions_txt += f"""
-    def update_{input.get("action")}(self):
-        for actor in self.actor_list:
             actor.right({input.get("param")})
             """
-
         elif action == "left":
             functions_txt += f"""
-    def update_{input.get("action")}(self):
-        for actor in self.actor_list:
             actor.left({input.get("param")})
-            """
-        elif action == "space_invader":
-            functions_txt += f"""
-    def update_{input.get("action")}(self):
-        for actor in self.actor_list:
-            actor.setheading(90)
-            actor.forward(20)
-            actor.setheading(270)
-            actor.forward(30)
-            actor.setheading(180)
-            actor.forward(10)
-            actor.setheading(90)
             """
         elif action == "strife_left":
             functions_txt += f"""
-    def update_{input.get("action")}(self):
-        for actor in self.actor_list:
             actor.setx(actor.xcor() - {input.get("param")})
             """
         elif action == "strife_right":
             functions_txt += f"""
-    def update_{input.get("action")}(self):
-        for actor in self.actor_list:
             actor.setx(actor.xcor() + {input.get("param")})
         """
 
         return functions_txt
 
-
-    def build_input_function(self,input):
-        functions_txt = ""
-        action = input.get("action")
-
-        if action == "forward":
-            functions_txt += f"""
-    def input_{input.get("key")}(self):
-        for actor in self.actor_list:
-            actor.forward({input.get("param")})
-            """
-
-        elif action == "backward":
-            functions_txt += f"""
-    def input_{input.get("key")}(self):
-        for actor in self.actor_list:
-            actor.backward({input.get("param")})
-            """
-
-        elif action == "right":
-            functions_txt += f"""
-    def input_{input.get("key")}(self):
-        for actor in self.actor_list:
-            actor.right({input.get("param")})
-            """
-
-        elif action == "left":
-            functions_txt += f"""
-    def input_{input.get("key")}(self):
-        for actor in self.actor_list:
-            actor.left({input.get("param")})
-            """
-
-        elif action == "strife_left":
-            functions_txt += f"""
-    def input_{input.get("key")}(self):
-        for actor in self.actor_list:
-            actor.setx(actor.xcor() - {input.get("param")})
-            """
-        elif action == "strife_right":
-            functions_txt += f"""
-    def input_{input.get("key")}(self):
-        for actor in self.actor_list:
-            actor.setx(actor.xcor() + {input.get("param")})
-            """
-
-        return functions_txt
     def build(self, actor):
         self.actor = actor
         self.class_name = str.title(self.actor.get("name"))
@@ -172,14 +101,44 @@ class {self.class_name}Manager():
         self.spawn_positions = {self.spawn.get("positions")}
         
         self.screen = screen
-        
+        """
+        self.manager_txt +="""
     def check_collision(self, object_list):
+        collision = {"has_collision" : False}
         for actor in self.actor_list:
             for obj in object_list:
                 if actor.touches(obj):
-                    return True
+                    collision = {
+                        "has_collision": True,
+                        "actor1" : actor,
+                        "actor2" : obj
+                    }
+                    return collision
                     
-        return False
+        return collision
+
+    def check_position(self, **kwargs):
+        x_pos = kwargs.get("x_pos")
+        y_pos = kwargs.get("y_pos")
+        x_cond = kwargs.get("x_cond")
+        y_cond = kwargs.get("y_cond")
+        for actor in self.actor_list:
+            if x_pos is None:
+                if actor.check_y_position(y_pos,y_cond):
+                    return { "position_checked" : True, "actor" : actor}
+            elif y_pos is None:
+                if actor.check_x_position(x_pos,x_cond):
+                    return { "position_checked" : True, "actor" : actor}
+            else:
+                if actor.check_y_position(y_pos, y_cond) and actor.check_x_position(x_pos, x_cond):
+                    return { "position_checked" : True, "actor" : actor}
+
+        return { "position_checked" : False }
+        
+        """
+
+        
+        self.manager_txt += f"""
     def setup(self):
         pass
 

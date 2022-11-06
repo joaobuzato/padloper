@@ -12,21 +12,47 @@ class Player2Manager():
         self.screen = screen
         
     def check_collision(self, object_list):
+        collision = {"has_collision" : False}
         for actor in self.actor_list:
             for obj in object_list:
                 if actor.touches(obj):
-                    return True
+                    collision = {
+                        "has_collision": True,
+                        "actor1" : actor,
+                        "actor2" : obj
+                    }
+                    return collision
                     
-        return False
+        return collision
+
+    def check_position(self, **kwargs):
+        x_pos = kwargs.get("x_pos")
+        y_pos = kwargs.get("y_pos")
+        x_cond = kwargs.get("x_cond")
+        y_cond = kwargs.get("y_cond")
+        for actor in self.actor_list:
+            if x_pos is None:
+                if actor.check_y_position(y_pos,y_cond):
+                    return { "position_checked" : True, "actor" : actor}
+            elif y_pos is None:
+                if actor.check_x_position(x_pos,x_cond):
+                    return { "position_checked" : True, "actor" : actor}
+            else:
+                if actor.check_y_position(y_pos, y_cond) and actor.check_x_position(x_pos, x_cond):
+                    return { "position_checked" : True, "actor" : actor}
+
+        return { "position_checked" : False }
+        
+        
     def setup(self):
         pass
 
     def input(self):
         
-        self.screen.onkeyrelease(key='t', fun=self.input_t)
-        self.screen.onkeyrelease(key='g', fun=self.input_g)
-        self.screen.onkeyrelease(key='f', fun=self.input_f)
-        self.screen.onkeyrelease(key='h', fun=self.input_h)
+        self.screen.onkeyrelease(key='t', fun=self.func_forward)
+        self.screen.onkeyrelease(key='g', fun=self.func_backward)
+        self.screen.onkeyrelease(key='f', fun=self.func_left)
+        self.screen.onkeyrelease(key='h', fun=self.func_right)
         pass
 
     def update(self,start):
@@ -38,20 +64,24 @@ class Player2Manager():
         pass
     
     
-    def input_t(self):
+    def func_forward(self):
         for actor in self.actor_list:
+        
             actor.forward(10)
             
-    def input_g(self):
+    def func_backward(self):
         for actor in self.actor_list:
+        
             actor.backward(10)
             
-    def input_f(self):
+    def func_left(self):
         for actor in self.actor_list:
+        
             actor.left(10)
             
-    def input_h(self):
+    def func_right(self):
         for actor in self.actor_list:
+        
             actor.right(10)
             
     

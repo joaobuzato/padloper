@@ -90,9 +90,11 @@ class PadMain():
         self.screen.listen()
         self.game_is_on = True
         while self.game_is_on:
-            self.render()
+            
             self.update(start)
+            self.render()
             self.rules()
+            
             
         
         self.screen.mainloop()
