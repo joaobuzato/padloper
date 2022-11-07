@@ -22,21 +22,24 @@ class ManagerBuilder:
                 self.functions_txt += self.build_function(input)
 
     def build_spawn(self):
-        self.spawn_txt = ""
         self.spawn = self.actor.get("spawn")
         if self.spawn != None:
+            self.update_txt += f"""
+        if  {self.spawn.get("screen_update_count")} == None or (screen_updates >= {self.spawn.get("screen_update_count")} and screen_updates%{self.spawn.get("screen_update_count")} == 0):
+            """
             if self.spawn.get("type") == "unique":
                 self.update_txt += f"""
-        if len(self.actor_list) == 0:
-            actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
-            self.actor_list.append(actor)
-                """
+
+            if len(self.actor_list) == 0:
+                actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
+                self.actor_list.append(actor)
+                    """
             else:
-                self.update_txt += f"""
-        if len(self.actor_list) < {self.spawn.get("max_num")}:
-            actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
-            self.actor_list.append(actor)
-            print(len(self.actor_list))
+                    self.update_txt += f"""
+            
+            if len(self.actor_list) < {self.spawn.get("max_num")}:
+                actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
+                self.actor_list.append(actor)
                 """
 
     def build_updates(self):
@@ -153,7 +156,7 @@ class {self.class_name}Manager():
         {self.input_txt}
         pass
 
-    def update(self,start):
+    def update(self,screen_updates):
         {self.update_txt}
         pass
     
@@ -170,7 +173,7 @@ from {self.actor.get("name")}_manager import {self.class_name}Manager"""
         self.setup_setups += f"""
         self.{self.actor.get("name")}_manager.setup()"""
         self.update_setups += f"""
-        self.{self.actor.get("name")}_manager.update(start)"""
+        self.{self.actor.get("name")}_manager.update(screen_updates)"""
         file = open(f"src/{self.actor.get('name')}_manager.py", "w")
         file.write(self.manager_txt)
         file.close()

@@ -55,14 +55,16 @@ class EnemyManager():
         
         pass
 
-    def update(self,start):
+    def update(self,screen_updates):
         
         self.func_strife_left()
                 
-        if len(self.actor_list) < 300:
-            actor = Enemy(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
-            self.actor_list.append(actor)
-            print(len(self.actor_list))
+        if  10 == None or (screen_updates >= 10 and screen_updates%10 == 0):
+            
+            
+            if len(self.actor_list) < 300:
+                actor = Enemy(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
+                self.actor_list.append(actor)
                 
         pass
     

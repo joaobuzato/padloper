@@ -16,7 +16,6 @@ class Enemy(Turtle):
         self.st()
 
     def is_out_of_screen(self):
-        print(self.padscreen.left_x -50 > self.xcor())
         if self.padscreen.left_x -50 > self.xcor() or self.xcor() > self.padscreen.right_x + 50:
             return True
         

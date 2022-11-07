@@ -59,12 +59,15 @@ class PlayerManager():
         self.padscreen.get_screen_obj().onkeyrelease(key='d', fun=self.func_strife_right)
         pass
 
-    def update(self,start):
+    def update(self,screen_updates):
         
-        if len(self.actor_list) == 0:
-            actor = Player(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
-            self.actor_list.append(actor)
-                
+        if  None == None or (screen_updates >= None and screen_updates%None == 0):
+            
+
+            if len(self.actor_list) == 0:
+                actor = Player(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
+                self.actor_list.append(actor)
+                    
         pass
     
     

@@ -70,7 +70,7 @@ class PadMain():
         {self.input_setups}
         pass
     
-    def update(self,start):
+    def update(self,screen_updates):
         {self.update_setups}
         pass
     
@@ -84,6 +84,7 @@ class PadMain():
         pass
         
     def game_loop(self):
+        screen_updates = 0
         start = timer()
         self.setup()
         self.input()
@@ -91,9 +92,10 @@ class PadMain():
         self.game_is_on = True
         while self.game_is_on:
             
-            self.update(start)
+            self.update(screen_updates)
             self.render()
             self.rules()
+            screen_updates += 1
             
             
         

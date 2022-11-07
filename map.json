@@ -66,30 +66,6 @@
         }
     },
     {
-      "name" : "player2",
-      "components" : {
-      },
-      "spawn" : 
-      {
-        "type" : "unique",
-        "positions" : [
-          {"x" :0, "y" : 50}
-        ],
-        "colors" : [
-          "blue"
-        ]
-      },
-      "behaviors" :
-        {
-          "inputs" : [
-            {"key" :  "t", "action" : "forward", "param" :  "10"},
-            {"key" :  "g", "action" :  "backward", "param" :  "10"},
-            {"key" :  "f", "action" :  "left", "param" :  "10"},
-            {"key" :  "h", "action" :  "right", "param" :  "10"}
-          ]
-        }
-    },
-    {
       "name" : "enemy",
       "components" : {
       },
@@ -104,6 +80,7 @@
       {
         "type" : "multiple",
         "max_num" : 300,
+        "screen_update_count" : 10,
         "positions" : [
           {"x" :510, "y" : 300},
           {"x" :510, "y" : 250},
