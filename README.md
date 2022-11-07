@@ -11,6 +11,7 @@ Padloper é uma ferramenta que visa ser uma game engine para a construção de j
 A ferramenta é construída em algumas partes, que compõem o todo do software. Abaixo estão descritas as ferramentas e suas funções:
 
 #### Game Map (Mapa de Jogo): 
+
     O mapa de jogo é um arquivo JSON que será o guia, ou a planta do jogo. O software está preparado para ler o arquivo e usar as informações nele contidas para construir o jogo. 
 
     Um mapa de jogo típico do Padloper é assim construído:
@@ -52,7 +53,8 @@ A ferramenta é construída em algumas partes, que compõem o todo do software. 
         Color: Cor do backgroud;
 
     ###### Scoreboard 
-        O Objeto de Scoreboard é um ator que faz o papel de placar. Atualmente há alguns métodos pré-definidos para este ator que não são comandados pelo mapa, mas já estão imbutidos no framework para auxiliar na construção do jogo. São eles:
+        O Objeto de Scoreboard é um ator que faz o papel de placar. 
+        Atualmente há alguns métodos pré-definidos para este ator que não são comandados pelo mapa, mas já estão imbutidos no framework para auxiliar na construção do jogo. São eles:
 
         - point() : concede mais um ponto para o jogador e atualiza o placar na tela.
         - game_over() : finaliza o ciclo de jogo e mostra a pontuação final no centro da tela.
