@@ -4,12 +4,16 @@ from player import Player
 
 class PlayerManager():
 
-    def __init__(self, screen):
+    def __init__(self, padscreen):
         self.actor_list = []
         self.spawn_colors = ['red']
         self.spawn_positions = [{'x': 0, 'y': 470}]
         
-        self.screen = screen
+        self.padscreen = padscreen
+
+    def remove_actor(self,actor):
+        actor.goto(10000,10000)
+        self.actor_list.remove(actor)
         
     def check_collision(self, object_list):
         collision = {"has_collision" : False}
@@ -49,16 +53,16 @@ class PlayerManager():
 
     def input(self):
         
-        self.screen.onkeyrelease(key='w', fun=self.func_forward)
-        self.screen.onkeyrelease(key='s', fun=self.func_backward)
-        self.screen.onkeyrelease(key='a', fun=self.func_strife_left)
-        self.screen.onkeyrelease(key='d', fun=self.func_strife_right)
+        self.padscreen.get_screen_obj().onkeyrelease(key='w', fun=self.func_forward)
+        self.padscreen.get_screen_obj().onkeyrelease(key='s', fun=self.func_backward)
+        self.padscreen.get_screen_obj().onkeyrelease(key='a', fun=self.func_strife_left)
+        self.padscreen.get_screen_obj().onkeyrelease(key='d', fun=self.func_strife_right)
         pass
 
     def update(self,start):
         
         if len(self.actor_list) == 0:
-            actor = Player(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+            actor = Player(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
             self.actor_list.append(actor)
                 
         pass
@@ -66,21 +70,29 @@ class PlayerManager():
     
     def func_forward(self):
         for actor in self.actor_list:
+            if actor.is_out_of_screen():
+                self.remove_actor(actor)
         
             actor.forward(10)
             
     def func_backward(self):
         for actor in self.actor_list:
+            if actor.is_out_of_screen():
+                self.remove_actor(actor)
         
             actor.backward(10)
             
     def func_strife_left(self):
         for actor in self.actor_list:
+            if actor.is_out_of_screen():
+                self.remove_actor(actor)
         
             actor.setx(actor.xcor() - 10)
             
     def func_strife_right(self):
         for actor in self.actor_list:
+            if actor.is_out_of_screen():
+                self.remove_actor(actor)
         
             actor.setx(actor.xcor() + 10)
         

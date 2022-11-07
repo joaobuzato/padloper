@@ -4,12 +4,16 @@ from enemy import Enemy
 
 class EnemyManager():
 
-    def __init__(self, screen):
+    def __init__(self, padscreen):
         self.actor_list = []
         self.spawn_colors = ['black', 'yellow', 'blue', 'red']
         self.spawn_positions = [{'x': 510, 'y': 300}, {'x': 510, 'y': 250}, {'x': 510, 'y': 200}, {'x': 510, 'y': 150}, {'x': 510, 'y': 100}, {'x': 510, 'y': 50}, {'x': 510, 'y': 0}, {'x': 510, 'y': -50}, {'x': 510, 'y': -100}, {'x': 510, 'y': -150}, {'x': 510, 'y': -200}, {'x': 510, 'y': -250}, {'x': 510, 'y': -300}]
         
-        self.screen = screen
+        self.padscreen = padscreen
+
+    def remove_actor(self,actor):
+        actor.goto(10000,10000)
+        self.actor_list.remove(actor)
         
     def check_collision(self, object_list):
         collision = {"has_collision" : False}
@@ -56,14 +60,17 @@ class EnemyManager():
         self.func_strife_left()
                 
         if len(self.actor_list) < 300:
-            actor = Enemy(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+            actor = Enemy(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
             self.actor_list.append(actor)
+            print(len(self.actor_list))
                 
         pass
     
     
     def func_strife_left(self):
         for actor in self.actor_list:
+            if actor.is_out_of_screen():
+                self.remove_actor(actor)
         
             actor.setx(actor.xcor() - 10)
             

@@ -19,9 +19,9 @@ class PadMain():
         self.screen = self.padscreen.get_screen_obj()
         self.scoreboard = Scoreboard()
         
-        self.player_manager = PlayerManager(self.screen)
-        self.player2_manager = Player2Manager(self.screen)
-        self.enemy_manager = EnemyManager(self.screen)
+        self.player_manager = PlayerManager(self.padscreen)
+        self.player2_manager = Player2Manager(self.padscreen)
+        self.enemy_manager = EnemyManager(self.padscreen)
     def setup(self):
 
         

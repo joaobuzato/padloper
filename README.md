@@ -15,7 +15,7 @@ A ferramenta é construída em algumas partes, que compõem o todo do software. 
 
     Um mapa de jogo típico do Padloper é assim construído:
 
-    ```
+    ``
     {
         "name" : "Padloper Game",
         "screen" : {},
@@ -33,4 +33,4 @@ A ferramenta é construída em algumas partes, que compõem o todo do software. 
         
     }
 
-    ```
+    ``

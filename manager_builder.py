@@ -17,7 +17,7 @@ class ManagerBuilder:
         if self.actor.get("behaviors").get("inputs") != None:
             for input in self.actor.get("behaviors").get("inputs"):
                 self.input_txt += f"""
-        self.screen.onkeyrelease(key='{input.get('key')}', fun=self.func_{input.get('action')})"""
+        self.padscreen.get_screen_obj().onkeyrelease(key='{input.get('key')}', fun=self.func_{input.get('action')})"""
                 # TODO fazer inputs mais inclusivos
                 self.functions_txt += self.build_function(input)
 
@@ -28,14 +28,15 @@ class ManagerBuilder:
             if self.spawn.get("type") == "unique":
                 self.update_txt += f"""
         if len(self.actor_list) == 0:
-            actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+            actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
             self.actor_list.append(actor)
                 """
             else:
                 self.update_txt += f"""
         if len(self.actor_list) < {self.spawn.get("max_num")}:
-            actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)))
+            actor = {self.class_name}(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
             self.actor_list.append(actor)
+            print(len(self.actor_list))
                 """
 
     def build_updates(self):
@@ -53,6 +54,8 @@ class ManagerBuilder:
         functions_txt = f"""
     def func_{input.get("action")}(self):
         for actor in self.actor_list:
+            if actor.is_out_of_screen():
+                self.remove_actor(actor)
         """
         action = input.get("action")
         if action == "forward":
@@ -95,12 +98,16 @@ from {self.actor.get("name")} import {self.class_name}
 
 class {self.class_name}Manager():
 
-    def __init__(self, screen):
+    def __init__(self, padscreen):
         self.actor_list = []
         self.spawn_colors = {self.spawn.get("colors")}
         self.spawn_positions = {self.spawn.get("positions")}
         
-        self.screen = screen
+        self.padscreen = padscreen
+
+    def remove_actor(self,actor):
+        actor.goto(10000,10000)
+        self.actor_list.remove(actor)
         """
         self.manager_txt +="""
     def check_collision(self, object_list):
@@ -157,7 +164,7 @@ class {self.class_name}Manager():
 from {self.actor.get("name")}_manager import {self.class_name}Manager"""
 
         self.manager_setups += f"""
-        self.{self.actor.get("name")}_manager = {self.class_name}Manager(self.screen)"""
+        self.{self.actor.get("name")}_manager = {self.class_name}Manager(self.padscreen)"""
         self.input_setups += f"""
         self.{self.actor.get("name")}_manager.input()"""
         self.setup_setups += f"""
