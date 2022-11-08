@@ -28,44 +28,27 @@ A ferramenta é construída em algumas partes, que compõem o todo do software. 
 
 O mapa de jogo é um arquivo JSON que será o guia, ou a planta do jogo. O software está preparado para ler o arquivo e usar as informações nele contidas para construir o jogo.
 
-  
-
 Um mapa de jogo típico do Padloper é assim construído:
 ```
 {
-
 	"name" : "Padloper Game",
-
 	"screen" : {},
-
 	"scoreboard" : {},
-
 	"rules" : [
-
 		{
-
 		"trigger" : "collision"
-
 		}
-
 	],
-
 	"actors" : [
-
 		{
-
 		"name": "jogador"
-
 		}
-
 	]
-
 }
 ```  
 
-Cada um dos elementos do mapa possui em si uma série de outros elementos, e além do name, que é o título do jogo, são eles:
+Cada um dos elementos do mapa possui em si uma série de outros elementos, e além do "name", que é o título do jogo, são eles:
 
-  
 
 ### Screen 
 
@@ -73,13 +56,9 @@ O Objeto de Tela de um jogo executado com Turtle é o espaço no qual os objetos
 
 ```
 "screen" : {
-
 	"width" : 1000,
-
 	"height" : 1000,
-
 	"color" : "green"
-
 }
 ```
 
@@ -112,33 +91,87 @@ Um elemento de Scoreboard no mapa de jogo Padloper é como disposto abaixo:
 
 ```
 "scoreboard": {
-
 	"position" : "top"
-
 	"color" : "black"
-
 	"font" : "Courier"
-
 	"size" : "18"
-
 }
 ```
-
-  
-
 *Elementos*:
 
 Position: Posição do placar na tela;
-
 Color: Cor das letras do placar;
-
 Font: Fonte da escrita do placar;
-
 Size: Tamanho da escrita do placar;
-<hr>
 
 ### Actors
 
-  
+  O array 'Actors' do jogo é uma lista dos atores que estarão presentes na execução do jogo, incluindo tanto atores que o jogador controla quanto os inimigos ou outros assets não controlados pelo jogador. 
+
+Um ator é possui dentro de si alguns objetos, como descrito abaixo: 
+```
+{
+      "name" : "player",
+      "components" : {
+	      "speed" : 8
+      },
+      "spawn" : 
+      {
+        "type" : "unique",
+        "positions" : [
+          {"x" :0, "y" : 470}
+        ],
+        "colors" : [
+          "red"
+        ]
+      },
+      "behaviors" :
+        {
+          "inputs" : [
+            {"key" :  "w", "action" : "forward", "param" :  "10"},
+            {"key" :  "s", "action" :  "backward", "param" :  "10"},
+            {"key" :  "a", "action" :  "strife_left", "param" :  "10"},
+            {"key" :  "d", "action" :  "strife_right", "param" :  "10"}
+          ]
+        },
+        {
+          "updates": [
+            { "action" : "strife_left", "param" :  "10"}
+
+          ]
+      },
+    }
+```
+
+*Elementos*:
+
+Name: Nome do ator;
+Components: Atributos estáticos do ator; 
+* Speed: Atributo de velocidade do ator na tela **( 1 - 10 )**;
+
+Spawn: Objeto com os parâmetros de geração do ator na tela;
+* Type: Tipo de geração **( unique | multiple )**;
+* Positions : Array de posições que o ator pode assumir ao ser gerado. Caso o tipo de geração seja **multiple**, o ator será gerado numa destas coordenadas, aleatoriamente. 
+	* x: Posição x onde o ator será gerado;
+	* y: Posição y onde o ator seŕa gerado;
+* Colors : Array de cores que o ator pode assumir ao ser gerado. Caso o tipo de geração seja **multiple**, o ator escolherá uma cor aleatoriamente.
+
+Behaviors: Comportamentos que o ator pode possuir. Há dois tipos de ações que se encaixam dentro de "Behaviors": os inputs e os updates, e geralmente um mesmo ator não possui os dois simultaneamente. 
+* Inputs: lista de ações que o ator tomará ao pressionar de uma tecla. Um input possui:
+	* Key: Tecla que, quando pressionada, executará a ação definida;
+	* Action: Ação executada ao pressionar a tecla (O que o ator fará com este comando é definido pelo software);
+	* Param: Parâmetro com o qual a ação será executada, que pode ser, por exemplo, o número de pixels que um ator andará, quantos graus ele se voltará, etc; 
+
+* Updates: lista de ações que serão executadas pelo ator a cada novo frame, sem necessidade de uma interação do usuário.
+	* Action: Ação executada ao pressionar a tecla (O que o ator fará com este comando é definido pelo software);
+	* Param:  Parâmetro com o qual a ação será executada, que pode ser, por exemplo, o número de pixels que um ator andará, quantos graus ele se voltará, etc; 
+
+
 
 ### Rules
+
+Em construção
+
+## Game Builder 
+
+Em construção
