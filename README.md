@@ -146,6 +146,7 @@ Um ator é possui dentro de si alguns objetos, como descrito abaixo:
 *Elementos*:
 
 Name: Nome do ator;
+
 Components: Atributos estáticos do ator; 
 * Speed: Atributo de velocidade do ator na tela **( 1 - 10 )**;
 
