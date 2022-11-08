@@ -12,6 +12,14 @@ Este repositório foi criado para o meu projeto de conclusão de curso pelo CEFE
 
 Padloper é uma ferramenta que visa ser uma game engine para a construção de jogos arcades simples, com foco total no primeiro contato de alguém com a programação de jogos.
 
+# Por que "Game Engine Por Subtração" ?
+
+O termo 'por subtração' surge de 'design por subtração', atribuído ao game designer Fumito Ueda, diretor dos jogos Ico e Shadow of The Colossus, e se refere à retirada de tudo que não for essencial à forma, tornando o produto final mais enxuto, simples e de escopo bem reduzido. 
+
+Tal filosofia se encaixa perfeitamente na proposta do Padloper, que foi pensada com foco total no primeiro contato de alguém com a construção de jogos, e por isso muitas das funcionalidades mais "comuns" de game engines mais tradicionais são removidas - subtraídas - para que a linha de aprendizado seja a mais suave possível. 
+
+Uma pergunta importante a se fazer para garantir que um elemento é subtraível é: "Caso um jogo não possua tal elemento, ele ainda é um jogo?". Em casos como a interação do usuário, a resposta é certamente não. Um jogo sem interação do usuário é uma outra coisa, mas não um jogo. Já em casos como o áudio, no entanto, a resposta pode ser sim. Um jogo sem som ainda é um jogo. E é aqui que a subtração age. 
+
   
 
 # Como o Padloper é construído?
