@@ -7,8 +7,9 @@ class ScreenBuilder:
         pass
 
     def build(self, screen):
-        self.height = screen.get('height')
-        self.width = screen.get('width')
+        self.screen = screen
+        self.height = self.screen.get('height')
+        self.width = self.screen.get('width')
         screen_txt = f""" 
 from turtle import Screen
 
@@ -18,6 +19,7 @@ class PadScreen():
         self.screen = Screen()
         self.screen.mode("logo")
         self.screen.setup(width={self.width}, height={self.height})
+        self.screen.bgcolor("{self.screen.get("color")}")
         self.top_y = {self.height/2}
         self.bottom_y = -{self.height/2}
         self.left_x = -{self.width/2}

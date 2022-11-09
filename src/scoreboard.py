@@ -11,9 +11,9 @@ class Scoreboard(Turtle):
         super().__init__()
         self.ht()
         self.penup()
-        self.color("black")
+        self.color("Black")
         self.goto((0, 470.0))
-        self.write(f"Score: " + str(self.score), align=ALIGNMENT, font=FONT)
+        self.write(f"Placar: " + str(self.score) +" Pontos" , align=ALIGNMENT, font=FONT)
 
     def point(self):
         self.score += 1
@@ -22,9 +22,14 @@ class Scoreboard(Turtle):
     def update_scoreboard(self):
         self.clear()
         self.goto((0, 470.0))
-        self.write(f"Score: "+ str(self.score), align=ALIGNMENT, font=FONT)
+        self.write(f"Placar: "+ str(self.score) +" Pontos", align=ALIGNMENT, font=FONT)
+
+    def game_won(self):
+        self.clear()
+        self.goto(0,0)
+        self.write(f"VOCÊ VENCEU! - PLACAR: "+str(self.score)+" Pontos", align=ALIGNMENT, font=FONT)
 
     def game_over(self):
         self.clear()
         self.goto(0,0)
-        self.write(f"GAME OVER - Score: "+str(self.score), align=ALIGNMENT, font=FONT)
+        self.write(f"GAME OVER - PLACAR: "+str(self.score) + " Pontos", align=ALIGNMENT, font=FONT)

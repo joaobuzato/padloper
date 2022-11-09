@@ -3,8 +3,8 @@
 - [x] Resolver Game Over 
 - [x] Resolver posição Scoreboard
 - [x] Resolver número de instâncias do ator
-- Resolver spawn por tempo
-- Resolver retirada do ator da lista
+- [x] Resolver spawn por tempo
+- [x] Resolver retirada do ator da lista
 
 
 

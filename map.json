@@ -6,7 +6,10 @@
     "color" : "green"
   },
   "scoreboard": {
-    "position" : "top"
+    "position" : "top",
+    "size" : 18,
+    "font" : "Courier",
+    "color" : "Black"
   },
   "rules": [
     {
