@@ -28,9 +28,11 @@ Uma pergunta importante a se fazer para garantir que um elemento é passível de
   
 # Glossário
 
-* **Ator** : Elemento de jogo que possui componentes e comportamentos. Regras podem ser aplicadas a um ator e este poderá ser parte das consequências destas regras. 
-* **Tela** : Espaço onde o jogo é executado.
-* **Ciclo de jogo**: Espaço de tempo no qual o jogo é executado. Pode-se dizer que uma 'volta' neste ciclo corresponde a um frame do jogo. Um ciclo de jogo possui os métodos Input, Update e Render, e também é dentro deste ciclo que as regras do jogo são checadas. 
+* **Ator** : Elemento de jogo que possui componentes e comportamentos. Regras podem ser aplicadas a um ator e este poderá ser parte das consequências destas regras. <br/>
+* **Tela** : Espaço onde o jogo é executado.<br/>
+* **Ciclo de jogo**: Espaço de tempo no qual o jogo é executado. Pode-se dizer que uma 'volta' neste ciclo corresponde a um frame do jogo. Um ciclo de jogo possui os métodos Input, Update e Render, e também é dentro deste ciclo que as regras do jogo são checadas. <br/>
+
+Em construção
 
 # Como o Padloper é construído?
 
@@ -53,14 +55,10 @@ Um mapa de jogo típico do Padloper é assim construído:
 	"screen" : {},
 	"scoreboard" : {},
 	"rules" : [
-		{
-		"trigger" : "collision"
-		}
+		{}
 	],
 	"actors" : [
-		{
-		"name": "jogador"
-		}
+		{}
 	]
 }
 ```  
@@ -83,13 +81,9 @@ O Objeto de Tela de um jogo executado com Turtle é o espaço no qual os objetos
 
 *Elementos*:
 
-Width: Largura da tela;
-
-Height: Altura da tela;
-
-Color: Cor do backgroud;
-
-  <hr>
+Width: Largura da tela;<br/>
+Height: Altura da tela;<br/>
+Color: Cor do backgroud;<br/>
 
 ### Scoreboard
 
@@ -99,9 +93,11 @@ Atualmente há alguns métodos pré-definidos para este ator que não são coman
 
   
 
-- point() : concede mais um ponto para o jogador e atualiza o placar na tela.
+- point() : concede mais um ponto para o jogador e atualiza o placar na tela.<br/>
 
-- game_over() : finaliza o ciclo de jogo e mostra a pontuação final no centro da tela.
+- game_over() : finaliza o ciclo de jogo e mostra a pontuação final no centro da tela, como condição de falha.<br/>
+
+- game_won() : finaliza o ciclo de jogo e mostra a ponstuação final no centro da tela, como condição de sucesso. <br/>
 
   
 
@@ -117,10 +113,10 @@ Um elemento de Scoreboard no mapa de jogo Padloper é como disposto abaixo:
 ```
 *Elementos*:
 
-Position: Posição do placar na tela;
-Color: Cor das letras do placar;
-Font: Fonte da escrita do placar;
-Size: Tamanho da escrita do placar;
+Position: Posição do placar na tela;<br/>
+Color: Cor das letras do placar;<br/>
+Font: Fonte da escrita do placar;<br/>
+Size: Tamanho da escrita do placar;<br/>
 
 ### Actors
 
@@ -131,7 +127,8 @@ Um ator é possui dentro de si alguns objetos, como descrito abaixo:
 {
       "name" : "player",
       "components" : {
-	      "speed" : 8
+	      "speed" : 8,
+	      "size" : 2
       },
       "spawn" : 
       {
@@ -165,17 +162,18 @@ Um ator é possui dentro de si alguns objetos, como descrito abaixo:
 
 Name: Nome do ator;
 
-Components: Atributos estáticos do ator; 
+Components: Atributos estáticos do ator; <br/>
 * Speed: Atributo de velocidade do ator na tela **( 1 - 10 )**;
+* Size: Dimensão do ator. Como este parâmetro multiplica o tamanho do ator;
 
 Spawn: Objeto com os parâmetros de geração do ator na tela;
 * Type: Tipo de geração **( unique | multiple )**;
-* Positions : Array de posições que o ator pode assumir ao ser gerado. Caso o tipo de geração seja **multiple**, o ator será gerado numa destas coordenadas, aleatoriamente. 
+* Positions : Array de posições que o ator pode assumir ao ser gerado. Caso o tipo de geração seja **multiple**, o ator será gerado numa destas coordenadas, aleatoriamente.
 	* x: Posição x onde o ator será gerado;
 	* y: Posição y onde o ator seŕa gerado;
 * Colors : Array de cores que o ator pode assumir ao ser gerado. Caso o tipo de geração seja **multiple**, o ator escolherá uma cor aleatoriamente.
 
-Behaviors: Comportamentos que o ator pode possuir. Há dois tipos de ações que se encaixam dentro de "Behaviors": os inputs e os updates, e geralmente um mesmo ator não possui os dois simultaneamente. 
+Behaviors: Comportamentos que o ator pode possuir. Há dois tipos de ações que se encaixam dentro de "Behaviors": os inputs e os updates, e geralmente um mesmo ator não possui os dois simultaneamente. <br/>
 * Inputs: lista de ações que o ator tomará ao pressionar de uma tecla. Um input possui:
 	* Key: Tecla que, quando pressionada, executará a ação definida;
 	* Action: Ação executada ao pressionar a tecla (O que o ator fará com este comando é definido pelo software);
@@ -188,7 +186,7 @@ Behaviors: Comportamentos que o ator pode possuir. Há dois tipos de ações que
 
 
 ### Rules
-Esta lista contém os objetos que descrevem as regras do jogo. Regras são condições a serem atingidas e suas consequências, bem como o ator ou atores envolvidos nesta regra. Abaixo estão dois exemplos de objeto de regras incluído no mapa de jogo: 
+Esta lista contém os objetos que descrevem as regras do jogo. Regras são condições a serem atingidas e suas consequências, bem como o ator ou atores envolvidos nesta regra. Abaixo estão alguns exemplos de objeto de regras incluído no mapa de jogo: 
 
 Exemplo de regra de colisão: 
 
@@ -204,6 +202,21 @@ Exemplo de regra de colisão:
 	]
 }
 ```
+
+_Elementos da Regra de **Colisão**_:
+
+Trigger: Tipo de condição-gatilho para a regra ser ativada; **( collision | position | score)**<br/>
+Actor1: Primeiro ator a ser checado; **(ator)**<br/>
+Actor2: Segundo ator a ser checado; **(ator)**<br/>
+Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;<br/>
+* Name: nome da consequência; **( game_over | point | move_to | game_won)**<br/>
+
+> Importante: a condição-gatilho 'collision' checa apenas colisões entre dois tipos de atores, e não é possível checar colisão entre três tipos de atores nesta versão do Padloper. 
+
+<br/><br/>
+
+
+
 Exemplo de regra de posição: 
 
 ```
@@ -226,32 +239,48 @@ Exemplo de regra de posição:
 }
 ```
 <br/><br/>
-_Elementos da Regra de **Colisão**_:
 
-Trigger: Tipo de condição-gatilho para a regra ser ativada; **( collision | position )**
-Actor1: Primeiro ator a ser checado; **(ator)**
-Actor2: Segundo ator a ser checado; **(ator)**
-Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;
-* Name: nome da consequência; **( game_over | point | move_to )**
 
-> Importante: a condição-gatilho 'collision' checa apenas colisões entre dois tipos de atores, e não é possível checar colisão entre três tipos de atores nesta versão do Padloper. 
-
-<br/><br/>
 _Elementos da Regra de **Posição**_:
 
-Trigger: Tipo de condição-gatilho para a regra ser ativada; **( collision | position )**
-Actor: Ator cuja posição será checada; **(ator)**
-X_pos: Posição no eixo X para que o a regra seja ativada; **( number | "" )**
-X_cond: Condição relacionada ao eixo X para que a regra seja ativada; **( lesser | equal | greater )**
-Y_pos: Posição no eixo Y para que o a regra seja ativada; **( number | "" )**
-Y_cond: Condição relacionada ao eixo Y para que a regra seja ativada; **( lesser | equal | greater )**
-Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;
-* Name: nome da consequência; **( game_over | point | move_to )**
-	* Y: Posição do eixo Y para qual o Ator será movido **( number )**
-	* X: Posição do eixo X para qual o Ator seŕa movido **( number )**
+Trigger: Tipo de condição-gatilho para a regra ser ativada; **( collision | position | score)** <br/>
+Actor: Ator cuja posição será checada; **(ator)** <br/>
+X_pos: Posição no eixo X para que o a regra seja ativada; **( number | "" )**<br/>
+X_cond: Condição relacionada ao eixo X para que a regra seja ativada; **( lesser | equal | greater )**<br/>
+Y_pos: Posição no eixo Y para que o a regra seja ativada; **( number | "" )**<br/>
+Y_cond: Condição relacionada ao eixo Y para que a regra seja ativada; **( lesser | equal | greater )**<br/>
+Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;<br/>
+* Name: nome da consequência; **( game_over | point | move_to | game_won )**<br/>
+	* Y: Posição do eixo Y para qual o Ator será movido **( number )**<br/>
+	* X: Posição do eixo X para qual o Ator seŕa movido **( number )**<br/>
 
-> Importante: a condição-gatilho 'position' poderá checar se um ator passou de uma coordenada na tela, no eixo x ou y caso apenas uma das coordenadas sejam informadas, ou se este ator atingiu um certo ponto da tela, caso as duas coordenadas sejam fornecidas. 
+> Importante: a condição-gatilho 'position' poderá checar se um ator passou de uma coordenada na tela, no eixo x ou y caso apenas uma das coordenadas sejam informadas, ou se este ator atingiu um certo ponto da tela, caso as duas coordenadas sejam fornecidas.
 
+<br/><br/>
+
+Exemplo de regra de pontuação: 
+
+```
+{
+	"trigger" : "score",
+	"win_score" : 10
+	"consequences" : [
+		{
+		  "name" :"game_won"
+		}
+	]
+}
+```
+
+_Elementos da Regra de **Pontuação**_:
+
+Trigger: Tipo de condição-gatilho para a regra ser ativada; **( collision | position | score)**<br/>
+Win_Score: Pontuação a ser atingida para que a regra seja ativada. **( number > 0 )**<br/>
+Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;<br/>
+* Name: nome da consequência; **( game_over | point | move_to | game_won )**<br/>
+
+
+<br/><br/>
 
 
 ## Padgame Builder 
