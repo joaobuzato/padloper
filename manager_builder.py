@@ -3,10 +3,13 @@
 class ManagerBuilder:
     def __init__(self):
         self.actor = None
-        self.manager_setups = ""
-        self.input_setups = ""
-        self.setup_setups = ""
-        self.update_setups = ""
+        self.setups = {
+            "manager_setups" : "",
+            "input_setups" : "",
+            "setup_setups" : "",
+            "update_setups" : "",
+        }
+        
         self.manager_imports = ""
         self.class_name = ""
         pass
@@ -166,13 +169,13 @@ class {self.class_name}Manager():
     
 from {self.actor.get("name")}_manager import {self.class_name}Manager"""
 
-        self.manager_setups += f"""
+        self.setups["manager_setups"] += f"""
         self.{self.actor.get("name")}_manager = {self.class_name}Manager(self.padscreen)"""
-        self.input_setups += f"""
+        self.setups["input_setups"] += f"""
         self.{self.actor.get("name")}_manager.input()"""
-        self.setup_setups += f"""
+        self.setups["setup_setups"] += f"""
         self.{self.actor.get("name")}_manager.setup()"""
-        self.update_setups += f"""
+        self.setups["update_setups"] += f"""
         self.{self.actor.get("name")}_manager.update(screen_updates)"""
         file = open(f"src/{self.actor.get('name')}_manager.py", "w")
         file.write(self.manager_txt)

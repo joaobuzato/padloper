@@ -40,10 +40,12 @@ class GameBuilder:
         for actor in self.game_map.get("actors"):
             self.actor_builder.build(actor)
 
-        self.manager_setups = self.actor_builder.manager_setups
-        self.input_setups = self.actor_builder.input_setups
-        self.update_setups = self.actor_builder.update_setups
-        self.setup_setups = self.actor_builder.setup_setups
+        self.actor_setups = self.actor_builder.setups
+
+        # self.manager_setups = self.actor_builder.manager_setups
+        # self.input_setups = self.actor_builder.input_setups
+        # self.update_setups = self.actor_builder.update_setups
+        # self.setup_setups = self.actor_builder.setup_setups
         self.manager_imports = self.actor_builder.manager_imports
 
     def create_main(self):
@@ -61,17 +63,17 @@ class PadMain():
         self.padscreen = PadScreen()
         self.screen = self.padscreen.get_screen_obj()
         self.scoreboard = Scoreboard()
-        {self.manager_setups}
+        {self.actor_setups.get("manager_setups")}
     def setup(self):
 
-        {self.setup_setups}
+        {self.actor_setups.get("setup_setups")}
         pass
     def input(self):
-        {self.input_setups}
+        {self.actor_setups.get("input_setups")}
         pass
     
     def update(self,screen_updates):
-        {self.update_setups}
+        {self.actor_setups.get("update_setups")}
         pass
     
     def render(self):

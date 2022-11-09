@@ -8,12 +8,8 @@ class ActorBuilder:
 
     def build(self, actor):
         self.actor = actor
-        
         self.manager_builder.build(actor)
-        self.manager_setups = self.manager_builder.manager_setups
-        self.input_setups = self.manager_builder.input_setups
-        self.setup_setups = self.manager_builder.setup_setups
-        self.update_setups = self.manager_builder.update_setups
+        self.setups = self.manager_builder.setups
         self.manager_imports = self.manager_builder.manager_imports
         self.build_actor()
         pass
@@ -33,7 +29,6 @@ class {self.class_name}(Turtle):
         self.color(color)
         self.penup()
         self.padscreen = padscreen
-        
         self.goto(position.get("x"), position.get("y"))
         self.st()
 

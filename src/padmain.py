@@ -49,14 +49,14 @@ class PadMain():
         
                 self.scoreboard.game_over()
                 self.game_is_on = False
-            
+                
         obj = self.player_manager.check_position(y_pos=480,x_pos=None, y_cond='greater',x_cond='None')
         if obj.get("position_checked"):
                 
                 self.scoreboard.point()  
-            
+                
                 obj.get("actor").goto((0, -480))
-                    
+                
         pass
         
     def game_loop(self):
