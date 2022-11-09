@@ -6,12 +6,13 @@ class Enemy(Turtle):
     def __init__(self, color,position,padscreen) :
         super().__init__()
         self.ht()
-        self.speed(8)
+        self.speed(10)
         self.shape("square")
+        self.resizemode("user")
+        self.shapesize(1,1)
         self.color(color)
         self.penup()
         self.padscreen = padscreen
-        
         self.goto(position.get("x"), position.get("y"))
         self.st()
 
@@ -47,7 +48,7 @@ class Enemy(Turtle):
 
 
     def touches(self,object):
-        if self.xcor()-10 <= object.xcor() <= self.xcor()+10 and self.ycor() -10 <= object.ycor() <= self.ycor() +10:
+        if self.distance(object) <= 11*1:
             return True
         else:
             return False

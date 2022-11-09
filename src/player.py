@@ -6,12 +6,13 @@ class Player(Turtle):
     def __init__(self, color,position,padscreen) :
         super().__init__()
         self.ht()
-        self.speed(8)
+        self.speed(10)
         self.shape("square")
+        self.resizemode("user")
+        self.shapesize(2,2)
         self.color(color)
         self.penup()
         self.padscreen = padscreen
-        
         self.goto(position.get("x"), position.get("y"))
         self.st()
 
@@ -47,7 +48,7 @@ class Player(Turtle):
 
 
     def touches(self,object):
-        if self.xcor()-10 <= object.xcor() <= self.xcor()+10 and self.ycor() -10 <= object.ycor() <= self.ycor() +10:
+        if self.distance(object) <= 11*2:
             return True
         else:
             return False

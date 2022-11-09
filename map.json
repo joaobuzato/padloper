@@ -46,6 +46,8 @@
     {
       "name" : "player",
       "components" : {
+        "size" : 2,
+        "speed" : 10
       },
       "spawn" : 
       {
@@ -71,6 +73,8 @@
     {
       "name" : "enemy",
       "components" : {
+        "size" : 1,
+        "speed" : 10
       },
       "behaviors" :
       {
