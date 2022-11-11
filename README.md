@@ -31,8 +31,37 @@ Uma pergunta importante a se fazer para garantir que um elemento é passível de
 * **Ator** : Elemento de jogo que possui componentes e comportamentos. Regras podem ser aplicadas a um ator e este poderá ser parte das consequências destas regras. <br/>
 * **Tela** : Espaço onde o jogo é executado.<br/>
 * **Ciclo de jogo**: Espaço de tempo no qual o jogo é executado. Pode-se dizer que uma 'volta' neste ciclo corresponde a um frame do jogo. Um ciclo de jogo possui os métodos Input, Update e Render, e também é dentro deste ciclo que as regras do jogo são checadas. <br/>
+* **Classe-Gerente**: Em construção
 
 Em construção
+
+# Como funciona um jogo no Padloper?
+
+Um jogo construído pelo padloper possui 4 componentes principais: Tela, Ciclo de Jogo, Atores e suas Classes-Gerentes. Durante a execução do ciclo de jogo, as classes-gerentes checam as regras e executam suas ações, eventualmente interagindo entre si, ou com a tela. 
+
+```mermaid
+stateDiagram-v2
+	[*] --> Setup
+	Setup --> Input
+	Input --> Update
+	Update --> Render
+	Render --> Input
+	Render --> [*]
+```
+> O ciclo de jogo compreende os métodos após o Setup (configuração inicial das classes-gerentes de jogo). 
+
+Cada um destes métodos do ciclo de jogo possui um correspondente nas classes-gerentes dos atores. Isto permite que se chame cada um dos métodos próprios e que se personalize estes métodos dentro das classes-gerentes. 
+
+```mermaid
+sequenceDiagram
+    Padmain.Update()->>+AtorGerente.Update(): Realize o método Update!
+    AtorGerente.Update()->>+Ator: Atualize sua posição!
+    Ator-->>-AtorGerente.Update(): Posição atualizada!
+    AtorGerente.Update()-->>-Padmain.Update(): Ator Atualizado!
+
+```
+> No exemplo, o método Update, inserido dentro do Padmain, chama seu correspondente dentro da classe ator-gerente, que atualiza a posição do ator, e retorna o ator já atualizado, que será renderizado na próxima atualização de tela. 
+
 
 # Como o Padloper é construído?
 
