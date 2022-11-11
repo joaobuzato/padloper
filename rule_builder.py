@@ -40,6 +40,10 @@ class RuleBuilder:
                     self.rules_setups += f"""
                 print("collision!")
                 """
+                elif consequence.get("name") == "set_heading":
+                    self.rules_setups += f"""
+                obj.get("actor").setheading({consequence.get("heading")})
+                    """
                 elif consequence.get("name") == "game_won":
                     self.rules_setups += f"""
                 self.scoreboard.game_won()

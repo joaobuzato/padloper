@@ -1,16 +1,16 @@
 
 from turtle import Turtle
 
-class Enemy(Turtle):
+class Ball(Turtle):
 
     def __init__(self, color,position,padscreen) :
         super().__init__()
         self.ht()
         self.speed(10)
-        self.setheading(270)
+        self.setheading(90)
         self.shape("square")
         self.resizemode("user")
-        self.shapesize(1,1)
+        self.shapesize(2,2)
         self.color(color)
         self.penup()
         self.padscreen = padscreen
@@ -49,7 +49,7 @@ class Enemy(Turtle):
 
 
     def touches(self,object):
-        if self.distance(object) <= 10*1:
+        if self.distance(object) <= 10*2:
             return True
         else:
             return False

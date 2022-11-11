@@ -1,13 +1,13 @@
 
 import random
-from enemy import Enemy
+from ball import Ball
 
-class EnemyManager():
+class BallManager():
 
     def __init__(self, padscreen):
         self.actor_list = []
-        self.spawn_colors = ['black', 'yellow', 'blue', 'red']
-        self.spawn_positions = [{'x': 510, 'y': 300}, {'x': 510, 'y': 250}, {'x': 510, 'y': 200}, {'x': 510, 'y': 150}, {'x': 510, 'y': 100}, {'x': 510, 'y': 50}, {'x': 510, 'y': 0}, {'x': 510, 'y': -50}, {'x': 510, 'y': -100}, {'x': 510, 'y': -150}, {'x': 510, 'y': -200}, {'x': 510, 'y': -250}, {'x': 510, 'y': -300}]
+        self.spawn_colors = ['white']
+        self.spawn_positions = [{'x': 0, 'y': 0}]
         
         self.padscreen = padscreen
 
@@ -59,13 +59,13 @@ class EnemyManager():
         
         self.func_forward()
                 
-        if  10 == None or (screen_updates >= 10 and screen_updates%10 == 0):
+        if  None == None or (screen_updates >= None and screen_updates%None == 0):
             
-            
-            if len(self.actor_list) < 300:
-                actor = Enemy(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
+
+            if len(self.actor_list) == 0:
+                actor = Ball(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
                 self.actor_list.append(actor)
-                
+                    
         pass
     
     

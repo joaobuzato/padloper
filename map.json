@@ -13,6 +13,20 @@
   },
   "rules": [
     {
+      "trigger" : "position",
+      "actor" : "ball",
+      "x_pos" : "480",
+      "x_cond" : "equals",
+      "y_pos" : "",
+      "y_cond" : "",
+      "consequences" : [
+        {
+          "name" : "set_heading",
+          "heading" : "270"
+        }
+      ]
+    },
+    {
       "trigger" : "collision",
       "actor1" : "player",
       "actor2" : "enemy",
@@ -47,7 +61,8 @@
       "name" : "player",
       "components" : {
         "size" : 2,
-        "speed" : 10
+        "speed" : 10,
+        "heading" : 0
       },
       "spawn" : 
       {
@@ -59,6 +74,7 @@
           "red"
         ]
       },
+      
       "behaviors" :
         {
           "inputs" : [
@@ -71,15 +87,42 @@
         }
     },
     {
+      "name" : "ball",
+      "components" : {
+        "size" : 2,
+        "speed" : 10,
+        "heading" : 90
+      },
+      "spawn" : 
+      {
+        "type" : "unique",
+        "positions" : [
+          {"x" :0, "y" : 0}
+        ],
+        "colors" : [
+          "white"
+        ]
+      },
+      
+      "behaviors" :
+        {
+          "updates": [
+            { "action" : "forward", "param" :  "10"}
+
+          ]
+        }
+    },
+    {
       "name" : "enemy",
       "components" : {
         "size" : 1,
-        "speed" : 10
+        "speed" : 10,
+        "heading" : 270
       },
       "behaviors" :
       {
           "updates": [
-            { "action" : "strife_left", "param" :  "10"}
+            { "action" : "forward", "param" :  "10"}
 
           ]
       },

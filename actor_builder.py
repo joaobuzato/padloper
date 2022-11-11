@@ -25,6 +25,7 @@ class {self.class_name}(Turtle):
         super().__init__()
         self.ht()
         self.speed({self.actor.get("components").get("speed")})
+        self.setheading({self.actor.get("components").get("heading")})
         self.shape("square")
         self.resizemode("user")
         self.shapesize({self.actor.get("components").get("size")},{self.actor.get("components").get("size")})
@@ -35,10 +36,10 @@ class {self.class_name}(Turtle):
         self.st()
 
     def is_out_of_screen(self):
-        if self.padscreen.left_x -50 > self.xcor() or self.xcor() > self.padscreen.right_x + 50:
+        if self.padscreen.left_x -200 > self.xcor() or self.xcor() > self.padscreen.right_x + 200:
             return True
         
-        if self.padscreen.bottom_y -50 > self.ycor() or self.ycor() > self.padscreen.top_y + 50:
+        if self.padscreen.bottom_y -200 > self.ycor() or self.ycor() > self.padscreen.top_y + 200:
             return True 
 
         return False

@@ -7,6 +7,7 @@ class Player(Turtle):
         super().__init__()
         self.ht()
         self.speed(10)
+        self.setheading(0)
         self.shape("square")
         self.resizemode("user")
         self.shapesize(2,2)
@@ -17,10 +18,10 @@ class Player(Turtle):
         self.st()
 
     def is_out_of_screen(self):
-        if self.padscreen.left_x -50 > self.xcor() or self.xcor() > self.padscreen.right_x + 50:
+        if self.padscreen.left_x -200 > self.xcor() or self.xcor() > self.padscreen.right_x + 200:
             return True
         
-        if self.padscreen.bottom_y -50 > self.ycor() or self.ycor() > self.padscreen.top_y + 50:
+        if self.padscreen.bottom_y -200 > self.ycor() or self.ycor() > self.padscreen.top_y + 200:
             return True 
 
         return False
@@ -48,7 +49,7 @@ class Player(Turtle):
 
 
     def touches(self,object):
-        if self.distance(object) <= 11*2:
+        if self.distance(object) <= 10*2:
             return True
         else:
             return False
