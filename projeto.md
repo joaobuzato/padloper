@@ -6,6 +6,8 @@
 - [x] Resolver spawn por tempo
 - [x] Resolver retirada do ator da lista
 
+- [ ] Heading como componente
+- [ ] Setheading como consequencia de regra
 
 
 - [x] refatorar as classes
