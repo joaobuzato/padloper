@@ -50,11 +50,31 @@ class PadMain():
     
     def rules(self):
         
-        obj = self.ball_manager.check_position(y_pos=None,x_pos=480, y_cond='None',x_cond='equals')
+        obj = self.ball_manager.check_position(y_pos=480,x_pos=None, y_cond='greater',x_cond='None')
         if obj.get("position_checked"):
                 
-                obj.get("actor").setheading(270)
+                obj.get("actor").bounce_y()
                     
+        obj = self.ball_manager.check_position(y_pos=-480,x_pos=None, y_cond='lesser',x_cond='None')
+        if obj.get("position_checked"):
+                
+                obj.get("actor").bounce_y()
+                    
+        obj = self.ball_manager.check_position(y_pos=None,x_pos=-480, y_cond='None',x_cond='lesser')
+        if obj.get("position_checked"):
+                
+                obj.get("actor").bounce_x()
+                    
+        obj = self.ball_manager.check_position(y_pos=None,x_pos=480, y_cond='None',x_cond='greater')
+        if obj.get("position_checked"):
+                
+                obj.get("actor").bounce_x()
+                    
+        if self.scoreboard.score >= 3 :    
+                
+                self.scoreboard.game_won()
+                self.game_is_on = False
+                
         obj = self.player_manager.check_collision(self.enemy_manager.actor_list)
         if obj.get('has_collision'):
         

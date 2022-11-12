@@ -7,7 +7,7 @@ class PlayerManager():
     def __init__(self, padscreen):
         self.actor_list = []
         self.spawn_colors = ['red']
-        self.spawn_positions = [{'x': 0, 'y': 470}]
+        self.spawn_positions = [{'x': 0, 'y': -470}]
         
         self.padscreen = padscreen
 

@@ -59,7 +59,7 @@ class EnemyManager():
         
         self.func_forward()
                 
-        if  10 == None or (screen_updates >= 10 and screen_updates%10 == 0):
+        if  30 == None or (screen_updates >= 30 and screen_updates%30 == 0):
             
             
             if len(self.actor_list) < 300:

@@ -2,7 +2,7 @@
   "name" : "Projeto de Jogo",
   "screen" : {
     "width" : 1000,
-    "height" : 1000,
+    "height" : 1400,
     "color" : "green"
   },
   "scoreboard": {
@@ -14,18 +14,67 @@
   "rules": [
     {
       "trigger" : "position",
+      "x_pos" : "",
+      "x_cond" : "",
+      "y_pos" : "480",
+      "y_cond" :"greater",
       "actor" : "ball",
-      "x_pos" : "480",
-      "x_cond" : "equals",
-      "y_pos" : "",
-      "y_cond" : "",
       "consequences" : [
         {
-          "name" : "set_heading",
-          "heading" : "270"
+          "name" : "bounce_y"
         }
       ]
     },
+    {
+      "trigger" : "position",
+      "x_pos" : "",
+      "x_cond" : "",
+      "y_pos" : "-480",
+      "y_cond" :"lesser",
+      "actor" : "ball",
+      "consequences" : [
+        {
+          "name" : "bounce_y"
+        }
+      ]
+    },
+    {
+      "trigger" : "position",
+      "x_pos" : "-480",
+      "x_cond" : "lesser",
+      "y_pos" : "",
+      "y_cond" :"",
+      "actor" : "ball",
+      "consequences" : [
+        {
+          "name" : "bounce_x"
+        }
+      ]
+    },
+    {
+      "trigger" : "position",
+      "x_pos" : "480",
+      "x_cond" : "greater",
+      "y_pos" : "",
+      "y_cond" :"",
+      "actor" : "ball",
+      "consequences" : [
+        {
+          "name" : "bounce_x"
+        }
+      ]
+    },
+    {
+      "trigger" : "score",
+      "win_score" : 3,
+      "consequences" : [
+        {
+          "name" : "game_won"
+        }
+        
+      ]
+    },
+
     {
       "trigger" : "collision",
       "actor1" : "player",
@@ -68,7 +117,7 @@
       {
         "type" : "unique",
         "positions" : [
-          {"x" :0, "y" : 470}
+          {"x" :0, "y" : -470}
         ],
         "colors" : [
           "red"
@@ -89,29 +138,29 @@
     {
       "name" : "ball",
       "components" : {
-        "size" : 2,
+        "size" : 1,
         "speed" : 10,
-        "heading" : 90
+        "heading" : 45
+      },
+      "behaviors" :
+      {
+          "updates": [
+            { "action" : "forward", "param" :  "10"}
+
+          ]
       },
       "spawn" : 
       {
         "type" : "unique",
         "positions" : [
-          {"x" :0, "y" : 0}
+          {"x" :0, "y" : 100}
         ],
         "colors" : [
           "white"
         ]
-      },
-      
-      "behaviors" :
-        {
-          "updates": [
-            { "action" : "forward", "param" :  "10"}
-
-          ]
-        }
+      }
     },
+    
     {
       "name" : "enemy",
       "components" : {
@@ -130,7 +179,7 @@
       {
         "type" : "multiple",
         "max_num" : 300,
-        "screen_update_count" : 10,
+        "screen_update_count" : 30,
         "positions" : [
           {"x" :510, "y" : 300},
           {"x" :510, "y" : 250},

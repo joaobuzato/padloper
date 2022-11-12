@@ -7,7 +7,7 @@ class BallManager():
     def __init__(self, padscreen):
         self.actor_list = []
         self.spawn_colors = ['white']
-        self.spawn_positions = [{'x': 0, 'y': 0}]
+        self.spawn_positions = [{'x': 0, 'y': 100}]
         
         self.padscreen = padscreen
 

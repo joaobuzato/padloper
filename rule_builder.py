@@ -44,9 +44,19 @@ class RuleBuilder:
                     self.rules_setups += f"""
                 obj.get("actor").setheading({consequence.get("heading")})
                     """
+                elif consequence.get("name") == "bounce_x" :
+                    self.rules_setups += f"""
+                obj.get("actor").bounce_x()
+                    """
+                elif consequence.get("name") == "bounce_y" :
+                    self.rules_setups += f"""
+                obj.get("actor").bounce_y()
+                    """
+                
                 elif consequence.get("name") == "game_won":
                     self.rules_setups += f"""
                 self.scoreboard.game_won()
+                self.game_is_on = False
                 """
                 elif consequence.get("name") == "point":
                     self.rules_setups += f"""

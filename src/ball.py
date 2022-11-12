@@ -7,15 +7,27 @@ class Ball(Turtle):
         super().__init__()
         self.ht()
         self.speed(10)
-        self.setheading(90)
+        self.setheading(45)
         self.shape("square")
         self.resizemode("user")
-        self.shapesize(2,2)
+        self.shapesize(1,1)
         self.color(color)
         self.penup()
         self.padscreen = padscreen
         self.goto(position.get("x"), position.get("y"))
         self.st()
+
+    def bounce_x(self):
+        self.setheading(360 - self.heading())
+    
+    def bounce_y(self):
+        heading = self.heading()
+        if heading < 180:
+            self.setheading( 180 - heading)
+        else: 
+            self.setheading(540 - heading )
+
+        print (self.heading())
 
     def is_out_of_screen(self):
         if self.padscreen.left_x -200 > self.xcor() or self.xcor() > self.padscreen.right_x + 200:
@@ -49,7 +61,7 @@ class Ball(Turtle):
 
 
     def touches(self,object):
-        if self.distance(object) <= 10*2:
+        if self.distance(object) <= 10*1:
             return True
         else:
             return False

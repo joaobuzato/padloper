@@ -23,10 +23,6 @@ def screen():
 
 window.config(padx=50, pady=50)
 
-screen_button = Button(text="Screen", command=screen, width=16)
-
-screen_button.grid(row=1, column=1)
-
 build_button = Button(text="Build", command=build, width=16)
 
 build_button.grid(row=10, column=1)
