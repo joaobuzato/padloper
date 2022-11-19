@@ -86,6 +86,16 @@
       ]
     },
     {
+      "trigger" : "collision",
+      "actor1" : "player",
+      "actor2" : "ball",
+      "consequences" : [
+        {
+          "name" :"remove_actor"
+        }
+      ]
+    },
+    {
       "trigger" : "position",
       "x_pos" : "",
       "x_cond" : "",

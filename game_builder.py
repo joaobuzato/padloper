@@ -60,13 +60,13 @@ class PadMain():
 
     def __init__(self):
         self.game_is_on = False
+        
+        
+    def setup(self):
         self.padscreen = PadScreen()
         self.screen = self.padscreen.get_screen_obj()
         self.scoreboard = Scoreboard()
         {self.actor_setups.get("manager_setups")}
-    def setup(self):
-
-        {self.actor_setups.get("setup_setups")}
         pass
     def input(self):
         {self.actor_setups.get("input_setups")}

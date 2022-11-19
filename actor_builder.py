@@ -45,8 +45,6 @@ class {self.class_name}(Turtle):
         else: 
             self.setheading(540 - heading )
 
-        print (self.heading())
-
     def is_out_of_screen(self):
         if self.padscreen.left_x -200 > self.xcor() or self.xcor() > self.padscreen.right_x + 200:
             return True

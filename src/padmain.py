@@ -15,6 +15,9 @@ class PadMain():
 
     def __init__(self):
         self.game_is_on = False
+        
+        
+    def setup(self):
         self.padscreen = PadScreen()
         self.screen = self.padscreen.get_screen_obj()
         self.scoreboard = Scoreboard()
@@ -22,12 +25,6 @@ class PadMain():
         self.player_manager = PlayerManager(self.padscreen)
         self.ball_manager = BallManager(self.padscreen)
         self.enemy_manager = EnemyManager(self.padscreen)
-    def setup(self):
-
-        
-        self.player_manager.setup()
-        self.ball_manager.setup()
-        self.enemy_manager.setup()
         pass
     def input(self):
         
@@ -80,6 +77,11 @@ class PadMain():
         
                 self.scoreboard.game_over()
                 self.game_is_on = False
+                
+        obj = self.player_manager.check_collision(self.ball_manager.actor_list)
+        if obj.get('has_collision'):
+        
+                self.ball_manager.remove_actor(obj.get("actor2"))
                 
         obj = self.player_manager.check_position(y_pos=480,x_pos=None, y_cond='greater',x_cond='None')
         if obj.get("position_checked"):

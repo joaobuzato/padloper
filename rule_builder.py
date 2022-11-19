@@ -36,9 +36,9 @@ class RuleBuilder:
 
 
             for consequence in rule.get('consequences'):
-                if consequence.get("name") == "print":
+                if consequence.get("name") == "remove_actor":
                     self.rules_setups += f"""
-                print("collision!")
+                self.{rule.get("actor2")}_manager.remove_actor(obj.get("actor2"))
                 """
                 elif consequence.get("name") == "set_heading":
                     self.rules_setups += f"""
