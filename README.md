@@ -182,7 +182,9 @@ Um ator é possui dentro de si alguns objetos, como descrito abaixo:
       },
       "spawn" : 
       {
-        "type" : "unique",
+        "type" : "multiple",
+	"max_num" : 300,
+        "screen_update_count" : 12,
         "positions" : [
           {"x" :0, "y" : 470}
         ],
