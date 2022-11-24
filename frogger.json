@@ -2,7 +2,7 @@
   "name" : "Projeto de Jogo",
   "screen" : {
     "width" : 1000,
-    "height" : 1400,
+    "height" : 1000,
     "color" : "green"
   },
   "scoreboard": {
@@ -12,58 +12,6 @@
     "color" : "Black"
   },
   "rules": [
-    {
-      "trigger" : "position",
-      "x_pos" : "",
-      "x_cond" : "",
-      "y_pos" : "480",
-      "y_cond" :"greater",
-      "actor" : "ball",
-      "consequences" : [
-        {
-          "name" : "bounce_y"
-        }
-      ]
-    },
-    {
-      "trigger" : "position",
-      "x_pos" : "",
-      "x_cond" : "",
-      "y_pos" : "-480",
-      "y_cond" :"lesser",
-      "actor" : "ball",
-      "consequences" : [
-        {
-          "name" : "bounce_y"
-        }
-      ]
-    },
-    {
-      "trigger" : "position",
-      "x_pos" : "-480",
-      "x_cond" : "lesser",
-      "y_pos" : "",
-      "y_cond" :"",
-      "actor" : "ball",
-      "consequences" : [
-        {
-          "name" : "bounce_x"
-        }
-      ]
-    },
-    {
-      "trigger" : "position",
-      "x_pos" : "480",
-      "x_cond" : "greater",
-      "y_pos" : "",
-      "y_cond" :"",
-      "actor" : "ball",
-      "consequences" : [
-        {
-          "name" : "bounce_x"
-        }
-      ]
-    },
     {
       "trigger" : "score",
       "win_score" : 3,
@@ -82,16 +30,6 @@
       "consequences" : [
         {
           "name" :"game_over"
-        }
-      ]
-    },
-    {
-      "trigger" : "collision",
-      "actor1" : "player",
-      "actor2" : "ball",
-      "consequences" : [
-        {
-          "name" :"remove_actor"
         }
       ]
     },
@@ -146,32 +84,6 @@
         }
     },
     {
-      "name" : "ball",
-      "components" : {
-        "size" : 1,
-        "speed" : 10,
-        "heading" : 45
-      },
-      "behaviors" :
-      {
-          "updates": [
-            { "action" : "forward", "param" :  "10"}
-
-          ]
-      },
-      "spawn" : 
-      {
-        "type" : "unique",
-        "positions" : [
-          {"x" :0, "y" : 100}
-        ],
-        "colors" : [
-          "white"
-        ]
-      }
-    },
-    
-    {
       "name" : "enemy",
       "components" : {
         "size" : 1,
@@ -189,7 +101,7 @@
       {
         "type" : "multiple",
         "max_num" : 300,
-        "screen_update_count" : 30,
+        "screen_update_count" : 7,
         "positions" : [
           {"x" :510, "y" : 300},
           {"x" :510, "y" : 250},
@@ -206,7 +118,7 @@
           {"x" :510, "y" : -300}
         ],
         "colors" : [
-          "black", "yellow", "blue", "red"
+          "black", "yellow", "blue", "white", "orange"
         ]
       }
     }

@@ -1,0 +1,171 @@
+{
+  "name" : "Projeto de Jogo 2 ",
+  "screen" : {
+    "width" : 700,
+    "height" : 900,
+    "color" : "lightcyan"
+  },
+  "scoreboard": {
+    "position" : "top",
+    "size" : 18,
+    "font" : "Courier",
+    "color" : "Black"
+  },
+  "rules": [
+    {
+      "trigger" : "score",
+      "win_score" : 3,
+      "consequences" : [
+        {
+          "name" : "game_won"
+        }
+        
+      ]
+    },
+    {
+      "trigger" : "collision",
+      "actor1" : "player",
+      "actor2" : "red",
+      "consequences" : [
+        {
+          "name" :"game_over"
+        }
+      ]
+    },
+    {
+      "trigger" : "collision",
+      "actor1" : "player",
+      "actor2" : "green",
+      "consequences" : [
+        {
+          "name" :"point"
+        },
+        {
+          "name" : "remove_actor"
+        }
+      ]
+    }
+    
+  ],
+  "actors" : [
+    {
+      "name" : "player",
+      "components" : {
+        "size" : 2,
+        "speed" : 10,
+        "heading" : 0
+      },
+      "spawn" : 
+      {
+        "type" : "unique",
+        "positions" : [
+          {"x" :0, "y" : -370}
+        ],
+        "colors" : [
+          "black"
+        ]
+      },
+      
+      "behaviors" :
+        {
+          "inputs" : [
+            {"key" :  "a", "action" :  "strife_left", "param" :  "10"},
+            {"key" :  "d", "action" :  "strife_right", "param" :  "10"}
+          ]
+          
+        }
+    },
+    {
+      "name" : "red",
+      "components" : {
+        "size" : 1,
+        "speed" : 10,
+        "heading" : 180
+      },
+      "behaviors" :
+      {
+          "updates": [
+            { "action" : "forward", "param" :  "10"}
+
+          ]
+      },
+      "spawn" : 
+      {
+        "type" : "multiple",
+        "max_num" : 300,
+        "screen_update_count" : 10,
+        "positions" : [
+          {"x" :-30, "y" : 460},
+          {"x" :-60, "y" : 460},
+          {"x" :-90, "y" : 460},
+          {"x" :-120, "y" : 460},
+          {"x" :-150, "y" : 460},
+          {"x" :-180, "y" : 460},
+          {"x" :-210, "y" : 460},
+          {"x" :-240, "y" : 460},
+          {"x" :-270, "y" : 460},
+          {"x" :0, "y" : 460},
+          {"x" :30, "y" : 460},
+          {"x" :60, "y" : 460},
+          {"x" :90, "y" : 460},
+          {"x" :120, "y" : 460},
+          {"x" :150, "y" : 460},
+          {"x" :180, "y" : 460},
+          {"x" :210, "y" : 460},
+          {"x" :240, "y" : 460},
+          {"x" :270, "y" : 460}
+          
+        ],
+        "colors" : [
+          "red"
+        ]
+      }
+    },
+    {
+      "name" : "green",
+      "components" : {
+        "size" : 1,
+        "speed" : 10,
+        "heading" : 180
+      },
+      "behaviors" :
+      {
+          "updates": [
+            { "action" : "forward", "param" :  "10"}
+
+          ]
+      },
+      "spawn" : 
+      {
+        "type" : "multiple",
+        "max_num" : 300,
+        "screen_update_count" : 12,
+        "positions" : [
+          {"x" :-30, "y" : 460},
+          {"x" :-60, "y" : 460},
+          {"x" :-90, "y" : 460},
+          {"x" :-120, "y" : 460},
+          {"x" :-150, "y" : 460},
+          {"x" :-180, "y" : 460},
+          {"x" :-210, "y" : 460},
+          {"x" :-240, "y" : 460},
+          {"x" :-270, "y" : 460},
+          {"x" :0, "y" : 460},
+          {"x" :30, "y" : 460},
+          {"x" :60, "y" : 460},
+          {"x" :90, "y" : 460},
+          {"x" :120, "y" : 460},
+          {"x" :150, "y" : 460},
+          {"x" :180, "y" : 460},
+          {"x" :210, "y" : 460},
+          {"x" :240, "y" : 460},
+          {"x" :270, "y" : 460}
+          
+        ],
+        "colors" : [
+          "green"
+        ]
+      }
+    }
+  ]
+}

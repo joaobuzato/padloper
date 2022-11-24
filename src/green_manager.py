@@ -1,13 +1,13 @@
 
 import random
-from enemy import Enemy
+from green import Green
 
-class EnemyManager():
+class GreenManager():
 
     def __init__(self, padscreen):
         self.actor_list = []
-        self.spawn_colors = ['black', 'yellow', 'blue', 'white', 'orange']
-        self.spawn_positions = [{'x': 510, 'y': 300}, {'x': 510, 'y': 250}, {'x': 510, 'y': 200}, {'x': 510, 'y': 150}, {'x': 510, 'y': 100}, {'x': 510, 'y': 50}, {'x': 510, 'y': 0}, {'x': 510, 'y': -50}, {'x': 510, 'y': -100}, {'x': 510, 'y': -150}, {'x': 510, 'y': -200}, {'x': 510, 'y': -250}, {'x': 510, 'y': -300}]
+        self.spawn_colors = ['green']
+        self.spawn_positions = [{'x': -30, 'y': 460}, {'x': -60, 'y': 460}, {'x': -90, 'y': 460}, {'x': -120, 'y': 460}, {'x': -150, 'y': 460}, {'x': -180, 'y': 460}, {'x': -210, 'y': 460}, {'x': -240, 'y': 460}, {'x': -270, 'y': 460}, {'x': 0, 'y': 460}, {'x': 30, 'y': 460}, {'x': 60, 'y': 460}, {'x': 90, 'y': 460}, {'x': 120, 'y': 460}, {'x': 150, 'y': 460}, {'x': 180, 'y': 460}, {'x': 210, 'y': 460}, {'x': 240, 'y': 460}, {'x': 270, 'y': 460}]
         
         self.padscreen = padscreen
 
@@ -59,11 +59,11 @@ class EnemyManager():
         
         self.func_forward()
                 
-        if  7 == None or (screen_updates >= 7 and screen_updates%7 == 0):
+        if  12 == None or (screen_updates >= 12 and screen_updates%12 == 0):
             
             
             if len(self.actor_list) < 300:
-                actor = Enemy(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
+                actor = Green(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
                 self.actor_list.append(actor)
                 
         pass

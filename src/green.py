@@ -1,16 +1,16 @@
 
 from turtle import Turtle
 
-class Player(Turtle):
+class Green(Turtle):
 
     def __init__(self, color,position,padscreen) :
         super().__init__()
         self.ht()
         self.speed(10)
-        self.setheading(0)
+        self.setheading(180)
         self.shape("square")
         self.resizemode("user")
-        self.shapesize(2,2)
+        self.shapesize(1,1)
         self.color(color)
         self.penup()
         self.padscreen = padscreen
@@ -59,7 +59,7 @@ class Player(Turtle):
 
 
     def touches(self,object):
-        if self.distance(object) <= 10*2:
+        if self.distance(object) <= 10*1:
             return True
         else:
             return False

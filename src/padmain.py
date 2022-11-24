@@ -3,8 +3,6 @@
     
 from player_manager import PlayerManager
     
-from ball_manager import BallManager
-    
 from enemy_manager import EnemyManager
 import time
 from timeit import default_timer as timer
@@ -23,20 +21,17 @@ class PadMain():
         self.scoreboard = Scoreboard()
         
         self.player_manager = PlayerManager(self.padscreen)
-        self.ball_manager = BallManager(self.padscreen)
         self.enemy_manager = EnemyManager(self.padscreen)
         pass
     def input(self):
         
         self.player_manager.input()
-        self.ball_manager.input()
         self.enemy_manager.input()
         pass
     
     def update(self,screen_updates):
         
         self.player_manager.update(screen_updates)
-        self.ball_manager.update(screen_updates)
         self.enemy_manager.update(screen_updates)
         pass
     
@@ -47,26 +42,6 @@ class PadMain():
     
     def rules(self):
         
-        obj = self.ball_manager.check_position(y_pos=480,x_pos=None, y_cond='greater',x_cond='None')
-        if obj.get("position_checked"):
-                
-                obj.get("actor").bounce_y()
-                    
-        obj = self.ball_manager.check_position(y_pos=-480,x_pos=None, y_cond='lesser',x_cond='None')
-        if obj.get("position_checked"):
-                
-                obj.get("actor").bounce_y()
-                    
-        obj = self.ball_manager.check_position(y_pos=None,x_pos=-480, y_cond='None',x_cond='lesser')
-        if obj.get("position_checked"):
-                
-                obj.get("actor").bounce_x()
-                    
-        obj = self.ball_manager.check_position(y_pos=None,x_pos=480, y_cond='None',x_cond='greater')
-        if obj.get("position_checked"):
-                
-                obj.get("actor").bounce_x()
-                    
         if self.scoreboard.score >= 3 :    
                 
                 self.scoreboard.game_won()
@@ -77,11 +52,6 @@ class PadMain():
         
                 self.scoreboard.game_over()
                 self.game_is_on = False
-                
-        obj = self.player_manager.check_collision(self.ball_manager.actor_list)
-        if obj.get('has_collision'):
-        
-                self.ball_manager.remove_actor(obj.get("actor2"))
                 
         obj = self.player_manager.check_position(y_pos=480,x_pos=None, y_cond='greater',x_cond='None')
         if obj.get("position_checked"):
