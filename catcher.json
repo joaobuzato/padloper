@@ -1,5 +1,5 @@
 {
-  "name" : "Projeto de Jogo 2 ",
+  "name" : "Catcher",
   "screen" : {
     "width" : 700,
     "height" : 900,
@@ -14,7 +14,7 @@
   "rules": [
     {
       "trigger" : "score",
-      "win_score" : 3,
+      "win_score" : 5,
       "consequences" : [
         {
           "name" : "game_won"
@@ -85,7 +85,7 @@
       "behaviors" :
       {
           "updates": [
-            { "action" : "forward", "param" :  "10"}
+            { "action" : "forward", "param" :  "6"}
 
           ]
       },
@@ -93,7 +93,7 @@
       {
         "type" : "multiple",
         "max_num" : 300,
-        "screen_update_count" : 10,
+        "screen_update_count" : 6,
         "positions" : [
           {"x" :-30, "y" : 460},
           {"x" :-60, "y" : 460},
@@ -131,7 +131,7 @@
       "behaviors" :
       {
           "updates": [
-            { "action" : "forward", "param" :  "10"}
+            { "action" : "forward", "param" :  "7"}
 
           ]
       },
@@ -139,7 +139,7 @@
       {
         "type" : "multiple",
         "max_num" : 300,
-        "screen_update_count" : 12,
+        "screen_update_count" : 10,
         "positions" : [
           {"x" :-30, "y" : 460},
           {"x" :-60, "y" : 460},

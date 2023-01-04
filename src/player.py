@@ -59,7 +59,7 @@ class Player(Turtle):
 
 
     def touches(self,object):
-        if self.distance(object) <= 10*2:
+        if self.distance(object) <= 10*3:
             return True
         else:
             return False

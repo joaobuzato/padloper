@@ -6,8 +6,8 @@ class PlayerManager():
 
     def __init__(self, padscreen):
         self.actor_list = []
-        self.spawn_colors = ['red']
-        self.spawn_positions = [{'x': 0, 'y': -470}]
+        self.spawn_colors = ['white']
+        self.spawn_positions = [{'x': 0, 'y': -420}, {'x': 40, 'y': -420}, {'x': -40, 'y': -420}, {'x': -20, 'y': -420}, {'x': 20, 'y': -420}]
         
         self.padscreen = padscreen
 
@@ -37,13 +37,13 @@ class PlayerManager():
         for actor in self.actor_list:
             if x_pos is None:
                 if actor.check_y_position(y_pos,y_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
             elif y_pos is None:
                 if actor.check_x_position(x_pos,x_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
             else:
                 if actor.check_y_position(y_pos, y_cond) and actor.check_x_position(x_pos, x_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
 
         return { "position_checked" : False }
         
@@ -53,50 +53,34 @@ class PlayerManager():
 
     def input(self):
         
-        self.padscreen.get_screen_obj().onkeyrelease(key='w', fun=self.func_forward)
-        self.padscreen.get_screen_obj().onkeyrelease(key='s', fun=self.func_backward)
-        self.padscreen.get_screen_obj().onkeyrelease(key='a', fun=self.func_strife_left)
         self.padscreen.get_screen_obj().onkeyrelease(key='d', fun=self.func_strife_right)
+        self.padscreen.get_screen_obj().onkeyrelease(key='a', fun=self.func_strife_left)
         pass
 
     def update(self,screen_updates):
         
-        if  None == None or (screen_updates >= None and screen_updates%None == 0):
+        if  1 == None or (screen_updates >= 1 and screen_updates%1 == 0):
             
-
-            if len(self.actor_list) == 0:
+            
+            if len(self.actor_list) < 12:
                 actor = Player(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
                 self.actor_list.append(actor)
-                    
+                
         pass
     
     
-    def func_forward(self):
-        for actor in self.actor_list:
-            if actor.is_out_of_screen():
-                self.remove_actor(actor)
-        
-            actor.forward(10)
-            
-    def func_backward(self):
-        for actor in self.actor_list:
-            if actor.is_out_of_screen():
-                self.remove_actor(actor)
-        
-            actor.backward(10)
-            
-    def func_strife_left(self):
-        for actor in self.actor_list:
-            if actor.is_out_of_screen():
-                self.remove_actor(actor)
-        
-            actor.setx(actor.xcor() - 10)
-            
     def func_strife_right(self):
         for actor in self.actor_list:
             if actor.is_out_of_screen():
                 self.remove_actor(actor)
         
-            actor.setx(actor.xcor() + 10)
+            actor.setx(actor.xcor() + 15)
         
+    def func_strife_left(self):
+        for actor in self.actor_list:
+            if actor.is_out_of_screen():
+                self.remove_actor(actor)
+        
+            actor.setx(actor.xcor() - 15)
+            
     

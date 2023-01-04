@@ -59,7 +59,7 @@ class GreenManager():
         
         self.func_forward()
                 
-        if  12 == None or (screen_updates >= 12 and screen_updates%12 == 0):
+        if  10 == None or (screen_updates >= 10 and screen_updates%10 == 0):
             
             
             if len(self.actor_list) < 300:
@@ -74,6 +74,6 @@ class GreenManager():
             if actor.is_out_of_screen():
                 self.remove_actor(actor)
         
-            actor.forward(10)
+            actor.forward(7)
             
     

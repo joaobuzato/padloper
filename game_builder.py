@@ -7,7 +7,7 @@ from rule_builder import RuleBuilder
 # json loads // json dumps
 class GameBuilder:
     def __init__(self):
-        self.game_map = json.loads(open('map.json').read())
+        self.game_map = json.loads(open('breakout.json').read())
         self.screen_builder = ScreenBuilder(self.game_map.get("name"))
         self.actor_builder = ActorBuilder()
         self.rule_builder = RuleBuilder(self.game_map.get("rules"))
@@ -41,11 +41,6 @@ class GameBuilder:
             self.actor_builder.build(actor)
 
         self.actor_setups = self.actor_builder.setups
-
-        # self.manager_setups = self.actor_builder.manager_setups
-        # self.input_setups = self.actor_builder.input_setups
-        # self.update_setups = self.actor_builder.update_setups
-        # self.setup_setups = self.actor_builder.setup_setups
         self.manager_imports = self.actor_builder.manager_imports
 
     def create_main(self):
