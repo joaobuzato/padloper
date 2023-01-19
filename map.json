@@ -1,0 +1,126 @@
+{
+  "name" : "Projeto de Jogo",
+  "screen" : {
+    "width" : 1000,
+    "height" : 1000,
+    "color" : "green"
+  },
+  "scoreboard": {
+    "position" : "top",
+    "size" : 18,
+    "font" : "Courier",
+    "color" : "Black"
+  },
+  "rules": [
+    {
+      "trigger" : "score",
+      "win_score" : 3,
+      "consequences" : [
+        {
+          "name" : "game_won"
+        }
+        
+      ]
+    },
+
+    {
+      "trigger" : "collision",
+      "actor1" : "player",
+      "actor2" : "enemy",
+      "consequences" : [
+        {
+          "name" :"game_over"
+        }
+      ]
+    },
+    {
+      "trigger" : "position",
+      "x_pos" : "",
+      "x_cond" : "",
+      "y_pos" : "480",
+      "y_cond" :"greater",
+      "actor" : "player",
+      "consequences" : [
+        {
+          "name" : "point"
+        },
+        {
+          "name" : "move_to",
+          "y" : -480,
+          "x" : 0
+        }
+      ]
+    }
+    
+  ],
+  "actors" : [
+    {
+      "name" : "player",
+      "components" : {
+        "size" : 2,
+        "speed" : 10,
+        "heading" : 0
+      },
+      "spawn" : 
+      {
+        "type" : "unique",
+        "positions" : [
+          {"x" :0, "y" : -470}
+        ],
+        "colors" : [
+          "red"
+        ]
+      },
+      
+      "behaviors" :
+        {
+          "inputs" : [
+            {"key" :  "w", "action" : "forward", "param" :  "10"},
+            {"key" :  "s", "action" :  "backward", "param" :  "10"},
+            {"key" :  "a", "action" :  "strife_left", "param" :  "10"},
+            {"key" :  "d", "action" :  "strife_right", "param" :  "10"}
+          ]
+          
+        }
+    },
+    {
+      "name" : "enemy",
+      "components" : {
+        "size" : 1,
+        "speed" : 10,
+        "heading" : 270
+      },
+      "behaviors" :
+      {
+          "updates": [
+            { "action" : "forward", "param" :  "10"}
+
+          ]
+      },
+      "spawn" : 
+      {
+        "type" : "multiple",
+        "max_num" : 300,
+        "screen_update_count" : 7,
+        "positions" : [
+          {"x" :510, "y" : 300},
+          {"x" :510, "y" : 250},
+          {"x" :510, "y" : 200},
+          {"x" :510, "y" : 150},
+          {"x" :510, "y" : 100},
+          {"x" :510, "y" : 50},
+          {"x" :510, "y" : 0},
+          {"x" :510, "y" : -50},
+          {"x" :510, "y" : -100},
+          {"x" :510, "y" : -150},
+          {"x" :510, "y" : -200},
+          {"x" :510, "y" : -250},
+          {"x" :510, "y" : -300}
+        ],
+        "colors" : [
+          "black", "yellow", "blue", "white", "orange"
+        ]
+      }
+    }
+  ]
+}

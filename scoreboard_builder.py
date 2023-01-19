@@ -41,7 +41,7 @@ class Scoreboard(Turtle):
     def game_won(self):
         self.clear()
         self.goto(0,0)
-        self.write(f"VOCÊ VENCEU! - PLACAR: "+str(self.score)+" Pontos", align=ALIGNMENT, font=FONT)
+        self.write(f"VOCE VENCEU! - PLACAR: "+str(self.score)+" Pontos", align=ALIGNMENT, font=FONT)
 
     def game_over(self):
         self.clear()

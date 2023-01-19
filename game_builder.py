@@ -1,13 +1,15 @@
 import json
+import os
 from scoreboard_builder import ScoreboardBuilder
 from screen_builder import ScreenBuilder
 from actor_builder import ActorBuilder
 from rule_builder import RuleBuilder
 
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 # json loads // json dumps
 class GameBuilder:
     def __init__(self):
-        self.game_map = json.loads(open('map.json').read())
+        self.game_map = json.loads(open(f'{ROOT_DIR}/map.json').read())
         self.screen_builder = ScreenBuilder(self.game_map.get("name"))
         self.actor_builder = ActorBuilder()
         self.rule_builder = RuleBuilder(self.game_map.get("rules"))

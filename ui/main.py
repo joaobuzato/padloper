@@ -3,13 +3,25 @@ import os
 
 window = Tk()
 window.title("Padloper")
-
+ENV = "python"
 def build():
-    os.system('python3 game_builder.py')
+    try: 
+        if os.system(f'python3 ./game_builder.py') == 1:
+            print("construído com sucesso.")
+            ENV = "python"
+            os.system(f'{ENV} ./game_builder.py')
+        else: 
+            ENV = "python3"
+    except: 
+        print("Erro ao construir o jogo")
     pass
 
 def run():
-    os.system('python3 src/padmain.py')
+    try:
+        os.system(f'{ENV} ./src/padmain.py')
+        
+    except:
+        os.system(f'python ./src/padmain.py')
     pass
 
 def screen():
