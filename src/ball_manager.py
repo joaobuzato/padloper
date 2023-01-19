@@ -7,7 +7,7 @@ class BallManager():
     def __init__(self, padscreen):
         self.actor_list = []
         self.spawn_colors = ['white']
-        self.spawn_positions = [{'x': 0, 'y': 100}]
+        self.spawn_positions = [{'x': -300, 'y': -200}]
         
         self.padscreen = padscreen
 
@@ -37,13 +37,13 @@ class BallManager():
         for actor in self.actor_list:
             if x_pos is None:
                 if actor.check_y_position(y_pos,y_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
             elif y_pos is None:
                 if actor.check_x_position(x_pos,x_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
             else:
                 if actor.check_y_position(y_pos, y_cond) and actor.check_x_position(x_pos, x_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
 
         return { "position_checked" : False }
         
@@ -59,7 +59,7 @@ class BallManager():
         
         self.func_forward()
                 
-        if  None == None or (screen_updates >= None and screen_updates%None == 0):
+        if  1 == None or (screen_updates >= 1 and screen_updates%1 == 0):
             
 
             if len(self.actor_list) == 0:
@@ -74,6 +74,6 @@ class BallManager():
             if actor.is_out_of_screen():
                 self.remove_actor(actor)
         
-            actor.forward(10)
+            actor.forward(16)
             
     

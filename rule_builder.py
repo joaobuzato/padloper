@@ -24,7 +24,7 @@ class RuleBuilder:
                     y_cond = rule.get("y_cond")
                 
                 self.rules_setups += f"""
-        obj = self.{rule.get("actor")}_manager.check_position(y_pos={y_pos},x_pos={x_pos}, y_cond='{y_cond}',x_cond='{x_cond}')
+        obj = self.{rule.get("actor1")}_manager.check_position(y_pos={y_pos},x_pos={x_pos}, y_cond='{y_cond}',x_cond='{x_cond}')
         if obj.get("position_checked"):
                 """
             
@@ -42,15 +42,15 @@ class RuleBuilder:
                 """
                 elif consequence.get("name") == "set_heading":
                     self.rules_setups += f"""
-                obj.get("actor").setheading({consequence.get("heading")})
+                obj.get("actor1").setheading({consequence.get("heading")})
                     """
                 elif consequence.get("name") == "bounce_x" :
                     self.rules_setups += f"""
-                obj.get("actor").bounce_x()
+                obj.get("actor1").bounce_x()
                     """
                 elif consequence.get("name") == "bounce_y" :
                     self.rules_setups += f"""
-                obj.get("actor").bounce_y()
+                obj.get("actor1").bounce_y()
                     """
                 
                 elif consequence.get("name") == "game_won":
@@ -69,7 +69,7 @@ class RuleBuilder:
                 """
                 elif consequence.get("name") == "move_to":
                     self.rules_setups += f"""
-                obj.get("actor").goto({consequence.get("x"), consequence.get("y")})
+                obj.get("actor1").goto({consequence.get("x"), consequence.get("y")})
                 """
                 else:
                     self.rules_setups += f"""

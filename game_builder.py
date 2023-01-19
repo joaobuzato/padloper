@@ -43,11 +43,6 @@ class GameBuilder:
             self.actor_builder.build(actor)
 
         self.actor_setups = self.actor_builder.setups
-
-        # self.manager_setups = self.actor_builder.manager_setups
-        # self.input_setups = self.actor_builder.input_setups
-        # self.update_setups = self.actor_builder.update_setups
-        # self.setup_setups = self.actor_builder.setup_setups
         self.manager_imports = self.actor_builder.manager_imports
 
     def create_main(self):

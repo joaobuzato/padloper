@@ -77,7 +77,7 @@ class {self.class_name}(Turtle):
 
 
     def touches(self,object):
-        if self.distance(object) <= 10*{self.actor.get("components").get("size")}:
+        if self.distance(object) <= 10*{self.actor.get("components").get("collision_field")}:
             return True
         else:
             return False

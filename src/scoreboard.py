@@ -2,7 +2,7 @@
 from turtle import Turtle
 
 ALIGNMENT = "center"
-FONT = ('Courier', 18, 'normal')
+FONT = ('Consolas', 18, 'normal')
 
 class Scoreboard(Turtle):
 
@@ -11,7 +11,7 @@ class Scoreboard(Turtle):
         super().__init__()
         self.ht()
         self.penup()
-        self.color("Black")
+        self.color("white")
         self.goto((0, 470.0))
         self.write(f"Placar: " + str(self.score) +" Pontos" , align=ALIGNMENT, font=FONT)
 

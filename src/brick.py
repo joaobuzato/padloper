@@ -1,16 +1,16 @@
 
 from turtle import Turtle
 
-class Ball(Turtle):
+class Brick(Turtle):
 
     def __init__(self, color,position,padscreen) :
         super().__init__()
         self.ht()
         self.speed(10)
-        self.setheading(45)
+        self.setheading(0)
         self.shape("square")
         self.resizemode("user")
-        self.shapesize(1,1)
+        self.shapesize(2,2)
         self.color(color)
         self.penup()
         self.padscreen = padscreen

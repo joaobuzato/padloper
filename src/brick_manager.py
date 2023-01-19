@@ -1,13 +1,13 @@
 
 import random
-from red import Red
+from brick import Brick
 
-class RedManager():
+class BrickManager():
 
     def __init__(self, padscreen):
         self.actor_list = []
-        self.spawn_colors = ['red']
-        self.spawn_positions = [{'x': -30, 'y': 460}, {'x': -60, 'y': 460}, {'x': -90, 'y': 460}, {'x': -120, 'y': 460}, {'x': -150, 'y': 460}, {'x': -180, 'y': 460}, {'x': -210, 'y': 460}, {'x': -240, 'y': 460}, {'x': -270, 'y': 460}, {'x': 0, 'y': 460}, {'x': 30, 'y': 460}, {'x': 60, 'y': 460}, {'x': 90, 'y': 460}, {'x': 120, 'y': 460}, {'x': 150, 'y': 460}, {'x': 180, 'y': 460}, {'x': 210, 'y': 460}, {'x': 240, 'y': 460}, {'x': 270, 'y': 460}]
+        self.spawn_colors = ['yellow']
+        self.spawn_positions = [{'x': 0, 'y': 420}, {'x': 100, 'y': 420}, {'x': -100, 'y': 420}, {'x': -200, 'y': 420}, {'x': 200, 'y': 420}, {'x': -300, 'y': 420}, {'x': 300, 'y': 420}, {'x': -400, 'y': 420}, {'x': 400, 'y': 420}, {'x': -500, 'y': 420}, {'x': 500, 'y': 420}, {'x': 0, 'y': 300}, {'x': 100, 'y': 300}, {'x': -100, 'y': 300}, {'x': -200, 'y': 300}, {'x': 200, 'y': 300}, {'x': -300, 'y': 300}, {'x': 300, 'y': 300}, {'x': -400, 'y': 300}, {'x': 400, 'y': 300}, {'x': -500, 'y': 300}, {'x': 500, 'y': 300}]
         
         self.padscreen = padscreen
 
@@ -37,13 +37,13 @@ class RedManager():
         for actor in self.actor_list:
             if x_pos is None:
                 if actor.check_y_position(y_pos,y_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
             elif y_pos is None:
                 if actor.check_x_position(x_pos,x_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
             else:
                 if actor.check_y_position(y_pos, y_cond) and actor.check_x_position(x_pos, x_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
 
         return { "position_checked" : False }
         
@@ -57,23 +57,14 @@ class RedManager():
 
     def update(self,screen_updates):
         
-        self.func_forward()
-                
-        if  6 == None or (screen_updates >= 6 and screen_updates%6 == 0):
+        if  20 == None or (screen_updates >= 20 and screen_updates%20 == 0):
             
             
-            if len(self.actor_list) < 300:
-                actor = Red(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
+            if len(self.actor_list) < 20:
+                actor = Brick(color=random.choice(self.spawn_colors), position=(random.choice(self.spawn_positions)), padscreen=self.padscreen)
                 self.actor_list.append(actor)
                 
         pass
     
     
-    def func_forward(self):
-        for actor in self.actor_list:
-            if actor.is_out_of_screen():
-                self.remove_actor(actor)
-        
-            actor.forward(6)
-            
     
