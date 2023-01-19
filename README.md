@@ -367,3 +367,19 @@ Em construção
 
 Em construção
 
+## TUTORIAL DE INSTALAÇÃO E USO
+
+### Instalando as dependências do projeto:
+> Pré-requisito: possuir Python 3 instalado, com seu gerenciador de pacotes, pip, funcionando.
+* Instalar o TKinter, pela linha de comando ``` pip install tk ```
+* Pronto. Já temos tudo necessário para executar o projeto. 
+
+### Executando o projeto:
+* Navegar até o projeto por um terminal 
+* Executar o seguinte comando : ``` python3 ./ui/main.py ```
+* Para construir um jogo com o atual mapa de jogo, clicar em BUILD.
+* Para executar o jogo gerado, clicar em RUN.
+
+### Criando seu próprio jogo:
+* Para criar um jogo nesta versão do Padloper, é necessário editar o arquivo map.json
+* Há modelos de jogos na própria pasta do projeto, mas caso queira começar do zero nesta construção, consultar o Manual do Padloper. 
