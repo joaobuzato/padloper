@@ -261,6 +261,11 @@ Behaviors: Comportamentos que o ator pode possuir. Há dois tipos de ações que
 ### Rules
 Esta lista contém os objetos que descrevem as regras do jogo. Regras são condições a serem atingidas e suas consequências, bem como o ator ou atores envolvidos nesta regra. Abaixo estão alguns exemplos de objeto de regras incluído no mapa de jogo: 
 
+* Condições-Gatilho:
+	1. "collision" - checa a colisão entre o ator1 e o ator2;
+	2. "position" - checa a posição do ator1 baseado nos eixos x e y;
+	3. "score" - checa a pontuação;
+
 Exemplo de regra de colisão: 
 
 ```
@@ -269,26 +274,21 @@ Exemplo de regra de colisão:
 	"actor1" : "player",
 	"actor2" : "enemy",
 	"consequences" : [
-		{
-		  "name" :"game_over"
-		}
 	]
 }
 ```
 
 _Elementos da Regra de **Colisão**_:
 
-Trigger: Tipo de condição-gatilho para a regra ser ativada; **( collision | position | score)**<br/>
+Trigger: Tipo de condição-gatilho para a regra ser ativada; **( collision | position | score )**<br/>
 Actor1: Primeiro ator a ser checado; **(ator)**<br/>
 Actor2: Segundo ator a ser checado; **(ator)**<br/>
-Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;<br/>
-* Name: nome da consequência; **( game_over | point | move_to | game_won)**<br/>
+Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;
+<br/><br/>
 
 > Importante: a condição-gatilho 'collision' checa apenas colisões entre dois tipos de atores, e não é possível checar colisão entre três tipos de atores nesta versão do Padloper. 
 
 <br/><br/>
-
-
 
 Exemplo de regra de posição: 
 
@@ -300,15 +300,7 @@ Exemplo de regra de posição:
 	"y_pos" : "480",
 	"y_cond" :"greater",
 	"actor" : "player",
-	"consequences" : [
-		{
-		  "name" : "point"
-		},
-		{
-		  "name" : "move_to",
-		  "y" : -480,
-		  "x" : 0
-	}
+	"consequences" : []
 }
 ```
 <br/><br/>
@@ -317,15 +309,12 @@ Exemplo de regra de posição:
 _Elementos da Regra de **Posição**_:
 
 Trigger: Tipo de condição-gatilho para a regra ser ativada; **( collision | position | score)** <br/>
-Actor: Ator cuja posição será checada; **(ator)** <br/>
+Actor1: Ator cuja posição será checada; **(ator)** <br/>
 X_pos: Posição no eixo X para que o a regra seja ativada; **( number | "" )**<br/>
 X_cond: Condição relacionada ao eixo X para que a regra seja ativada; **( lesser | equal | greater )**<br/>
 Y_pos: Posição no eixo Y para que o a regra seja ativada; **( number | "" )**<br/>
 Y_cond: Condição relacionada ao eixo Y para que a regra seja ativada; **( lesser | equal | greater )**<br/>
 Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;<br/>
-* Name: nome da consequência; **( game_over | point | move_to | game_won )**<br/>
-	* Y: Posição do eixo Y para qual o Ator será movido **( number )**<br/>
-	* X: Posição do eixo X para qual o Ator seŕa movido **( number )**<br/>
 
 > Importante: a condição-gatilho 'position' poderá checar se um ator passou de uma coordenada na tela, no eixo x ou y caso apenas uma das coordenadas sejam informadas, ou se este ator atingiu um certo ponto da tela, caso as duas coordenadas sejam fornecidas.
 
