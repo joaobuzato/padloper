@@ -3,7 +3,7 @@
   "screen" : {
     "width" : 1000,
     "height" : 1000,
-    "color" : "green"
+    "color" : "white"
   },
   "scoreboard": {
     "position" : "top",
