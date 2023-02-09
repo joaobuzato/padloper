@@ -14,6 +14,7 @@
 ### Criando seu próprio jogo:
 * Para criar um jogo nesta versão do Padloper, é necessário editar o arquivo map.json
 * Há modelos de jogos na própria pasta do projeto que contemplam todos os casos de uso da ferramenta. No entanto, é possível criar muitos estilos diferentes de jogos com aquelas poucas funcionalidades.  
+* Para mais informações, consultar [Game Map (Mapa de Jogo)](https://github.com/joaobuzato/padloper/blob/main/README.md#game-map-mapa-de-jogo)
 
 ![Padloper Logo](padloper-logo.jpeg)
 
@@ -148,25 +149,11 @@ O Objeto de Tela de um jogo executado com Turtle é o espaço no qual os objetos
 
 *Elementos*:
 
-Width: Largura da tela;<br/>
-Height: Altura da tela;<br/>
-Color: Cor do backgroud;<br/>
+Width: Largura da tela em pixels;<br/>
+Height: Altura da tela em pixels;<br/>
+Color: Cor do background, que pode ser informada em hexadecimal;<br/>
 
 ### Scoreboard
-
-O Objeto de Scoreboard é um ator que faz o papel de placar.
-
-Atualmente há alguns métodos pré-definidos para este ator que não são comandados pelo mapa, mas já estão imbutidos no framework para auxiliar na construção do jogo. São eles:
-
-  
-
-- point() : concede mais um ponto para o jogador e atualiza o placar na tela.<br/>
-
-- game_over() : finaliza o ciclo de jogo e mostra a pontuação final no centro da tela, como condição de falha.<br/>
-
-- game_won() : finaliza o ciclo de jogo e mostra a ponstuação final no centro da tela, como condição de sucesso. <br/>
-
-  
 
 Um elemento de Scoreboard no mapa de jogo Padloper é como disposto abaixo:
 
@@ -180,8 +167,8 @@ Um elemento de Scoreboard no mapa de jogo Padloper é como disposto abaixo:
 ```
 *Elementos*:
 
-Position: Posição do placar na tela;<br/>
-Color: Cor das letras do placar;<br/>
+Position: Posição do placar na tela **(top|bottom)**;<br/>
+Color: Cor das letras do placar, que pode ser informado em hexadecimal;<br/>
 Font: Fonte da escrita do placar;<br/>
 Size: Tamanho da escrita do placar;<br/>
 
@@ -194,8 +181,10 @@ Um ator é possui dentro de si alguns objetos, como descrito abaixo:
 {
       "name" : "player",
       "components" : {
-	      "speed" : 8,
-	      "size" : 2
+	      "size" : 2,
+          "speed" : 10,
+          "heading" : 0,
+          "collision_field": 3
       },
       "spawn" : 
       {
@@ -233,23 +222,38 @@ Name: Nome do ator;
 
 Components: Atributos estáticos do ator; <br/>
 * Speed: Atributo de velocidade do ator na tela **( 1 - 10 )**;
-* Size: Dimensão do ator. Como este parâmetro multiplica o tamanho do ator;
+* Size: Dimensão do ator. **( 1 - 10 )**;
+* Heading: Direção com a qual o ator vai ser gerado. **( 0 - 359 )**
+* Collision Field: Campo de colisão quadrado, gerado à partir do centro do ator. **( 1 - 10 )**
 
 Spawn: Objeto com os parâmetros de geração do ator na tela;
 * Type: Tipo de geração **( unique | multiple )**;
-* Positions : Array de posições que o ator pode assumir ao ser gerado. Caso o tipo de geração seja **multiple**, o ator será gerado numa destas coordenadas, aleatoriamente.
+* Positions : Array de posições que o ator pode assumir ao ser gerado. o ator será gerado numa destas coordenadas, aleatoriamente.
 	* x: Posição x onde o ator será gerado;
 	* y: Posição y onde o ator seŕa gerado;
-* Colors : Array de cores que o ator pode assumir ao ser gerado. Caso o tipo de geração seja **multiple**, o ator escolherá uma cor aleatoriamente.
+* Colors : Array de cores que o ator pode assumir ao ser gerado. o ator escolherá uma cor aleatoriamente.
 
-Behaviors: Comportamentos que o ator pode possuir. Há dois tipos de ações que se encaixam dentro de "Behaviors": os inputs e os updates, e geralmente um mesmo ator não possui os dois simultaneamente. <br/>
+Behaviors: Comportamentos que o ator pode possuir. Há dois tipos de ações que se encaixam dentro de "Behaviors": os inputs e os updates. <br/>
+
 * Inputs: lista de ações que o ator tomará ao pressionar de uma tecla. Um input possui:
-	* Key: Tecla que, quando pressionada, executará a ação definida;
-	* Action: Ação executada ao pressionar a tecla (O que o ator fará com este comando é definido pelo software);
+	* Key: Tecla que, quando pressionada, executará a ação definida **(a-z0-9)** ;
+	* Action: Ação executada ao pressionar a tecla;
+		1. "forward" - move o ator para a frente em pixels (baseado no heading);
+		2. "backward" - move o ator para trás em pixels (baseado no heading);
+		3. "right" - vira o ator para a direita em graus (baseado no heading);
+		4. "left"  - vira o ator para a esquerda em graus (baseado no heading);
+		5. "strife_left" - move o ator para a esquerda em pixels (baseado no heading);
+		6. "strife_right" - move o ator para a direita em pixels (baseado no heading);
 	* Param: Parâmetro com o qual a ação será executada, que pode ser, por exemplo, o número de pixels que um ator andará, quantos graus ele se voltará, etc; 
 
 * Updates: lista de ações que serão executadas pelo ator a cada novo frame, sem necessidade de uma interação do usuário.
-	* Action: Ação executada ao pressionar a tecla (O que o ator fará com este comando é definido pelo software);
+	* Action: Ação executada ao pressionar a tecla.
+		1. "forward" - move o ator para a frente em pixels (baseado no heading);
+		2. "backward" - move o ator para trás em pixels (baseado no heading);
+		3. "right" - vira o ator para a direita em graus (baseado no heading);
+		4. "left"  - vira o ator para a esquerda em graus (baseado no heading);
+		5. "strife_left" - move o ator para a esquerda em pixels (baseado no heading);
+		6. "strife_right" - move o ator para a direita em pixels (baseado no heading);
 	* Param:  Parâmetro com o qual a ação será executada, que pode ser, por exemplo, o número de pixels que um ator andará, quantos graus ele se voltará, etc; 
 
 
