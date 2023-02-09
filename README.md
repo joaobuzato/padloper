@@ -273,8 +273,7 @@ Exemplo de regra de colisão:
 	"trigger" : "collision",
 	"actor1" : "player",
 	"actor2" : "enemy",
-	"consequences" : [
-	]
+	"consequences" : []
 }
 ```
 
@@ -299,7 +298,7 @@ Exemplo de regra de posição:
 	"x_cond" : "",
 	"y_pos" : "480",
 	"y_cond" :"greater",
-	"actor" : "player",
+	"actor1" : "player",
 	"consequences" : []
 }
 ```
@@ -326,11 +325,7 @@ Exemplo de regra de pontuação:
 {
 	"trigger" : "score",
 	"win_score" : 10
-	"consequences" : [
-		{
-		  "name" :"game_won"
-		}
-	]
+	"consequences" : []
 }
 ```
 
@@ -338,9 +333,20 @@ _Elementos da Regra de **Pontuação**_:
 
 Trigger: Tipo de condição-gatilho para a regra ser ativada; **( collision | position | score)**<br/>
 Win_Score: Pontuação a ser atingida para que a regra seja ativada. **( number > 0 )**<br/>
-Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;<br/>
-* Name: nome da consequência; **( game_over | point | move_to | game_won )**<br/>
+Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;
+<br/><br/>
 
+* Consequências:
+	1. "remove_actor" - remove o ator2 da tela;
+	2. "set_heading" - muda a direção que o ator1 está apontado;
+	3. "bounce_x" - faz o ator1 'quicar' no eixo x, em 45 graus;
+	4. "bounce_y" - faz o ator1 'quicar' no eixo y, em 45 graus;
+	5. "game_won" - finaliza o jogo com condição de vitória;
+	6. "point" - acrescenta um ponto ao placar;
+	7. "game_over" - finaliza o jogo com condição de derrota;
+	8. "move_to" - move o ator1 para uma nova posição;
+
+	
 
 <br/><br/>
 
