@@ -2,7 +2,7 @@
 
 ### Instalando as dependências do projeto:
 > Pré-requisito: possuir Python 3 instalado, com seu gerenciador de pacotes, pip, funcionando.
-* Instalar o TKinter, pela linha de comando ``` pip install tk ```
+* Instalar o TKinter, pela linha de comando ``` sudo apt-get install python3-tk ```
 * Pronto. Já temos tudo necessário para executar o projeto. 
 
 ### Executando o projeto:

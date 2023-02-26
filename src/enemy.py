@@ -59,7 +59,7 @@ class Enemy(Turtle):
 
 
     def touches(self,object):
-        if self.distance(object) <= 10*1:
+        if self.distance(object) <= 10*None:
             return True
         else:
             return False

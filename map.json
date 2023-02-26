@@ -1,20 +1,20 @@
 {
-  "name" : "Projeto de Jogo",
+  "name" : "Breakout",
   "screen" : {
-    "width" : 1000,
+    "width" : 1200,
     "height" : 1000,
-    "color" : "white"
+    "color" : "black"
   },
   "scoreboard": {
     "position" : "top",
     "size" : 18,
-    "font" : "Courier",
-    "color" : "Black"
+    "font" : "Consolas",
+    "color" : "white"
   },
   "rules": [
     {
       "trigger" : "score",
-      "win_score" : 3,
+      "win_score" : 10,
       "consequences" : [
         {
           "name" : "game_won"
@@ -22,33 +22,74 @@
         
       ]
     },
-
+    {
+      "trigger" : "position",
+      "actor1":"ball",
+      "y_pos": 480,
+      "y_cond": "greater",
+      "consequences" :[
+          {
+              "name": "bounce_y"
+          }
+      ]
+    },
+    {
+      "trigger" : "position",
+      "actor1":"ball",
+      "x_pos": 580,
+      "x_cond": "greater",
+      "consequences" :[
+          {
+              "name": "bounce_x"
+          }
+      ]
+    },
+    {
+      "trigger" : "position",
+      "actor1":"ball",
+      "x_pos": -580,
+      "x_cond": "lesser",
+      "consequences" :[
+          {
+              "name": "bounce_x"
+          }
+      ]
+    },
     {
       "trigger" : "collision",
-      "actor1" : "player",
-      "actor2" : "enemy",
+      "actor1" : "ball",
+      "actor2" : "player",
       "consequences" : [
         {
-          "name" :"game_over"
+          "name" :"bounce_y"
+        }
+      ]
+    },
+    {
+      "trigger" : "collision",
+      "actor1" : "ball",
+      "actor2" : "brick",
+      "consequences" : [
+        {
+          "name" :"bounce_y"
+        },
+        {
+          "name":"point"
+        },
+        {
+          "name" :"remove_actor"
         }
       ]
     },
     {
       "trigger" : "position",
-      "x_pos" : "",
-      "x_cond" : "",
-      "y_pos" : "480",
-      "y_cond" :"greater",
-      "actor" : "player",
-      "consequences" : [
-        {
-          "name" : "point"
-        },
-        {
-          "name" : "move_to",
-          "y" : -480,
-          "x" : 0
-        }
+      "actor1":"ball",
+      "y_pos": -560,
+      "y_cond": "lesser",
+      "consequences" :[
+          {
+              "name": "game_over"
+          }
       ]
     }
     
@@ -59,68 +100,108 @@
       "components" : {
         "size" : 2,
         "speed" : 10,
-        "heading" : 0
+        "heading" : 0,
+        "collision_field": 3
       },
       "spawn" : 
       {
-        "type" : "unique",
+        "type" : "multiple",
+        "max_num": 12,
+        "screen_update_count":1,
         "positions" : [
-          {"x" :0, "y" : -470}
+          {"x" :0, "y" : -420},
+          {"x" :40, "y" : -420},
+          {"x" :-40, "y" : -420},
+          {"x" :-20, "y" : -420},
+          {"x" :20, "y" : -420}
         ],
         "colors" : [
-          "red"
+          "white"
         ]
       },
       
       "behaviors" :
         {
           "inputs" : [
-            {"key" :  "w", "action" : "forward", "param" :  "10"},
-            {"key" :  "s", "action" :  "backward", "param" :  "10"},
-            {"key" :  "a", "action" :  "strife_left", "param" :  "10"},
-            {"key" :  "d", "action" :  "strife_right", "param" :  "10"}
+            {"key" :  "d", "action" :  "strife_right", "param" :  "15"},
+            {"key" :  "a", "action" :  "strife_left", "param" :  "15"}
           ]
           
         }
     },
     {
-      "name" : "enemy",
+      "name" : "ball",
       "components" : {
         "size" : 1,
         "speed" : 10,
-        "heading" : 270
+        "heading" : 45,
+        "collision_field": 1.5
       },
       "behaviors" :
       {
           "updates": [
-            { "action" : "forward", "param" :  "10"}
+            { "action" : "forward", "param" :  "16"}
 
           ]
       },
       "spawn" : 
       {
-        "type" : "multiple",
-        "max_num" : 300,
-        "screen_update_count" : 7,
+        "type" : "unique",
+        "max_num" : 1,
+        "screen_update_count" : 1,
         "positions" : [
-          {"x" :510, "y" : 300},
-          {"x" :510, "y" : 250},
-          {"x" :510, "y" : 200},
-          {"x" :510, "y" : 150},
-          {"x" :510, "y" : 100},
-          {"x" :510, "y" : 50},
-          {"x" :510, "y" : 0},
-          {"x" :510, "y" : -50},
-          {"x" :510, "y" : -100},
-          {"x" :510, "y" : -150},
-          {"x" :510, "y" : -200},
-          {"x" :510, "y" : -250},
-          {"x" :510, "y" : -300}
+          {"x" :-300, "y" : -200}
         ],
         "colors" : [
-          "black", "yellow", "blue", "white", "orange"
+          "white"
         ]
       }
+    },
+    {
+      "name" : "brick",
+      "components" : {
+        "size" : 2,
+        "speed" : 10,
+        "heading" : 0,
+        "collision_field": 1.5
+      },
+      "spawn" : 
+      {
+        "type" : "multiple",
+        "max_num": 20,
+        "screen_update_count": 20 ,
+        "positions" : [
+          {"x" :0, "y" : 420},
+          {"x" :100, "y" : 420},
+          {"x" :-100, "y" : 420},
+          {"x" :-200, "y" : 420},
+          {"x" :200, "y" : 420},
+          {"x" :-300, "y" : 420},
+          {"x" :300, "y" : 420},
+          {"x" :-400, "y" : 420},
+          {"x" :400, "y" : 420},
+          {"x" :-500, "y" : 420},
+          {"x" :500, "y" : 420},
+          {"x" :0, "y" : 300},
+          {"x" :100, "y" : 300},
+          {"x" :-100, "y" : 300},
+          {"x" :-200, "y" : 300},
+          {"x" :200, "y" : 300},
+          {"x" :-300, "y" : 300},
+          {"x" :300, "y" : 300},
+          {"x" :-400, "y" : 300},
+          {"x" :400, "y" : 300},
+          {"x" :-500, "y" : 300},
+          {"x" :500, "y" : 300}
+        ],
+        "colors" : [
+          "yellow"
+        ]
+      },
+      
+      "behaviors" :
+        {
+        }
     }
   ]
 }

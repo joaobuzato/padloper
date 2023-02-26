@@ -37,13 +37,13 @@ class EnemyManager():
         for actor in self.actor_list:
             if x_pos is None:
                 if actor.check_y_position(y_pos,y_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
             elif y_pos is None:
                 if actor.check_x_position(x_pos,x_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
             else:
                 if actor.check_y_position(y_pos, y_cond) and actor.check_x_position(x_pos, x_cond):
-                    return { "position_checked" : True, "actor" : actor}
+                    return { "position_checked" : True, "actor1" : actor}
 
         return { "position_checked" : False }
         
