@@ -1,6 +1,7 @@
 from tkinter import *
 import os
 import json
+from settings_window import open_settings_window
 
 # Diretório atual do script
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -59,6 +60,9 @@ build_button.grid(row=10, column=1)
 
 run_button = Button(text="Run", command=run,  width=16)
 run_button.grid(row=10, column=2)
+
+settings_button = Button(window, text="Settings", command=open_settings_window, width=16)
+settings_button.grid(row=10, column=3)
 
 window.mainloop()
 
