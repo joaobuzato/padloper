@@ -1,21 +1,31 @@
 from tkinter import *
 import os
+import json
+
+# Diretório atual do script
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Diretório raiz do projeto (subindo um nível)
+ROOT_DIR = os.path.dirname(CURRENT_DIR)
+
+# Caminho para o arquivo map.json na raiz do projeto
+json_map = os.path.join(ROOT_DIR, 'map.json')
 
 window = Tk()
 window.title("Padloper")
 ENV = "python3"
 def build():
-    game_name = game_name_entry.get()
+    name = game_name_entry.get()
     
     # Read the existing JSON data
-    with open('map.json', 'r') as file:
+    with open(json_map, 'r') as file:
         data = json.load(file)
     
     # Update the JSON data with the game name
-    data['game_name'] = game_name
+    data['name'] = name
     
     # Save the updated JSON data back to map.json
-    with open('map.json', 'w') as file:
+    with open(json_map, 'w') as file:
         json.dump(data, file, indent=4)
     
     os.system(f'{ENV} ./game_builder.py')
@@ -34,10 +44,15 @@ def screen():
 
 window.config(padx=50, pady=50)
 
+with open(json_map, 'r') as file:
+    data = json.load(file)
+    game_name = data.get('name', '')
+
 game_name_label = Label(window, text="Game Name:")
 game_name_label.grid(row=0, column=0, padx=10, pady=10)
 game_name_entry = Entry(window, width=30)
 game_name_entry.grid(row=0, column=1, padx=10, pady=10)
+game_name_entry.insert(0, game_name)
 
 build_button = Button(text="Build", command=build, width=16)
 build_button.grid(row=10, column=1)

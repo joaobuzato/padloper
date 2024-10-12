@@ -12,7 +12,7 @@ class PadScreen():
         self.bottom_y = -500.0
         self.left_x = -600.0
         self.right_x = 600.0
-        self.screen.title('Breakout')
+        self.screen.title('Jogo Teste')
         self.screen.tracer(0)
 
     def get_screen_obj(self):
