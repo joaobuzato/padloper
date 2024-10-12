@@ -1,82 +1,80 @@
 ## TUTORIAL DE INSTALAÇÃO E USO
 
 ### Instalando as dependências do projeto:
+
 > Pré-requisito: possuir Python 3 instalado, com seu gerenciador de pacotes, pip, funcionando.
-* Instalar o TKinter, pela linha de comando ``` sudo apt-get install python3-tk ```
-* Pronto. Já temos tudo necessário para executar o projeto. 
+
+- Instalar o TKinter, pela linha de comando `sudo apt-get install python3-tk`
+- Pronto. Já temos tudo necessário para executar o projeto.
 
 ### Executando o projeto:
-* Navegar até o projeto por um terminal 
-* Executar o seguinte comando : ``` python3 ./ui/main.py ```
-* Para construir um jogo com o atual mapa de jogo, clicar em BUILD.
-* Para executar o jogo gerado, clicar em RUN.
+
+- No terminal, executar make start
+- Para construir um jogo com o atual mapa de jogo, clicar em BUILD.
+- Para executar o jogo gerado, clicar em RUN.
 
 ### Criando seu próprio jogo:
-* Para criar um jogo nesta versão do Padloper, é necessário editar o arquivo map.json
-* Há modelos de jogos na própria pasta do projeto que contemplam todos os casos de uso da ferramenta. No entanto, é possível criar muitos estilos diferentes de jogos com aquelas poucas funcionalidades.  
-* Para mais informações, consultar [Game Map (Mapa de Jogo)](https://github.com/joaobuzato/padloper/blob/main/README.md#game-map-mapa-de-jogo)
+
+- Para criar um jogo nesta versão do Padloper, é necessário editar o arquivo map.json
+- Há modelos de jogos na própria pasta do projeto que contemplam todos os casos de uso da ferramenta. No entanto, é possível criar muitos estilos diferentes de jogos com aquelas poucas funcionalidades.
+- Para mais informações, consultar [Game Map (Mapa de Jogo)](https://github.com/joaobuzato/padloper/blob/main/README.md#game-map-mapa-de-jogo)
 
 ![Padloper Logo](padloper-logo.jpeg)
 
 # Padloper - Projetando uma game engine por subtração
 
-  
-
 Este repositório foi criado para o meu projeto de conclusão de curso pelo CEFET/RJ, no curso de Sistemas de Informação.
 
-Conteúdo: 
+Conteúdo:
 
 1. [O que é o Padloper?](https://github.com/joaobuzato/padloper/blob/main/README.md#o-que-%C3%A9-o-padloper)
 2. [Por que Game Engine por Subtração?](https://github.com/joaobuzato/padloper/blob/main/README.md#por-que-game-engine-por-subtra%C3%A7%C3%A3o-)
 3. [Glossário](https://github.com/joaobuzato/padloper/blob/main/README.md#gloss%C3%A1rio)
 4. [Como funciona um jogo no Padloper?](https://github.com/joaobuzato/padloper/blob/main/README.md#como-funciona-um-jogo-no-padloper)
 5. [Como o Padloper é construído?](https://github.com/joaobuzato/padloper/blob/main/README.md#como-o-padloper-%C3%A9-constru%C3%ADdo)
-	1. [Game Map (Mapa de Jogo)](https://github.com/joaobuzato/padloper/blob/main/README.md#game-map-mapa-de-jogo)
-		1. [Screen](https://github.com/joaobuzato/padloper/blob/main/README.md#screen)
-		2. [Scoreboard](https://github.com/joaobuzato/padloper/blob/main/README.md#scoreboard)
-		3. [Actors](https://github.com/joaobuzato/padloper/blob/main/README.md#actors)
-		4. [Rules](https://github.com/joaobuzato/padloper/blob/main/README.md#rules)
-	3. [PadGame Builder (Construtor de um PadJogo](https://github.com/joaobuzato/padloper/blob/main/README.md#padgame-builder)
-		1. [Screen Builder](https://github.com/joaobuzato/padloper/blob/main/README.md#screen-builder)
-		2. [Actor Builder](https://github.com/joaobuzato/padloper/blob/main/README.md#actor-builder)
-		3. [Manager Builder](https://github.com/joaobuzato/padloper/blob/main/README.md#manager-builder)
-		4. [Scoreboard Builder](https://github.com/joaobuzato/padloper/blob/main/README.md#scoreboard-builder)
-		5. [Rule Builder](https://github.com/joaobuzato/padloper/edit/blob/README.md#rule-builder)
-		6. [Game Builder](https://github.com/joaobuzato/padloper/edit/blob/README.md#game-builder)
-
-
-  
+   1. [Game Map (Mapa de Jogo)](https://github.com/joaobuzato/padloper/blob/main/README.md#game-map-mapa-de-jogo)
+      1. [Screen](https://github.com/joaobuzato/padloper/blob/main/README.md#screen)
+      2. [Scoreboard](https://github.com/joaobuzato/padloper/blob/main/README.md#scoreboard)
+      3. [Actors](https://github.com/joaobuzato/padloper/blob/main/README.md#actors)
+      4. [Rules](https://github.com/joaobuzato/padloper/blob/main/README.md#rules)
+   2. [PadGame Builder (Construtor de um PadJogo](https://github.com/joaobuzato/padloper/blob/main/README.md#padgame-builder)
+      1. [Screen Builder](https://github.com/joaobuzato/padloper/blob/main/README.md#screen-builder)
+      2. [Actor Builder](https://github.com/joaobuzato/padloper/blob/main/README.md#actor-builder)
+      3. [Manager Builder](https://github.com/joaobuzato/padloper/blob/main/README.md#manager-builder)
+      4. [Scoreboard Builder](https://github.com/joaobuzato/padloper/blob/main/README.md#scoreboard-builder)
+      5. [Rule Builder](https://github.com/joaobuzato/padloper/edit/blob/README.md#rule-builder)
+      6. [Game Builder](https://github.com/joaobuzato/padloper/edit/blob/README.md#game-builder)
 
 # O que é o Padloper?
 
-Padloper é uma game engine construída como um framework, uma camada acima da biblioteca gráfica Turtle Graphics, para o Python. O objetivo final do projeto é possibilitar a um usuário sem qualquer conhecimento em programação a experiência de ser um game designer e desenvolver um jogo arcade simples, de apenas uma tela e poucos elementos, como o jogo [Frogger](https://en.wikipedia.org/wiki/Frogger). A ferramenta tem como principal meta ser uma opção viável para o primeiro contato de alguém com o desenvolvimento de jogos e game designing. 
+Padloper é uma game engine construída como um framework, uma camada acima da biblioteca gráfica Turtle Graphics, para o Python. O objetivo final do projeto é possibilitar a um usuário sem qualquer conhecimento em programação a experiência de ser um game designer e desenvolver um jogo arcade simples, de apenas uma tela e poucos elementos, como o jogo [Frogger](https://en.wikipedia.org/wiki/Frogger). A ferramenta tem como principal meta ser uma opção viável para o primeiro contato de alguém com o desenvolvimento de jogos e game designing.
 
-O nome Padloper vem da menor tartaruga terrestre do mundo, cujo nome científico é *Homopus signatus*, e condiz com o escopo do projeto, que visa ser uma game engine pequena, enxuta e **diminuta**, e que usa os **Turtle Graphics** para atingir seus objetivos. 
+O nome Padloper vem da menor tartaruga terrestre do mundo, cujo nome científico é _Homopus signatus_, e condiz com o escopo do projeto, que visa ser uma game engine pequena, enxuta e **diminuta**, e que usa os **Turtle Graphics** para atingir seus objetivos.
 
 ![Características da Tartaruga de Padloper: Tamanho e Nome Científico –  Portal dos Animais](https://www.portaldosanimais.com.br/wp-content/uploads/2020/04/Tartaruga-de-Padloper-1.jpg)
+
 > https://www.portaldosanimais.com.br/informacoes/caracteristicas-da-tartaruga-de-padloper-tamanho-e-nome-cientifico/
-> 
+
 # Por que "Game Engine Por Subtração" ?
 
-O termo 'por subtração' surge de 'design por subtração', atribuído ao game designer Fumito Ueda, diretor dos jogos Ico e Shadow of The Colossus, e se refere à retirada de tudo que não for essencial à forma, tornando o produto final mais enxuto, simples e de escopo bem reduzido. 
+O termo 'por subtração' surge de 'design por subtração', atribuído ao game designer Fumito Ueda, diretor dos jogos Ico e Shadow of The Colossus, e se refere à retirada de tudo que não for essencial à forma, tornando o produto final mais enxuto, simples e de escopo bem reduzido.
 
-Tal filosofia se encaixa perfeitamente na proposta do Padloper, que foi pensada com foco total no primeiro contato de alguém com a construção de jogos, e por isso muitas das funcionalidades mais "comuns" de game engines mais tradicionais são removidas - subtraídas - para que a linha de aprendizado seja a mais suave possível. 
+Tal filosofia se encaixa perfeitamente na proposta do Padloper, que foi pensada com foco total no primeiro contato de alguém com a construção de jogos, e por isso muitas das funcionalidades mais "comuns" de game engines mais tradicionais são removidas - subtraídas - para que a linha de aprendizado seja a mais suave possível.
 
-Uma pergunta importante a se fazer para garantir que um elemento é passível de subtração é: "Caso um jogo não possua tal elemento, ele ainda é um jogo?". Em casos como a interação do usuário, a resposta é certamente não. Um jogo sem interação do usuário é uma outra coisa, mas não um jogo. Já em casos como o áudio, no entanto, a resposta pode ser sim. Um jogo sem som ainda é um jogo. E é aqui que a subtração age. 
+Uma pergunta importante a se fazer para garantir que um elemento é passível de subtração é: "Caso um jogo não possua tal elemento, ele ainda é um jogo?". Em casos como a interação do usuário, a resposta é certamente não. Um jogo sem interação do usuário é uma outra coisa, mas não um jogo. Já em casos como o áudio, no entanto, a resposta pode ser sim. Um jogo sem som ainda é um jogo. E é aqui que a subtração age.
 
-  
 # Glossário
 
-* **Ator** : Elemento de jogo que possui componentes e comportamentos. Regras podem ser aplicadas a um ator e este poderá ser parte das consequências destas regras. <br/>
-* **Tela** : Espaço onde o jogo é executado.<br/>
-* **Ciclo de jogo**: Espaço de tempo no qual o jogo é executado. Pode-se dizer que uma 'volta' neste ciclo corresponde a um frame do jogo. Um ciclo de jogo possui os métodos Input, Update e Render, e também é dentro deste ciclo que as regras do jogo são checadas. <br/>
-* **Classe-Gerente**: Em construção
+- **Ator** : Elemento de jogo que possui componentes e comportamentos. Regras podem ser aplicadas a um ator e este poderá ser parte das consequências destas regras. <br/>
+- **Tela** : Espaço onde o jogo é executado.<br/>
+- **Ciclo de jogo**: Espaço de tempo no qual o jogo é executado. Pode-se dizer que uma 'volta' neste ciclo corresponde a um frame do jogo. Um ciclo de jogo possui os métodos Input, Update e Render, e também é dentro deste ciclo que as regras do jogo são checadas. <br/>
+- **Classe-Gerente**: Em construção
 
 Em construção
 
 # Como funciona um jogo no Padloper?
 
-Um jogo construído pelo padloper possui 4 componentes principais: Tela, Ciclo de Jogo, Atores e suas Classes-Gerentes. Durante a execução do ciclo de jogo, as classes-gerentes checam as regras e executam suas ações, eventualmente interagindo entre si, ou com a tela. 
+Um jogo construído pelo padloper possui 4 componentes principais: Tela, Ciclo de Jogo, Atores e suas Classes-Gerentes. Durante a execução do ciclo de jogo, as classes-gerentes checam as regras e executam suas ações, eventualmente interagindo entre si, ou com a tela.
 
 ```mermaid
 stateDiagram-v2
@@ -87,9 +85,10 @@ stateDiagram-v2
 	Render --> Input
 	Render --> [*]
 ```
-> O ciclo de jogo compreende os métodos após o Setup (configuração inicial das classes-gerentes de jogo). 
 
-Cada um destes métodos do ciclo de jogo possui um correspondente nas classes-gerentes dos atores. Isto permite que se chame cada um dos métodos próprios e que se personalize estes métodos dentro das classes-gerentes. 
+> O ciclo de jogo compreende os métodos após o Setup (configuração inicial das classes-gerentes de jogo).
+
+Cada um destes métodos do ciclo de jogo possui um correspondente nas classes-gerentes dos atores. Isto permite que se chame cada um dos métodos próprios e que se personalize estes métodos dentro das classes-gerentes.
 
 ```mermaid
 sequenceDiagram
@@ -99,24 +98,19 @@ sequenceDiagram
     AtorGerente.Update()-->>-Padmain.Update(): Ator Atualizado!
 
 ```
-> No exemplo, o método Update, inserido dentro do Padmain, chama seu correspondente dentro da classe ator-gerente, que atualiza a posição do ator, e retorna o ator já atualizado, que será renderizado na próxima atualização de tela. 
 
+> No exemplo, o método Update, inserido dentro do Padmain, chama seu correspondente dentro da classe ator-gerente, que atualiza a posição do ator, e retorna o ator já atualizado, que será renderizado na próxima atualização de tela.
 
 # Como o Padloper é construído?
 
-  
-
 A ferramenta é construída em algumas partes, que compõem o todo do software. Abaixo estão descritas as ferramentas e suas funções:
 
-  
-
 ## Game Map (Mapa de Jogo):
-
-  
 
 O mapa de jogo é um arquivo JSON que será o guia, ou a planta do jogo. O software está preparado para ler o arquivo e usar as informações nele contidas para construir o jogo.
 
 Um mapa de jogo típico do Padloper é assim construído:
+
 ```
 {
 	"name" : "Padloper Game",
@@ -129,12 +123,11 @@ Um mapa de jogo típico do Padloper é assim construído:
 		{}
 	]
 }
-```  
+```
 
 Cada um dos elementos do mapa possui em si uma série de outros elementos, e além do "name", que é o título do jogo, são eles:
 
-
-### Screen 
+### Screen
 
 O Objeto de Tela de um jogo executado com Turtle é o espaço no qual os objetos são desenhados, ou seja, é o espaço onde o jogo realmente acontece. Um elemento de tela num mapa de jogo construído pelo Padloper é como descrito abaixo:
 
@@ -146,8 +139,7 @@ O Objeto de Tela de um jogo executado com Turtle é o espaço no qual os objetos
 }
 ```
 
-
-*Elementos*:
+_Elementos_:
 
 Width: Largura da tela em pixels;<br/>
 Height: Altura da tela em pixels;<br/>
@@ -165,7 +157,8 @@ Um elemento de Scoreboard no mapa de jogo Padloper é como disposto abaixo:
 	"size" : "18"
 }
 ```
-*Elementos*:
+
+_Elementos_:
 
 Position: Posição do placar na tela **(top|bottom)**;<br/>
 Color: Cor das letras do placar, que pode ser informado em hexadecimal;<br/>
@@ -174,9 +167,10 @@ Size: Tamanho da escrita do placar;<br/>
 
 ### Actors
 
-  O array 'Actors' do jogo é uma lista dos atores que estarão presentes na execução do jogo, incluindo tanto atores que o jogador controla quanto os inimigos ou outros assets não controlados pelo jogador. 
+O array 'Actors' do jogo é uma lista dos atores que estarão presentes na execução do jogo, incluindo tanto atores que o jogador controla quanto os inimigos ou outros assets não controlados pelo jogador.
 
-Um ator é possui dentro de si alguns objetos, como descrito abaixo: 
+Um ator é possui dentro de si alguns objetos, como descrito abaixo:
+
 ```
 {
       "name" : "player",
@@ -186,7 +180,7 @@ Um ator é possui dentro de si alguns objetos, como descrito abaixo:
           "heading" : 0,
           "collision_field": 3
       },
-      "spawn" : 
+      "spawn" :
       {
         "type" : "multiple",
 	"max_num" : 300,
@@ -216,57 +210,59 @@ Um ator é possui dentro de si alguns objetos, como descrito abaixo:
     }
 ```
 
-*Elementos*:
+_Elementos_:
 
 Name: Nome do ator;
 
 Components: Atributos estáticos do ator; <br/>
-* Speed: Atributo de velocidade do ator na tela **( 1 - 10 )**;
-* Size: Dimensão do ator. **( 1 - 10 )**;
-* Heading: Direção com a qual o ator vai ser gerado. **( 0 - 359 )**
-* Collision Field: Campo de colisão quadrado, gerado à partir do centro do ator. **( 1 - 10 )**
+
+- Speed: Atributo de velocidade do ator na tela **( 1 - 10 )**;
+- Size: Dimensão do ator. **( 1 - 10 )**;
+- Heading: Direção com a qual o ator vai ser gerado. **( 0 - 359 )**
+- Collision Field: Campo de colisão quadrado, gerado à partir do centro do ator. **( 1 - 10 )**
 
 Spawn: Objeto com os parâmetros de geração do ator na tela;
-* Type: Tipo de geração **( unique | multiple )**;
-* Positions : Array de posições que o ator pode assumir ao ser gerado. o ator será gerado numa destas coordenadas, aleatoriamente.
-	* x: Posição x onde o ator será gerado;
-	* y: Posição y onde o ator seŕa gerado;
-* Colors : Array de cores que o ator pode assumir ao ser gerado. o ator escolherá uma cor aleatoriamente.
+
+- Type: Tipo de geração **( unique | multiple )**;
+- Positions : Array de posições que o ator pode assumir ao ser gerado. o ator será gerado numa destas coordenadas, aleatoriamente.
+  - x: Posição x onde o ator será gerado;
+  - y: Posição y onde o ator seŕa gerado;
+- Colors : Array de cores que o ator pode assumir ao ser gerado. o ator escolherá uma cor aleatoriamente.
 
 Behaviors: Comportamentos que o ator pode possuir. Há dois tipos de ações que se encaixam dentro de "Behaviors": os inputs e os updates. <br/>
 
-* Inputs: lista de ações que o ator tomará ao pressionar de uma tecla. Um input possui:
-	* Key: Tecla que, quando pressionada, executará a ação definida **(a-z0-9)** ;
-	* Action: Ação executada ao pressionar a tecla;
-		1. "forward" - move o ator para a frente em pixels (baseado no heading);
-		2. "backward" - move o ator para trás em pixels (baseado no heading);
-		3. "right" - vira o ator para a direita em graus (baseado no heading);
-		4. "left"  - vira o ator para a esquerda em graus (baseado no heading);
-		5. "strife_left" - move o ator para a esquerda em pixels (baseado no heading);
-		6. "strife_right" - move o ator para a direita em pixels (baseado no heading);
-	* Param: Parâmetro com o qual a ação será executada, que pode ser, por exemplo, o número de pixels que um ator andará, quantos graus ele se voltará, etc; 
+- Inputs: lista de ações que o ator tomará ao pressionar de uma tecla. Um input possui:
 
-* Updates: lista de ações que serão executadas pelo ator a cada novo frame, sem necessidade de uma interação do usuário.
-	* Action: Ação executada ao pressionar a tecla.
-		1. "forward" - move o ator para a frente em pixels (baseado no heading);
-		2. "backward" - move o ator para trás em pixels (baseado no heading);
-		3. "right" - vira o ator para a direita em graus (baseado no heading);
-		4. "left"  - vira o ator para a esquerda em graus (baseado no heading);
-		5. "strife_left" - move o ator para a esquerda em pixels (baseado no heading);
-		6. "strife_right" - move o ator para a direita em pixels (baseado no heading);
-	* Param:  Parâmetro com o qual a ação será executada, que pode ser, por exemplo, o número de pixels que um ator andará, quantos graus ele se voltará, etc; 
+  - Key: Tecla que, quando pressionada, executará a ação definida **(a-z0-9)** ;
+  - Action: Ação executada ao pressionar a tecla;
+    1. "forward" - move o ator para a frente em pixels (baseado no heading);
+    2. "backward" - move o ator para trás em pixels (baseado no heading);
+    3. "right" - vira o ator para a direita em graus (baseado no heading);
+    4. "left" - vira o ator para a esquerda em graus (baseado no heading);
+    5. "strife_left" - move o ator para a esquerda em pixels (baseado no heading);
+    6. "strife_right" - move o ator para a direita em pixels (baseado no heading);
+  - Param: Parâmetro com o qual a ação será executada, que pode ser, por exemplo, o número de pixels que um ator andará, quantos graus ele se voltará, etc;
 
-
+- Updates: lista de ações que serão executadas pelo ator a cada novo frame, sem necessidade de uma interação do usuário.
+  - Action: Ação executada ao pressionar a tecla.
+    1. "forward" - move o ator para a frente em pixels (baseado no heading);
+    2. "backward" - move o ator para trás em pixels (baseado no heading);
+    3. "right" - vira o ator para a direita em graus (baseado no heading);
+    4. "left" - vira o ator para a esquerda em graus (baseado no heading);
+    5. "strife_left" - move o ator para a esquerda em pixels (baseado no heading);
+    6. "strife_right" - move o ator para a direita em pixels (baseado no heading);
+  - Param: Parâmetro com o qual a ação será executada, que pode ser, por exemplo, o número de pixels que um ator andará, quantos graus ele se voltará, etc;
 
 ### Rules
-Esta lista contém os objetos que descrevem as regras do jogo. Regras são condições a serem atingidas e suas consequências, bem como o ator ou atores envolvidos nesta regra. Abaixo estão alguns exemplos de objeto de regras incluído no mapa de jogo: 
 
-* Condições-Gatilho:
-	1. "collision" - checa a colisão entre o ator1 e o ator2;
-	2. "position" - checa a posição do ator1 baseado nos eixos x e y;
-	3. "score" - checa a pontuação;
+Esta lista contém os objetos que descrevem as regras do jogo. Regras são condições a serem atingidas e suas consequências, bem como o ator ou atores envolvidos nesta regra. Abaixo estão alguns exemplos de objeto de regras incluído no mapa de jogo:
 
-Exemplo de regra de colisão: 
+- Condições-Gatilho:
+  1.  "collision" - checa a colisão entre o ator1 e o ator2;
+  2.  "position" - checa a posição do ator1 baseado nos eixos x e y;
+  3.  "score" - checa a pontuação;
+
+Exemplo de regra de colisão:
 
 ```
 {
@@ -285,11 +281,11 @@ Actor2: Segundo ator a ser checado; **(ator)**<br/>
 Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;
 <br/><br/>
 
-> Importante: a condição-gatilho 'collision' checa apenas colisões entre dois tipos de atores, e não é possível checar colisão entre três tipos de atores nesta versão do Padloper. 
+> Importante: a condição-gatilho 'collision' checa apenas colisões entre dois tipos de atores, e não é possível checar colisão entre três tipos de atores nesta versão do Padloper.
 
 <br/><br/>
 
-Exemplo de regra de posição: 
+Exemplo de regra de posição:
 
 ```
 {
@@ -302,8 +298,8 @@ Exemplo de regra de posição:
 	"consequences" : []
 }
 ```
-<br/><br/>
 
+<br/><br/>
 
 _Elementos da Regra de **Posição**_:
 
@@ -319,7 +315,7 @@ Consequences: Lista de consequências a serem executadas assim que a condição-
 
 <br/><br/>
 
-Exemplo de regra de pontuação: 
+Exemplo de regra de pontuação:
 
 ```
 {
@@ -336,28 +332,25 @@ Win_Score: Pontuação a ser atingida para que a regra seja ativada. **( number 
 Consequences: Lista de consequências a serem executadas assim que a condição-gatilho for atingida;
 <br/><br/>
 
-* Consequências:
-	1. "remove_actor" - remove o ator2 da tela;
-	2. "set_heading" - muda a direção que o ator1 está apontado;
-	3. "bounce_x" - faz o ator1 'quicar' no eixo x, em 45 graus;
-	4. "bounce_y" - faz o ator1 'quicar' no eixo y, em 45 graus;
-	5. "game_won" - finaliza o jogo com condição de vitória;
-	6. "point" - acrescenta um ponto ao placar;
-	7. "game_over" - finaliza o jogo com condição de derrota;
-	8. "move_to" - move o ator1 para uma nova posição;
-
-	
+- Consequências:
+  1.  "remove_actor" - remove o ator2 da tela;
+  2.  "set_heading" - muda a direção que o ator1 está apontado;
+  3.  "bounce_x" - faz o ator1 'quicar' no eixo x, em 45 graus;
+  4.  "bounce_y" - faz o ator1 'quicar' no eixo y, em 45 graus;
+  5.  "game_won" - finaliza o jogo com condição de vitória;
+  6.  "point" - acrescenta um ponto ao placar;
+  7.  "game_over" - finaliza o jogo com condição de derrota;
+  8.  "move_to" - move o ator1 para uma nova posição;
 
 <br/><br/>
 
+## Padgame Builder
 
-## Padgame Builder 
+O Padloper Game Builder é o motor primordial da ferramenta. Esta peça do Padloper é o interpretador do mapa de jogo e o construtor do jogo de fato.
 
-O Padloper Game Builder é o motor primordial da ferramenta. Esta peça do Padloper é o interpretador do mapa de jogo e o construtor do jogo de fato. 
+Cada um dos elementos descritos do Mapa de Jogo possui um construtor próprio, e opera sob regras específicas para cada um dos objetos.
 
-Cada um dos elementos descritos do Mapa de Jogo possui um construtor próprio, e opera sob regras específicas para cada um dos objetos. 
-
-Quais são as peças do Game Buider? 
+Quais são as peças do Game Buider?
 
 ### Screen Builder
 
@@ -375,12 +368,10 @@ Em construção
 
 Em construção
 
-### Rule Builder 
+### Rule Builder
 
 Em construção
 
 ### Game Builder
 
 Em construção
-
-
