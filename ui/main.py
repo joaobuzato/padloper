@@ -2,6 +2,7 @@ from tkinter import *
 import os
 import json
 from settings_window import open_settings_window
+from scoreboard_window import open_scoreboard_window
 
 # Diretório atual do script
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -59,10 +60,12 @@ build_button = Button(text="Build", command=build, width=16)
 build_button.grid(row=10, column=1)
 
 run_button = Button(text="Run", command=run,  width=16)
-run_button.grid(row=10, column=2)
+run_button.grid(row=11, column=1)
 
 settings_button = Button(window, text="Settings", command=open_settings_window, width=16)
-settings_button.grid(row=10, column=3)
+settings_button.grid(row=2, column=0)
+scoreboard_button = Button(window, text="Scoreboard", command=open_scoreboard_window, width=16)
+scoreboard_button.grid(row=2, column=2)
 
 window.mainloop()
 
